@@ -23,7 +23,7 @@ public class Klant  {
         this.rekeningen = rekeningen;
     }
 
-    public Klant(String gebruikersnaam, String wachtwoord,String adres,  String woonplaats) {
+    public Klant(String gebruikersnaam, String wachtwoord, String adres, String woonplaats) {
        this(gebruikersnaam, wachtwoord,adres,  woonplaats, new ArrayList<Rekening>());
     }
 
