@@ -1,0 +1,46 @@
+body{
+    font-family: 'Open Sans', sans-serif;
+}
+
+
+.btn-primary{
+    background-color: #ed6c39;
+    border-color :#ed6c39;
+}
+
+.btn-primary:hover{
+    background-color: white;
+    border-color: #ed6c39;
+    color: #ed6c39;
+}
+
+a:link{
+    color: blue;
+}
+
+a:visited{
+    color: inherit;
+}
+
+.nav-link:hover{
+    color: #666363;
+    text-decoration: underline;
+}
+
+a:active{
+    color: #666363;
+}
+
+h1, h2, h3, h4, h5, h6{
+    font-family: 'Bree Serif', serif;
+}
+
+.carousel-caption > h5{
+    font-size: 3rem;
+    text-shadow: 2px 2px 8px black;
+}
+
+.carousel-caption > p{
+    font-size: 2rem;
+    text-shadow: 2px 2px 8px black;
+}
