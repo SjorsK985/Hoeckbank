@@ -2,6 +2,9 @@ body{
     font-family: 'Open Sans', sans-serif;
 }
 
+.js-error{
+    color:red;
+}
 
 .btn-primary{
     background-color: #ed6c39;
