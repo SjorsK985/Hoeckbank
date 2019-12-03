@@ -2,7 +2,12 @@ package hoeckbankgroup.demo.model;
 
 import java.util.ArrayList;
 
+/**
+ * Auteurs Anne van den Bosch en Ruben van den Akker
+ * POJO rekening
+ */
 public class Rekening {
+
 
     private String rekeningnummer;
     private double saldo;

@@ -2,7 +2,12 @@ package hoeckbankgroup.demo.model;
 
 import java.util.ArrayList;
 
+/**
+ * Auteurs Anne van den Bosch en Ruben van den Akker
+ * POJO Klant
+ */
 public class Klant  {
+
 
     private String adres; //straat + huisnummer
     private String gebruikersnaam;
@@ -18,7 +23,7 @@ public class Klant  {
         this.rekeningen = rekeningen;
     }
 
-    public Klant(String gebruikersnaam, String wachtwoord,String adres,  String woonplaats) {
+    public Klant(String gebruikersnaam, String wachtwoord, String adres, String woonplaats) {
        this(gebruikersnaam, wachtwoord,adres,  woonplaats, new ArrayList<Rekening>());
     }
 
