@@ -16,7 +16,7 @@ public class LoginController {
             return "persoonlijke_pagina_template";
         } else{
             model.addAttribute("header_text", "Naam/password combi niet bekend.");
-            return "login_template";
+            return "login";
         }
     }
 }

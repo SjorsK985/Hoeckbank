@@ -4,12 +4,24 @@
 <body>
 <nav th:replace="fragments/navbar :: navbar"/>
 <!--BEGIN HIER MET NIEUWE TEMPLATE-->
-
-
-
-
-
-<!--NIEUWE TEMPLATE TOT HIER-->
+<div align = "center">
+<h1><span th:text="${header_text}"/></h1>
+<form action="#" th:action="@{do_login}" method="post" >
+    <table>
+        <tr>
+            <td>Naam:</td>
+            <td><input type ="text" name="gebruiker_naam"></td>
+        </tr>
+        <tr>
+            <td>Password:</td>
+            <td><input type ="password" name="gebruiker_paswoord"></td>
+        </tr>
+        <tr>
+            <td><input type ="submit" name="submit" value="Inloggen"></td>
+        </tr>
+    </table>
+</form>
+</div>
 <footer th:replace="fragments/footer :: footer"/>
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

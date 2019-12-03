@@ -9,6 +9,11 @@ public class IndexController {
     @GetMapping("login")
     public String loginHandler(Model model) {
         model.addAttribute("header_text", "Hier kan je inloggen");
-        return "login_template";
+        return "login";
+    }
+
+    @GetMapping("index")
+    public String indexHandler(){
+        return "index";
     }
 }
