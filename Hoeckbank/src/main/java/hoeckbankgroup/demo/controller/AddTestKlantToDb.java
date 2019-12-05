@@ -1,6 +1,6 @@
 package hoeckbankgroup.demo.controller;
 
-import hoeckbankgroup.demo.model.KlantDAO;
+import hoeckbankgroup.demo.model.DAO.KlantDAO;
 import hoeckbankgroup.demo.model.TestKlant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
