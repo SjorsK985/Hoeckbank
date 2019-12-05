@@ -13,26 +13,30 @@ public class LoginController {
 
     @Autowired
     private KlantDAO klantDAO;
-
+    
     @PostMapping("do_login")
     public String doLoginHandler(@RequestParam(name = "gebruiker_naam") String gebruikerNaam,
                                  @RequestParam(name = "gebruiker_paswoord") String gebruikerWachtwoord,
                                  Model model ){
-        String dbWachtwoord;
-        // Probeer wachtwoord van gebruiker op te halen
-        try{
-            TestKlant klant = klantDAO.findKlantByGebruikersnaam(gebruikerNaam);
-            dbWachtwoord = klant.getWachtwoord();
-        } catch (NullPointerException noUser){
-            model.addAttribute("login_error", "Gebruiker / wachtwoord combi niet geldig");
-            return "login";
-        }
-        // Stuur gebruiker door als password klopt
-        if(dbWachtwoord.equals(gebruikerWachtwoord)){
+        boolean loginTrue = loginTrueFalse(gebruikerNaam, gebruikerWachtwoord);
+        if(loginTrue){
             return "testaccount";
         } else {
             model.addAttribute("login_error", "Gebruiker / wachtwoord combi niet geldig");
             return "login";
         }
     }
+
+    private boolean loginTrueFalse(String gebruikerNaam, String gebruikerWachtwoord){
+        boolean login = false;
+        try{
+            TestKlant klant = klantDAO.findKlantByGebruikersnaam(gebruikerNaam);
+            String dbWachtwoord = klant.getWachtwoord();
+            if(dbWachtwoord.equals(gebruikerWachtwoord)){
+                login = true;
+            }
+        } catch (NullPointerException noUser){}
+        return login;
+    }
+
 }
