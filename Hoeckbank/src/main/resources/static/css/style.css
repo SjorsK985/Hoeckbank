@@ -1,18 +1,25 @@
+/*Overwrites*/
+
+/*Typography*/
 body{
     font-family: 'Open Sans', sans-serif;
 }
 
-.btn-primary{
-    background-color: #ed6c39;
-    border-color :#ed6c39;
+h1, h2, h3, h4, h5, h6{
+    font-family: 'Bree Serif', serif;
 }
 
-.btn-primary:hover{
-    background-color: white;
-    border-color: #ed6c39;
-    color: #ed6c39;
+.carousel-caption > h5{
+    font-size: 3rem;
+    text-shadow: 2px 2px 8px black;
 }
 
+.carousel-caption > p{
+    font-size: 2rem;
+    text-shadow: 2px 2px 8px black;
+}
+
+/*Links*/
 a:link{
     color: blue;
 }
@@ -30,18 +37,32 @@ a:active{
     color: #666363;
 }
 
-h1, h2, h3, h4, h5, h6{
-    font-family: 'Bree Serif', serif;
+/*Colors*/
+.btn-primary{
+    background-color: #ed6c39;
+    border-color :#ed6c39;
 }
 
-.carousel-caption > h5{
-    font-size: 3rem;
-    text-shadow: 2px 2px 8px black;
+.btn-primary:hover{
+    background-color: white;
+    border-color: #ed6c39;
+    color: #ed6c39;
 }
 
-.carousel-caption > p{
-    font-size: 2rem;
-    text-shadow: 2px 2px 8px black;
+/*Own stylings*/
+.rounded{
+    border-radius: .5rem!important;
+}
+
+.form-wrapper{
+    width: 75%;
+    padding: 2rem 2rem;
+    border-radius: .3rem;
+    background-color: #e9ecef;
+}
+
+.first-row{
+    border-top: none !important;
 }
 
 /*

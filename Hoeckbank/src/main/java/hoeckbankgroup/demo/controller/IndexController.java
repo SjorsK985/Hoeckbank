@@ -12,6 +12,11 @@ public class IndexController {
         return "login";
     }
 
+    @GetMapping("register")
+    public String registerHandler(){
+        return "register";
+    }
+
     @GetMapping("index")
     public String indexHandler(){
         return "index";

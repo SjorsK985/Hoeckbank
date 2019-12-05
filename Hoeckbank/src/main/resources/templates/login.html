@@ -2,12 +2,12 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:replace="fragments/header :: header"/>
 
-<body>
+<body class="bg-light">
 <nav th:replace="fragments/navbar :: navbar"/>
 <!--BEGIN HIER MET NIEUWE TEMPLATE-->
 <div class="container" align = "center">
-<h2><span th:text="${header_text}"/></h2>
-<div class="jumbotron">
+<h2 class="py-5"><span th:text="${header_text}"/></h2>
+<div class="jumbotron mb-5">
 <form action="#" th:action="@{do_login}" method="post" >
 
     <table>
