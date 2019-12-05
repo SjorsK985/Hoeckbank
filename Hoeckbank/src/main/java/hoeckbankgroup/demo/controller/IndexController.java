@@ -12,8 +12,9 @@ public class IndexController {
         return "login";
     }
 
-    @GetMapping("index")
+    @GetMapping("")
     public String indexHandler(){
         return "index";
     }
+
 }
