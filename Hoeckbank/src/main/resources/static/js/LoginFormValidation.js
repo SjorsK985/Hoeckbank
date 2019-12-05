@@ -21,6 +21,6 @@ function validationError(){
         document.getElementById("passwordError").innerHTML = "Wachtwoord mag niet leeg zijn";
         return false;
     }
-    return true
+    //return true
 
 }
