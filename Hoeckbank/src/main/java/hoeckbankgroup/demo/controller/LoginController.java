@@ -13,7 +13,7 @@ public class LoginController {
 
     @Autowired
     private KlantDAO klantDAO;
-    
+
     @PostMapping("do_login")
     public String doLoginHandler(@RequestParam(name = "gebruiker_naam") String gebruikerNaam,
                                  @RequestParam(name = "gebruiker_paswoord") String gebruikerWachtwoord,
@@ -27,16 +27,16 @@ public class LoginController {
         }
     }
 
-    private boolean loginTrueFalse(String gebruikerNaam, String gebruikerWachtwoord){
-        boolean login = false;
-        try{
-            TestKlant klant = klantDAO.findKlantByGebruikersnaam(gebruikerNaam);
-            String dbWachtwoord = klant.getWachtwoord();
-            if(dbWachtwoord.equals(gebruikerWachtwoord)){
-                login = true;
+    private boolean loginTrueFalse(String gebruikerNaam, String gebruikerWachtwoord) {
+        // Hulpmethode: Checkt of klant bestaat en wachtwoord overeenkomt
+        TestKlant klant = klantDAO.findKlantByGebruikersnaam(gebruikerNaam);
+        if (klant != null) {
+            if (klant.getWachtwoord().equals(gebruikerWachtwoord)) {
+                return true;
             }
-        } catch (NullPointerException noUser){}
-        return login;
+        }
+        return false;
     }
+
 
 }
