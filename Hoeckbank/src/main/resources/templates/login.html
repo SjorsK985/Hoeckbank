@@ -1,27 +1,48 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Inloggen bij de Hoeckbank</title>
-</head>
-<body>
-<div align = "center">
-<h1><span th:text="${header_text}"/></h1>
-<form action="#" th:action="@{do_login}" method="post" >
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/header :: header"/>
+
+<body class="bg-light">
+<nav th:replace="fragments/navbar :: navbar"/>
+<!--BEGIN HIER MET NIEUWE TEMPLATE-->
+<div class="container" align = "center">
+<h2><span th:text="${header_text}"/></h2>
+<div class="jumbotron">
+<form action="#" th:action="@{do_login}" method="post" onsubmit=" return validationError()" name="loginForm" >
     <table>
         <tr>
             <td>Naam:</td>
             <td><input type ="text" name="gebruiker_naam"></td>
         </tr>
         <tr>
+            <td></td>
+            <td><div id="userNameError" class="validate-error"></div></td>
+        </tr>
+        <tr>
             <td>Password:</td>
             <td><input type ="password" name="gebruiker_paswoord"></td>
         </tr>
         <tr>
-            <td><input type ="submit" name="submit" value="Inloggen"></td>
+            <td></td>
+            <td><div id="passwordError" class="validate-error"></div></td>
+        </tr>
+        <tr>
+            <td>
+
+            </td>
+            <td align="right">
+                <a href="#"><button class="btn btn-primary my-2 my-sm-0" type="submit" value="Inloggen">Inloggen</button></a>
+            </td>
         </tr>
     </table>
 </form>
-</div>
+    <span th:text="${login_error}" class="validate-error"/>
+</div></div>
+
+<footer th:replace="fragments/footer :: footer"/>
 </body>
+<script src="js/loginFormValidation.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </html>
