@@ -57,12 +57,31 @@ a:active{
 .form-wrapper{
     width: 75%;
     padding: 2rem 2rem;
-    border-radius: .3rem;
+    border-radius: .5rem;
     background-color: #e9ecef;
 }
 
 .first-row{
     border-top: none !important;
+}
+
+table{
+    table-layout:fixed;
+}
+
+#register-form tr > *:nth-child(1) { width:10%; }
+#register-form tr > *:nth-child(2) { width:30%; }
+#register-form tr > *:nth-child(3) { width:60%; }
+
+th.from, th.date {
+    width: 10%;
+}
+th.subject{
+    width: 70%;
+}
+
+.register-form-input{
+    width: 75%;
 }
 
 /*
