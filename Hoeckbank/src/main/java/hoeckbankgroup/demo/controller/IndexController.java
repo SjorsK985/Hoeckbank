@@ -21,4 +21,5 @@ public class IndexController {
     public String indexHandler(){
         return "index";
     }
+
 }

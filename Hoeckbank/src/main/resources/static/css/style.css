@@ -1,12 +1,16 @@
-/*Overwrites*/
+/*BS Overwrites*/
 
 /*Typography*/
 body{
     font-family: 'Open Sans', sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6{
-    font-family: 'Bree Serif', serif;
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Bree Serif', sans-serif;
+}
+
+.validate-error{
+    color:red;
 }
 
 .carousel-caption > h5{
