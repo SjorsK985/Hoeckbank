@@ -9,6 +9,11 @@ public class Particulier extends Klant {
     private String achternaam;
     private int BSN;
 
+    private String email;
+    private String phone;
+    private String gender;
+    private String DoB;
+
     public Particulier(String adres, String gebruikersnaam, String wachtwoord, String woonplaats,
                        ArrayList<Rekening> rekeningen, String voornaam, String tussenvoegsel, String achternaam, int BSN) {
         super(adres, gebruikersnaam, wachtwoord, woonplaats, rekeningen);

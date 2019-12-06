@@ -22,10 +22,11 @@ public class NewAccountController {
         //valideren bsn? tegen database
         // particulier aanpassen naar hibernate en rekeningen eruit halen in een constructor
         //Klant klant = new Klant(username, password, firstName, tussenvoegsel, lastName, street, houseNumber, postcode, woonplaats, email, phone, dob,bsn);
+        //email controleert zichtzelf, de rest nog niet
         //if (bsn != klantDao.findById()){
         //     klantdao.save(klant); return "personal_account_template";
        // } else {
-        // return naar Login? met boodschap: u bent reeds kant, log aub in
+        // return naar Login? met boodschap: u bent reeds klant, log aub in
         return "personal_account_template";
     }
 }

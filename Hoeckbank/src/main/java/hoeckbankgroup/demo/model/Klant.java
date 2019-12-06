@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Klant  {
 
 
-    private String adres; //straat + huisnummer
+    private String adres; //straat + huisnummer+postcode
     private String gebruikersnaam;
     private String wachtwoord;
     private String woonplaats;
