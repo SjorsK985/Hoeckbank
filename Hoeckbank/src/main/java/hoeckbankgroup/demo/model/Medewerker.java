@@ -1,15 +1,21 @@
 package hoeckbankgroup.demo.model;
 
+import javax.persistence.Entity;
 import java.util.ArrayList;
 
+
+@Entity
 public class Medewerker extends Persoon{
 
     private String functie;
 
-    public Medewerker(String gebruikersnaam, String wachtwoord, String voornaam, String achternaam,
-                      int BSN, String functie) {
-        super(gebruikersnaam, wachtwoord, voornaam, achternaam, BSN);
+    public Medewerker(int personID, String gebruikersnaam, String wachtwoord, String functie) {
+        super(personID, gebruikersnaam, wachtwoord);
         this.functie = functie;
+    }
+
+    public Medewerker(){
+        this(0,"onbekend", "onbekend","onbekend");
     }
 
     public String getFunctie() {return functie;}

@@ -1,16 +1,25 @@
 package hoeckbankgroup.demo.model;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 
 /**
  * Auteurs Anne van den Bosch en Ruben van den Akker
  * POJO rekening
  */
+
+@Entity
 public class Rekening {
 
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int rekeningID;
     private String rekeningnummer;
     private double saldo;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "klant_id")
+    private Klant klant;
 
     public Rekening(String rekeningnummer, double saldo) {
         this.rekeningnummer = rekeningnummer;

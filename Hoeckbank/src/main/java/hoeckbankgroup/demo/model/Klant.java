@@ -1,47 +1,49 @@
 package hoeckbankgroup.demo.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import java.util.ArrayList;
 
 /**
  * Auteurs Anne van den Bosch en Ruben van den Akker
  * POJO Klant
  */
+
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Klant extends Persoon{
 
-
-    private String adres; //straat + huisnummer+postcode
-    private String gebruikersnaam;
-    private String wachtwoord;
+    private String straat;
+    private String huisnummer;  //gekozen voor string want sommige nummers hebben nog a of b
+    private String postcode;
     private String woonplaats;
-    public ArrayList<Rekening> rekeningen;
 
-    public Klant(String adres, String gebruikersnaam, String wachtwoord, String woonplaats, ArrayList<Rekening> rekeningen) {
-        this.adres = adres;
-        this.gebruikersnaam = gebruikersnaam;
-        this.wachtwoord = wachtwoord;
+    public Klant(int personID, String gebruikersnaam, String wachtwoord, String straat,
+                 String huisnummer, String postcode, String woonplaats) {
+        super(personID, gebruikersnaam, wachtwoord);
+        this.straat = straat;
+        this.huisnummer = huisnummer;
+        this.postcode = postcode;
         this.woonplaats = woonplaats;
-        this.rekeningen = rekeningen;
     }
 
-    public Klant(String gebruikersnaam, String wachtwoord, String adres, String woonplaats) {
-       this(gebruikersnaam, wachtwoord,adres,  woonplaats, new ArrayList<Rekening>());
+    public Klant() {
+        this(0,"onbekend","onbekend",
+                "onbekend","onbekend","onbekend","onbekend");
     }
 
-    public Klant(String gebruikersnaam, String wachtwoord) {
-        this(gebruikersnaam, wachtwoord,"onbekend", "onbekend");
-    }
+    public String getStraat() {return straat;}
 
-    public String getAdres() {return adres;}
+    public void setStraat(String straat) {this.straat = straat;}
 
-    public void setAdres(String adres) {this.adres = adres;}
+    public String getHuisnummer() {return huisnummer;}
 
-    public String getGebruikersnaam() {return gebruikersnaam;}
+    public void setHuisnummer(String huisnummer) {this.huisnummer = huisnummer;}
 
-    public void setGebruikersnaam(String gebruikersnaam) {this.gebruikersnaam = gebruikersnaam;}
+    public String getPostcode() {return postcode;}
 
-    public String getWachtwoord() {return wachtwoord;}
-
-    public void setWachtwoord(String wachtwoord) {this.wachtwoord = wachtwoord;}
+    public void setPostcode(String postcode) {this.postcode = postcode;}
 
     public String getWoonplaats() {return woonplaats;}
 

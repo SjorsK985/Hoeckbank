@@ -1,37 +1,53 @@
 package hoeckbankgroup.demo.model;
 
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Auteur Anne van den Bosch
  * POJO voor MKB klant
  */
+@Entity
 public class MKB extends Klant{
-
 
     private String bedrijfsnaam;
     private String sector;
     private String accountmanager;
 
-    public MKB(String adres, String gebruikersnaam, String wachtwoord, String woonplaats, ArrayList<Rekening> rekeningen,
-               String bedrijfsnaam, String sector, String accountmanager) {
-        super(adres, gebruikersnaam, wachtwoord, woonplaats, rekeningen);
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "klant")
+    private List<Rekening> rekeningen;
+
+    public MKB(int personID, String gebruikersnaam, String wachtwoord, String straat,
+               String huisnummer, String postcode, String woonplaats, String bedrijfsnaam,
+               String sector, String accountmanager, List<Rekening> rekeningen) {
+        super(personID, gebruikersnaam, wachtwoord, straat, huisnummer, postcode, woonplaats);
+        this.bedrijfsnaam = bedrijfsnaam;
+        this.sector = sector;
+        this.accountmanager = accountmanager;
+        this.rekeningen = rekeningen;
+    }
+
+    public MKB(int personID, String gebruikersnaam, String wachtwoord, String straat,
+               String huisnummer, String postcode, String woonplaats, String bedrijfsnaam,
+               String sector, String accountmanager) {
+        super(personID, gebruikersnaam, wachtwoord, straat, huisnummer, postcode, woonplaats);
         this.bedrijfsnaam = bedrijfsnaam;
         this.sector = sector;
         this.accountmanager = accountmanager;
     }
 
-    public MKB(String gebruikersnaam, String wachtwoord,
-               String bedrijfsnaam, String sector, String accountmanager) {
-        super(gebruikersnaam, wachtwoord);
+    public MKB(int personID, String gebruikersnaam, String wachtwoord, String straat,
+               String huisnummer, String postcode, String woonplaats, String bedrijfsnaam, String sector) {
+        super(personID, gebruikersnaam, wachtwoord, straat, huisnummer, postcode, woonplaats);
         this.bedrijfsnaam = bedrijfsnaam;
         this.sector = sector;
-        this.accountmanager = accountmanager;
     }
 
-    public MKB (){
-        this("onbekend", "onbekend", "onbekend", "onbekend", "onbekend");
-    }
+    public MKB (){}
 
     public String getBedrijfsnaam() {return bedrijfsnaam;}
 
