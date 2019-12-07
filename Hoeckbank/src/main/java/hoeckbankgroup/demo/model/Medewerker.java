@@ -2,7 +2,7 @@ package hoeckbankgroup.demo.model;
 
 import java.util.ArrayList;
 
-public class Medewerker extends Particulier{
+public class Medewerker extends Persoon{
 
     private String functie;
 
