@@ -41,6 +41,7 @@ public class MKB extends Klant{
         this.bedrijfsnaam = bedrijfsnaam;
         this.sector = sector;
         this.accountmanager = accountmanager;
+        this.rekeningen = new ArrayList<Rekening>();
     }
 
     public MKB(int personID, String gebruikersnaam, String wachtwoord, String straat,

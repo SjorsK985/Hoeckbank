@@ -54,7 +54,7 @@ public class Particulier extends Klant {
         this.phone = "onbekend";
         this.gender = "onbekend";
         this.DoB = "onbekend";
-        this.rekeningen = new
+        this.rekeningen = new ArrayList<Rekening>();
     }
 
     public Particulier(){}
