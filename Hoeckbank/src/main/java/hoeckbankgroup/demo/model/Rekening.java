@@ -2,6 +2,7 @@ package hoeckbankgroup.demo.model;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Auteurs Anne van den Bosch en Ruben van den Akker
@@ -17,9 +18,10 @@ public class Rekening {
     private String rekeningnummer;
     private double saldo;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "klant_id")
-    private Klant klant;
+    /*@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "klant_id")*/
+    @ManyToMany(mappedBy = "rekeningen")
+    private List<Klant> klanten;
 
     public Rekening(String rekeningnummer, double saldo) {
         this.rekeningnummer = rekeningnummer;

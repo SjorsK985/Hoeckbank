@@ -1,9 +1,6 @@
 package hoeckbankgroup.demo.model;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +15,13 @@ public class MKB extends Klant{
     private String sector;
     private String accountmanager;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "klant")
+   /* @OneToMany(fetch = FetchType.LAZY, mappedBy = "klant")*/
+   @ManyToMany(cascade = { CascadeType.ALL})
+/*    @JoinTable(
+            name = "rekeningen_klant",
+            joinColumns = { @JoinColumn(name = "klant_id") },
+            inverseJoinColumns = { @JoinColumn(name = "rekening_id") }
+    )*/
     private List<Rekening> rekeningen;
 
     public MKB(int personID, String gebruikersnaam, String wachtwoord, String straat,
