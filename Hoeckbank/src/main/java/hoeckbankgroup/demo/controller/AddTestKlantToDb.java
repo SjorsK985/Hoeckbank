@@ -1,7 +1,7 @@
 package hoeckbankgroup.demo.controller;
 
-import hoeckbankgroup.demo.model.DAO.PersoonDAO;
-import hoeckbankgroup.demo.model.TestKlant;
+import hoeckbankgroup.demo.model.DAO.KlantDAO;
+import hoeckbankgroup.demo.model.Klant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class AddTestKlantToDb {
 
     @Autowired
-    private PersoonDAO persoonDAO;
+    private KlantDAO klantDAO;
 
     @GetMapping("fdb")
     public String fillDatabase(){
-        TestKlant testKlant = new TestKlant("user", "test");
-        persoonDAO.save(testKlant);
+        Klant klant = new Klant();
+        klantDAO.save(klant);
 
         return "login";
     }

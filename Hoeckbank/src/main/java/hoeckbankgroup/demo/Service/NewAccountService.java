@@ -1,6 +1,6 @@
 package hoeckbankgroup.demo.Service;
 
-import hoeckbankgroup.demo.model.Dao.ParticulierDao;
+import hoeckbankgroup.demo.model.DAO.ParticulierDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

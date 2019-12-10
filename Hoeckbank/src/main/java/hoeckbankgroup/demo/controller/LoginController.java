@@ -1,9 +1,9 @@
 package hoeckbankgroup.demo.controller;
 
-import hoeckbankgroup.demo.model.MKB;
+import hoeckbankgroup.demo.model.Klant;
 import hoeckbankgroup.demo.model.Particulier;
 import hoeckbankgroup.demo.model.Persoon;
-import hoeckbankgroup.demo.model.service.PersoonService;
+import hoeckbankgroup.demo.model.service.KlantService;
 import hoeckbankgroup.demo.model.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,24 +21,24 @@ public class LoginController {
     private LoginService loginService;
 
     @Autowired
-    private PersoonService persoonService;
+    private KlantService klantService;
 
     @PostMapping("do_login")
     public String doLoginHandler(@RequestParam(name = "gebruiker_naam") String gebruikerNaam,
                                  @RequestParam(name = "gebruiker_paswoord") String gebruikerWachtwoord,
                                  Model model) {
         if (loginService.validatePassword(gebruikerNaam, gebruikerWachtwoord)) {
-            Persoon persoon = persoonService.findPersoonByName(gebruikerNaam);
-            model.addAttribute("gebruiker", persoon);
-            return setup(persoon);
+            Klant klant = klantService.findKlantByName(gebruikerNaam);
+            model.addAttribute("gebruiker", klant);
+            return setup(klant);
         } else {
             model.addAttribute("Login_error", "Gebruiker / wachtwoord combi niet geldig");
             return "Login";
         }
     }
 
-    public String setup(Persoon persoon){
-        if (persoon instanceof Particulier) {
+    public String setup(Klant klant){
+        if (klant instanceof Particulier) {
             System.out.println("Particulier");
             return "Login";
         } else {
