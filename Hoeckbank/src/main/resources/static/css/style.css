@@ -88,6 +88,10 @@ th.subject{
     width: 75%;
 }
 
+.table tbody+tbody{
+    border-top: none;
+}
+
 /*
 martijn
  */

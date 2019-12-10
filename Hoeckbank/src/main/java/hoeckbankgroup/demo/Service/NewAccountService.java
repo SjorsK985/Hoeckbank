@@ -1,6 +1,8 @@
 package hoeckbankgroup.demo.Service;
 
-import hoeckbankgroup.demo.model.DAO.ParticulierDao;
+
+import hoeckbankgroup.demo.model.DAO.ParticulierDAO;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,5 +10,5 @@ import org.springframework.stereotype.Service;
 public class NewAccountService {
 
     @Autowired
-    private ParticulierDao particulierDao;
+   private ParticulierDAO particulierDAO;
 }

@@ -1,8 +1,8 @@
 package hoeckbankgroup.demo.controller;
 
+
 import hoeckbankgroup.demo.model.Klant;
 import hoeckbankgroup.demo.model.Particulier;
-import hoeckbankgroup.demo.model.Persoon;
 import hoeckbankgroup.demo.model.service.KlantService;
 import hoeckbankgroup.demo.model.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +24,11 @@ public class LoginController {
     private KlantService klantService;
 
     @PostMapping("do_login")
-    public String doLoginHandler(@RequestParam(name = "gebruiker_naam") String gebruikerNaam,
+    public String doLoginHandler(@RequestParam(name = "gebruiker_naam") String email,
                                  @RequestParam(name = "gebruiker_paswoord") String gebruikerWachtwoord,
                                  Model model) {
-        if (loginService.validatePassword(gebruikerNaam, gebruikerWachtwoord)) {
-            Klant klant = klantService.findKlantByName(gebruikerNaam);
+        if (loginService.validatePassword(email, gebruikerWachtwoord)) {
+            Klant klant = klantService.findKlantByEmail(email);
             model.addAttribute("gebruiker", klant);
             return setup(klant);
         } else {
@@ -36,7 +36,6 @@ public class LoginController {
             return "Login";
         }
     }
-
     public String setup(Klant klant){
         if (klant instanceof Particulier) {
             System.out.println("Particulier");
@@ -46,5 +45,4 @@ public class LoginController {
             return "Login";
         }
     }
-
 }
