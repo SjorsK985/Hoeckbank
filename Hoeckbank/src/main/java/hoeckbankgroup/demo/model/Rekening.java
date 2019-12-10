@@ -19,7 +19,7 @@ public class Rekening {
     private String rekeningnummer;
     private double saldo;
 
-    @OneToMany
+    @OneToMany (cascade = CascadeType.ALL)
     private List<Klant> rekeninghouder;
 
     public Rekening(String rekeningnummer, double saldo) {
