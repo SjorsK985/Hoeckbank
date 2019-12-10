@@ -16,7 +16,7 @@ public class Klant extends Persoon{
     private String postcode;
     private String woonplaats;
     private String telefoonNummer;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Rekening> rekeningen;
 
     public Klant(){
