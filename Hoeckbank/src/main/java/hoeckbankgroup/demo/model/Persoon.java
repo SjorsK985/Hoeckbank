@@ -6,31 +6,39 @@ import javax.persistence.*;
 public abstract class Persoon {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int personID;
-    private String gebruikersnaam;
+    @GeneratedValue(strategy = GenerationType.TABLE)
+    private int personId;
+
+    private String email;
     private String wachtwoord;
 
-    public Persoon(int personID, String gebruikersnaam, String wachtwoord){
+    public Persoon(){
         super();
-        this.personID = personID;
-        this.gebruikersnaam = gebruikersnaam;
+    }
+
+    public Persoon(String email, String wachtwoord){
+        super();
+        this.email = email;
         this.wachtwoord = wachtwoord;
     }
 
-    public Persoon() {
-        this(0, "onbekend", "onbekend");
+    public String getEmail() {
+        return email;
     }
 
-    public int getPersonID() {return personID;}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-    public void setPersonID(int personID) {this.personID = personID;}
+    public String getWachtwoord() {
+        return wachtwoord;
+    }
 
-    public String getGebruikersnaam() {return gebruikersnaam;}
+    public void setWachtwoord(String wachtwoord) {
+        this.wachtwoord = wachtwoord;
+    }
 
-    public void setGebruikersnaam(String gebruikersnaam) {this.gebruikersnaam = gebruikersnaam;}
-
-    public String getWachtwoord() {return wachtwoord;}
-
-    public void setWachtwoord(String wachtwoord) {this.wachtwoord = wachtwoord;}
+    public int getPersonId() {
+        return personId;
+    }
 }

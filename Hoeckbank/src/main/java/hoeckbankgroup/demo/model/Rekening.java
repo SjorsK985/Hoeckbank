@@ -15,13 +15,12 @@ public class Rekening {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int rekeningID;
+
     private String rekeningnummer;
     private double saldo;
 
-    /*@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "klant_id")*/
-    @ManyToMany(mappedBy = "rekeningen")
-    private List<Klant> klanten;
+    @OneToMany
+    private List<Klant> rekeninghouder;
 
     public Rekening(String rekeningnummer, double saldo) {
         this.rekeningnummer = rekeningnummer;
@@ -29,7 +28,7 @@ public class Rekening {
     }
 
     public Rekening(){
-        this("onbekend", 0.00);
+        super();
     }
 
     public String getRekeningnummer() {return rekeningnummer;}
@@ -39,4 +38,16 @@ public class Rekening {
     public double getSaldo() {return saldo;}
 
     public void setSaldo(double saldo) {this.saldo = saldo;}
+
+    public int getRekeningID() {
+        return rekeningID;
+    }
+
+    public List<Klant> getRekeninghouder() {
+        return rekeninghouder;
+    }
+
+    public void setRekeninghouder(List<Klant> rekeninghouder) {
+        this.rekeninghouder = rekeninghouder;
+    }
 }
