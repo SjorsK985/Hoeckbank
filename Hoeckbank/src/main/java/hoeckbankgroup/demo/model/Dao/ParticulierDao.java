@@ -1,4 +1,4 @@
-package hoeckbankgroup.demo.model.Dao;
+package hoeckbankgroup.demo.model.DAO;
 
 import hoeckbankgroup.demo.model.Particulier;
 import org.springframework.data.repository.CrudRepository;
