@@ -1,9 +1,7 @@
 package hoeckbankgroup.demo.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import java.util.ArrayList;
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * Auteurs Anne van den Bosch en Ruben van den Akker
@@ -11,26 +9,29 @@ import java.util.ArrayList;
  */
 
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Klant extends Persoon{
 
     private String straat;
     private String huisnummer;  //gekozen voor string want sommige nummers hebben nog a of b
     private String postcode;
     private String woonplaats;
+    private String telefoonNummer;
+    @OneToMany
+    private List<Rekening> rekeningen;
 
-    public Klant(int personID, String gebruikersnaam, String wachtwoord, String straat,
-                 String huisnummer, String postcode, String woonplaats) {
-        super(personID, gebruikersnaam, wachtwoord);
+    public Klant(){
+        super();
+    }
+
+
+    public Klant(String email, String wachtwoord, String straat, String huisnummer, String postcode, String woonplaats, String telefoonNummer, List<Rekening> rekeningen) {
+        super(email, wachtwoord);
         this.straat = straat;
         this.huisnummer = huisnummer;
         this.postcode = postcode;
         this.woonplaats = woonplaats;
-    }
-
-    public Klant() {
-        this(0,"onbekend","onbekend",
-                "onbekend","onbekend","onbekend","onbekend");
+        this.telefoonNummer = telefoonNummer;
+        this.rekeningen = rekeningen;
     }
 
     public String getStraat() {return straat;}
@@ -48,4 +49,5 @@ public class Klant extends Persoon{
     public String getWoonplaats() {return woonplaats;}
 
     public void setWoonplaats(String woonplaats) {this.woonplaats = woonplaats;}
+
 }

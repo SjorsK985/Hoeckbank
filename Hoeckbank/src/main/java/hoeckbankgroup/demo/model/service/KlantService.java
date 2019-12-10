@@ -12,9 +12,10 @@ public class KlantService {
     @Autowired
     private KlantDAO klantDAO;
 
-    public TestKlant findKlantByName(String gebruikersnaam){
-        return klantDAO.findKlantByGebruikersnaam(gebruikersnaam);
+    public Klant findKlantByEmail(String email){
+        return klantDAO.findKlantByEmail(email);
     }
 
-    public void save (TestKlant klant) {klantDAO.save(klant);}
+   // public void save (TestKlant klant) {klantDAO.save(klant);}
 }
+

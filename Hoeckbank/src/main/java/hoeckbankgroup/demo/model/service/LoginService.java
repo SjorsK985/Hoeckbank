@@ -12,8 +12,8 @@ public class LoginService {
     @Autowired
     private KlantDAO klantDAO;
 
-    public boolean validatePassword(String gebruikerNaam, String gebruikerWachtwoord){
-        TestKlant k = klantDAO.findKlantByGebruikersnaam(gebruikerNaam);
+    public boolean validatePassword(String email, String gebruikerWachtwoord){
+        Klant k = klantDAO.findKlantByEmail(email);
         if (k == null){
         return false;
         } else return k.getWachtwoord().equals(gebruikerWachtwoord);
