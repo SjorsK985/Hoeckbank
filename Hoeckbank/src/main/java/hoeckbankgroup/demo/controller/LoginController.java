@@ -36,7 +36,6 @@ public class LoginController {
             return "Login";
         }
     }
-
     public String setup(Klant klant){
         if (klant instanceof Particulier) {
             System.out.println("Particulier");
@@ -46,5 +45,4 @@ public class LoginController {
             return "Login";
         }
     }
-
 }
