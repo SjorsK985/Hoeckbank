@@ -1,58 +1,63 @@
 package hoeckbankgroup.demo.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Particulier extends Klant {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int particulierID;
 
     private String voornaam;
     private String tussenvoegsel;
     private String achternaam;
     private int BSN;
 
-    public Particulier(){
-        super();
-    }
+    private String email;
+    private String phone;
+    private String gender;
+    private String DoB;
 
+ /*   @OneToMany(fetch = FetchType.LAZY, mappedBy = "klant")*/
+    @ManyToMany(cascade = { CascadeType.ALL})
+/*    @JoinTable(
+            name = "rekeningen_klant",
+            joinColumns = { @JoinColumn(name = "klant_id") },
+            inverseJoinColumns = { @JoinColumn(name = "rekening_id") }
+    )*/
+    private List<Rekening> rekeningen;
 
-    public Particulier(String adres, String gebruikersnaam, String wachtwoord, String woonplaats,
-                       ArrayList<Rekening> rekeningen, String voornaam, String tussenvoegsel, String achternaam, int BSN) {
-        super(adres, gebruikersnaam, wachtwoord, woonplaats, rekeningen);
+    public Particulier(int personID, String gebruikersnaam, String wachtwoord, String straat,
+                       String huisnummer, String postcode, String woonplaats, String voornaam,
+                       String tussenvoegsel, String achternaam, int BSN, String email, String phone,
+                       String gender, String doB, List<Rekening> rekeningen) {
+        super(personID, gebruikersnaam, wachtwoord, straat, huisnummer, postcode, woonplaats);
         this.voornaam = voornaam;
         this.tussenvoegsel = tussenvoegsel;
         this.achternaam = achternaam;
         this.BSN = BSN;
+        this.email = email;
+        this.phone = phone;
+        this.gender = gender;
+        this.DoB = doB;
+        this.rekeningen = rekeningen;
     }
 
-    public Particulier(String gebruikersnaam, String wachtwoord, String voornaam, String tussenvoegsel, String achternaam, int BSN) {
-        super(gebruikersnaam, wachtwoord);
+    public Particulier(int personID, String gebruikersnaam, String wachtwoord, String straat,
+                       String huisnummer, String postcode, String woonplaats, String voornaam,
+                       String tussenvoegsel, String achternaam, int BSN) {
+        super(personID, gebruikersnaam, wachtwoord, straat, huisnummer, postcode, woonplaats);
         this.voornaam = voornaam;
         this.tussenvoegsel = tussenvoegsel;
         this.achternaam = achternaam;
         this.BSN = BSN;
+        this.email = "onbekend";
+        this.phone = "onbekend";
+        this.gender = "onbekend";
+        this.DoB = "onbekend";
+        this.rekeningen = new ArrayList<Rekening>();
     }
 
-    public Particulier(String adres, String gebruikersnaam, String wachtwoord, String woonplaats,
-                       ArrayList<Rekening> rekeningen, String voornaam, String achternaam, int BSN) {
-        super(adres, gebruikersnaam, wachtwoord, woonplaats, rekeningen);
-        this.voornaam = voornaam;
-        this.achternaam = achternaam;
-        this.BSN = BSN;
-    }
-
-    public Particulier(String gebruikersnaam, String wachtwoord, String voornaam, String achternaam, int BSN) {
-        super(gebruikersnaam, wachtwoord);
-        this.voornaam = voornaam;
-        this.achternaam = achternaam;
-        this.BSN = BSN;
-    }
+    public Particulier(){}
 
     public String getVoornaam() {return voornaam;}
 
@@ -69,8 +74,4 @@ public class Particulier extends Klant {
     public int getBSN() {return BSN;}
 
     public void setBSN(int BSN) {this.BSN = BSN;}
-
-    public int getParticulierID() {
-        return particulierID;
-    }
 }

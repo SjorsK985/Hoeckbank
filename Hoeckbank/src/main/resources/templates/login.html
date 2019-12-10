@@ -2,14 +2,13 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:replace="fragments/header :: header"/>
 
-<body>
+<body class="bg-light">
 <nav th:replace="fragments/navbar :: navbar"/>
 <!--BEGIN HIER MET NIEUWE TEMPLATE-->
 <div class="container" align = "center">
 <h2><span th:text="${header_text}"/></h2>
 <div class="jumbotron">
-<form action="#" th:action="@{do_login}" method="post" onsubmit="return validationError()" name="loginForm" >
-
+<form action="#" th:action="@{do_login}" method="post" onsubmit=" return validationError()" name="loginForm" >
     <table>
         <tr>
             <td>Naam:</td>

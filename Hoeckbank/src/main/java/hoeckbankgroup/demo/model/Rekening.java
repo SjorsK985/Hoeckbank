@@ -1,10 +1,8 @@
 package hoeckbankgroup.demo.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Auteurs Anne van den Bosch en Ruben van den Akker
@@ -13,14 +11,17 @@ import java.util.ArrayList;
 
 @Entity
 public class Rekening {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int rekeningID;
-
     private String rekeningnummer;
     private double saldo;
 
-
+    /*@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "klant_id")*/
+    @ManyToMany(mappedBy = "rekeningen")
+    private List<Klant> klanten;
 
     public Rekening(String rekeningnummer, double saldo) {
         this.rekeningnummer = rekeningnummer;

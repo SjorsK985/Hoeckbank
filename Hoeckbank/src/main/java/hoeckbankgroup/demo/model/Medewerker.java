@@ -1,34 +1,24 @@
 package hoeckbankgroup.demo.model;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import java.util.ArrayList;
 
 
-public class Medewerker extends Particulier{
-
-    private int medewerkerID;
+@Entity
+public class Medewerker extends Persoon{
 
     private String functie;
 
-    public Medewerker(){
-        super();
-
+    public Medewerker(int personID, String gebruikersnaam, String wachtwoord, String functie) {
+        super(personID, gebruikersnaam, wachtwoord);
+        this.functie = functie;
     }
 
-    public Medewerker(String gebruikersnaam, String wachtwoord, String voornaam, String achternaam,
-                      int BSN, String functie) {
-        super(gebruikersnaam, wachtwoord, voornaam, achternaam, BSN);
-        this.functie = functie;
+    public Medewerker(){
+        this(0,"onbekend", "onbekend","onbekend");
     }
 
     public String getFunctie() {return functie;}
 
     public void setFunctie(String functie) {this.functie = functie;}
-
-    public int getMedewerkerID() {
-        return medewerkerID;
-    }
 }
