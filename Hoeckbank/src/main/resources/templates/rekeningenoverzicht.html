@@ -8,6 +8,14 @@
 <div class="container w-50 justify-content-between"  align="center">
     <h3>Rekeningenoverzicht</h3>
 
+
+    </table>
+    <table>
+        <tr th:each="rekening : ${rekeningen}">
+            <td th:text="${rekening.rekeningnummer}"></td>
+        </tr>
+    </table>
+    
     <table>
         <tr>
             <td>Rekeningnummer</td>
@@ -24,7 +32,7 @@
         </tr>
 
         <tr>
-            <td><span th:text="${rekeningen[0]}"/></td>
+            <td><!--<span th:text="${rekeningen[0]}"/>--></td>
             <td>Tennaamstelling</td>
             <td>Saldo</td>
         </tr>
@@ -34,7 +42,6 @@
             <td>Tennaamstelling</td>
             <td>Saldo</td>
         </tr>
-    </table>
 
 
 

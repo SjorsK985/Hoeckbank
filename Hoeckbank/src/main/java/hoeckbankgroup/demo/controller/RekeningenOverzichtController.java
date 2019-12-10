@@ -20,6 +20,9 @@ public class RekeningenOverzichtController {
         Rekening rekening2 = new Rekening("1180197534", 3501.89);
         Rekening rekening3 = new Rekening("3180197992\n", 0.34);
         ArrayList<Rekening> rekeningen = new ArrayList<>();
+        rekeningen.add(rekening1);
+        rekeningen.add(rekening2);
+        rekeningen.add(rekening3);
         /** Test Data  **/
 
         Particulier particulier = new Particulier("test@test.com", "test", "Appelmansstraat", "1", "1423AK", "uithoorn", "065745621", rekeningen );
