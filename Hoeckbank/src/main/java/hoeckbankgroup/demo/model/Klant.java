@@ -1,6 +1,7 @@
 package hoeckbankgroup.demo.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,6 +33,16 @@ public class Klant extends Persoon{
         this.woonplaats = woonplaats;
         this.telefoonNummer = telefoonNummer;
         this.rekeningen = rekeningen;
+    }
+
+    public Klant(String email, String wachtwoord, String straat, String huisnummer, String postcode, String woonplaats, String telefoonNummer) {
+        super(email, wachtwoord);
+        this.straat = straat;
+        this.huisnummer = huisnummer;
+        this.postcode = postcode;
+        this.woonplaats = woonplaats;
+        this.telefoonNummer = telefoonNummer;
+        this.rekeningen = new ArrayList<>();
     }
 
     public String getStraat() {return straat;}
