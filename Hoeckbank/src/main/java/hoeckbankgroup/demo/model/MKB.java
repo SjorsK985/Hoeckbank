@@ -1,36 +1,30 @@
 package hoeckbankgroup.demo.model;
 
-import java.util.ArrayList;
+
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * Auteur Anne van den Bosch
  * POJO voor MKB klant
  */
+@Entity
 public class MKB extends Klant{
-
 
     private String bedrijfsnaam;
     private String sector;
     private String accountmanager;
 
-    public MKB(String adres, String gebruikersnaam, String wachtwoord, String woonplaats, ArrayList<Rekening> rekeningen,
-               String bedrijfsnaam, String sector, String accountmanager) {
-        super(adres, gebruikersnaam, wachtwoord, woonplaats, rekeningen);
+    public MKB(){
+        super();
+    }
+
+    public MKB(String email, String wachtwoord, String straat, String huisnummer, String postcode, String woonplaats, String telefoonNummer, List<Rekening> rekeningen, String bedrijfsnaam, String sector, String accountmanager) {
+        super(email, wachtwoord, straat, huisnummer, postcode, woonplaats, telefoonNummer, rekeningen);
         this.bedrijfsnaam = bedrijfsnaam;
         this.sector = sector;
         this.accountmanager = accountmanager;
-    }
 
-    public MKB(String gebruikersnaam, String wachtwoord,
-               String bedrijfsnaam, String sector, String accountmanager) {
-        super(gebruikersnaam, wachtwoord);
-        this.bedrijfsnaam = bedrijfsnaam;
-        this.sector = sector;
-        this.accountmanager = accountmanager;
-    }
-
-    public MKB (){
-        this("onbekend", "onbekend", "onbekend", "onbekend", "onbekend");
     }
 
     public String getBedrijfsnaam() {return bedrijfsnaam;}
@@ -44,4 +38,7 @@ public class MKB extends Klant{
     public String getAccountmanager() {return accountmanager;}
 
     public void setAccountmanager(String accountmanager) {this.accountmanager = accountmanager;}
+
+
+
 }
