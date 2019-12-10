@@ -1,6 +1,7 @@
 package hoeckbankgroup.demo.controller;
 
 import hoeckbankgroup.demo.model.DAO.KlantDAO;
+import hoeckbankgroup.demo.model.Klant;
 import hoeckbankgroup.demo.model.TestKlant;
 import hoeckbankgroup.demo.model.service.KlantService;
 import hoeckbankgroup.demo.model.service.LoginService;
@@ -25,11 +26,11 @@ public class LoginController {
     private KlantService klantService;
 
     @PostMapping("do_login")
-    public String doLoginHandler(@RequestParam(name = "gebruiker_naam") String gebruikerNaam,
+    public String doLoginHandler(@RequestParam(name = "gebruiker_naam") String email,
                                  @RequestParam(name = "gebruiker_paswoord") String gebruikerWachtwoord,
                                  Model model) {
-        if (loginService.validatePassword(gebruikerNaam, gebruikerWachtwoord)) {
-            TestKlant klant = klantService.findKlantByName(gebruikerNaam);
+        if (loginService.validatePassword(email, gebruikerWachtwoord)) {
+            Klant klant = klantService.findKlantByEmail(email);
             model.addAttribute("gebruiker", klant);
             return "testaccount";
         } else {
@@ -37,6 +38,5 @@ public class LoginController {
             return "Login";
         }
     }
-
 
 }
