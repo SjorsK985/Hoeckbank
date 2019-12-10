@@ -17,7 +17,7 @@ public class Klant extends Persoon{
     private String postcode;
     private String woonplaats;
     private String telefoonNummer;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Rekening> rekeningen;
 
     public Klant(){
@@ -61,4 +61,19 @@ public class Klant extends Persoon{
 
     public void setWoonplaats(String woonplaats) {this.woonplaats = woonplaats;}
 
+    public String getTelefoonNummer() {
+        return telefoonNummer;
+    }
+
+    public void setTelefoonNummer(String telefoonNummer) {
+        this.telefoonNummer = telefoonNummer;
+    }
+
+    public List<Rekening> getRekeningen() {
+        return rekeningen;
+    }
+
+    public void setRekeningen(List<Rekening> rekeningen) {
+        this.rekeningen = rekeningen;
+    }
 }

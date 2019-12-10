@@ -14,18 +14,18 @@ public class Particulier extends Klant {
     private int BSN;
 
     private String geslacht;
-    private LocalDate geboorteDatum;
+    private String geboorteDatum;
 
 
     public Particulier(){
         super();
     }
 
-    public Particulier(String email, String wachtwoord, String straat, String huisnummer, String postcode, String woonplaats, String telefoonNummer, List<Rekening> rekeningen) {
+/*    public Particulier(String email, String wachtwoord, String straat, String huisnummer, String postcode, String woonplaats, String telefoonNummer, List<Rekening> rekeningen) {
         super(email, wachtwoord, straat, huisnummer, postcode, woonplaats, telefoonNummer, rekeningen);
-    }
+    }*/
 
-    public Particulier(String email, String wachtwoord, String straat, String huisnummer, String postcode, String woonplaats, String telefoonNummer, List<Rekening> rekeningen, String voornaam, String tussenvoegsel, String achternaam, int BSN, String geslacht, LocalDate geboorteDatum) {
+    public Particulier(String email, String wachtwoord, String straat, String huisnummer, String postcode, String woonplaats, String telefoonNummer, List<Rekening> rekeningen, String voornaam, String tussenvoegsel, String achternaam, int BSN, String geslacht, String geboorteDatum) {
         super(email, wachtwoord, straat, huisnummer, postcode, woonplaats, telefoonNummer, rekeningen);
         this.voornaam = voornaam;
         this.tussenvoegsel = tussenvoegsel;
@@ -85,11 +85,11 @@ public class Particulier extends Klant {
         this.geslacht = geslacht;
     }
 
-    public LocalDate getGeboorteDatum() {
+    public String getGeboorteDatum() {
         return geboorteDatum;
     }
 
-    public void setGeboorteDatum(LocalDate geboorteDatum) {
+    public void setGeboorteDatum(String geboorteDatum) {
         this.geboorteDatum = geboorteDatum;
     }
 
