@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ParticulierDao extends CrudRepository<Particulier, Integer> {
+
+    Particulier findParticulierByBSN(int bsn);
 }
