@@ -43,7 +43,7 @@ public class RegisterController {
                                     @RequestParam(required = false, name = "company_name") String bedrijfsnaam, @RequestParam(required = false, name = "segment") String segment,
                                     @RequestParam(required = false, name = "kvk") String kvk){
         System.out.println(geboortedatumString);
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate geboortedatum = LocalDate.parse(geboortedatumString, dateTimeFormatter);
         int bsn = Integer.parseInt(bsnstring);
         if (rekeningSoort.equals("bedrijf")){
@@ -57,24 +57,6 @@ public class RegisterController {
             return "index";
         }
     }
-
-   public boolean controleerGeboortedatum (LocalDate geboortedatum){
-       LocalDate vandaag = LocalDate.now(ZoneId.of("Europe/Paris"));
-       int leeftijd = (int)ChronoUnit.YEARS.between(geboortedatum, vandaag);
-       if (leeftijd >= 18){
-           return true;
-       }else{
-           return false;
-       }
-   }
-
-   public boolean controleerBSN (int bsn){
-       if (particulierService.findParticulierbyBSN(bsn)==null){
-           return true;
-       }else{
-           return false;
-       }
-   }
 
    public boolean controleerTelefoon (String telefoon){
        return false;
