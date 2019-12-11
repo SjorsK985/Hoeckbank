@@ -1,9 +1,11 @@
 package hoeckbankgroup.demo.controller;
 
 import hoeckbankgroup.demo.model.DAO.KlantDAO;
+import hoeckbankgroup.demo.model.DAO.MedewerkerDAO;
 import hoeckbankgroup.demo.model.DAO.ParticulierDAO;
 
 import hoeckbankgroup.demo.model.Klant;
+import hoeckbankgroup.demo.model.Medewerker;
 import hoeckbankgroup.demo.model.Particulier;
 import hoeckbankgroup.demo.model.Rekening;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,23 +23,40 @@ import java.util.Scanner;
 public class AddAllKlantToDb {
 
     @Autowired
-    private KlantDAO klantDAO;
-    @Autowired
    private ParticulierDAO particulierDao;
 
+    @Autowired
+    private MedewerkerDAO medewerkerDao;
 
+    @GetMapping("inleesmedewerker")
+    private String inleesmedewerker(){
+        try {
+            Scanner invoer = new Scanner(new File("/Users/Ling/Desktop/inleesmedewerker.csv"));
+            while (invoer.hasNextLine()) {
+                String regelUitBestand = invoer.nextLine();
 
+                String[] regelArray;
+                regelArray = regelUitBestand.split(";");
+                Medewerker medewerker =new Medewerker(regelArray[0],regelArray[1],regelArray[2]);
 
+                System.out.println(regelArray[0]);
+                medewerkerDao.save(medewerker);
+            }
 
-    @GetMapping("fdbwk")
-    private String inlezen(){
+        } catch (FileNotFoundException nietGevonden) {
+            System.out.println("Het bestand is niet gevonden.");
+        }
+        return "login";
+    }
+
+    @GetMapping("inleesparticulier")
+    private String inleesparticulier(){
        // ArrayList<String> regelsUitBestand= new ArrayList<>();;
         try {
-            Scanner invoer = new Scanner(new File("d:/inleesparticulier1.csv"));
+            Scanner invoer = new Scanner(new File("/Users/Ling/Desktop/inleesparticulier.csv"));
             while (invoer.hasNextLine()) {
                 String regelUitBestand = invoer.nextLine();
                 //regelsUitBestand.add(invoer.nextLine());
-
 
                String[] regelArray;
                 regelArray = regelUitBestand.split(";");
@@ -52,8 +71,6 @@ public class AddAllKlantToDb {
                 System.out.println(regelArray[0]);
                 particulierDao.save(particulier);
                // klantDAO.save(particulier);
-
-
             }
 
         } catch (FileNotFoundException nietGevonden) {

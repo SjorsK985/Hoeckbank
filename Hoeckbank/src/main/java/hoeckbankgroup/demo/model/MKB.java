@@ -15,7 +15,7 @@ public class MKB extends Klant{
     private String sector;
     private String accountmanager;
 
-    public MKB(){
+    protected MKB(){
         super();
     }
 

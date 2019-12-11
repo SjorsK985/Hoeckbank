@@ -1,44 +1,68 @@
 package hoeckbankgroup.demo.model;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
 /**
  * Auteur Anne van den Bosch
  * POJO Transactie
  */
+@Entity
 public class Transactie {
 
-    private Rekening creditRekening;
-    private Rekening debitRekening;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private int transactieId;
+
+    private String tegenRekening;
     private double bedrag;
     private String omschrijving;
     private LocalDate datum;
 
-    public Transactie(Rekening creditRekening, Rekening debitRekening, double bedrag, String omschrijving, LocalDate datum) {
-        this.creditRekening = creditRekening;
-        this.debitRekening = debitRekening;
+    protected Transactie(){
+        super();
+    }
+
+    public Transactie(String tegenRekening, double bedrag, String omschrijving, LocalDate datum) {
+        this.tegenRekening = tegenRekening;
         this.bedrag = bedrag;
         this.omschrijving = omschrijving;
         this.datum = datum;
     }
 
-    public Rekening getCreditRekening() {return creditRekening;}
+    public String getTegenRekening() {
+        return tegenRekening;
+    }
 
-    public void setCreditRekening(Rekening creditRekening) {this.creditRekening = creditRekening;}
+    public void setTegenRekening(String tegenRekening) {
+        this.tegenRekening = tegenRekening;
+    }
 
-    public Rekening getDebitRekening() {return debitRekening;}
+    public double getBedrag() {
+        return bedrag;
+    }
 
-    public void setDebitRekening(Rekening debitRekening) {this.debitRekening = debitRekening;}
+    public void setBedrag(double bedrag) {
+        this.bedrag = bedrag;
+    }
 
-    public double getBedrag() {return bedrag;}
+    public String getOmschrijving() {
+        return omschrijving;
+    }
 
-    public void setBedrag(double bedrag) {this.bedrag = bedrag;}
+    public void setOmschrijving(String omschrijving) {
+        this.omschrijving = omschrijving;
+    }
 
-    public String getOmschrijving() {return omschrijving;}
+    public LocalDate getDatum() {
+        return datum;
+    }
 
-    public void setOmschrijving(String omschrijving) {this.omschrijving = omschrijving;}
+    public void setDatum(LocalDate datum) {
+        this.datum = datum;
+    }
 
-    public LocalDate getDatum() {return datum;}
-
-    public void setDatum(LocalDate datum) {this.datum = datum;}
+    public int getTransactieId() {
+        return transactieId;
+    }
 }

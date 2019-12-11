@@ -13,34 +13,50 @@ import java.util.List;
 public class Rekening {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int rekeningID;
 
     private String rekeningnummer;
     private double saldo;
+    private String tenaamstelling;
 
     @OneToMany (cascade = CascadeType.ALL)
     private List<Klant> rekeninghouder;
+
+    @OneToMany
+    private List<Transactie>transactiehistorie;
 
     public Rekening(String rekeningnummer, double saldo) {
         this.rekeningnummer = rekeningnummer;
         this.saldo = saldo;
     }
 
-    public Rekening(){
+    protected Rekening(){
         super();
     }
 
-    public String getRekeningnummer() {return rekeningnummer;}
+    public String getRekeningnummer() {
+        return rekeningnummer;
+    }
 
-    public void setRekeningnummer(String rekeningnummer) {this.rekeningnummer = rekeningnummer;}
+    public void setRekeningnummer(String rekeningnummer) {
+        this.rekeningnummer = rekeningnummer;
+    }
 
-    public double getSaldo() {return saldo;}
+    public double getSaldo() {
+        return saldo;
+    }
 
-    public void setSaldo(double saldo) {this.saldo = saldo;}
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
+    }
 
-    public int getRekeningID() {
-        return rekeningID;
+    public String getTenaamstelling() {
+        return tenaamstelling;
+    }
+
+    public void setTenaamstelling(String tenaamstelling) {
+        this.tenaamstelling = tenaamstelling;
     }
 
     public List<Klant> getRekeninghouder() {
@@ -49,5 +65,17 @@ public class Rekening {
 
     public void setRekeninghouder(List<Klant> rekeninghouder) {
         this.rekeninghouder = rekeninghouder;
+    }
+
+    public List<Transactie> getTransactiehistorie() {
+        return transactiehistorie;
+    }
+
+    public void setTransactiehistorie(List<Transactie> transactiehistorie) {
+        this.transactiehistorie = transactiehistorie;
+    }
+
+    public int getRekeningID() {
+        return rekeningID;
     }
 }
