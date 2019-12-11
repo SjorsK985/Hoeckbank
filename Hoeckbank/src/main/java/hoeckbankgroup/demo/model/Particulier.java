@@ -17,6 +17,7 @@ public class Particulier extends Klant {
     private String geslacht;
     private String geboorteDatum;
 
+
     protected Particulier(){
         super();
     }
@@ -33,7 +34,9 @@ public class Particulier extends Klant {
         this.geboorteDatum = geboorteDatum;
     }
 
-    public Particulier(String email, String wachtwoord, String straat, String huisnummer, String postcode, String woonplaats, String telefoonNummer, String voornaam, String tussenvoegsel, String achternaam, int BSN, String geslacht, String geboorteDatum) {
+    public Particulier(String email, String wachtwoord, String straat, String huisnummer, String postcode,
+                String woonplaats, String telefoonNummer, String voornaam, String tussenvoegsel,
+                String achternaam, int BSN, String geslacht, String geboorteDatum) {
         super(email, wachtwoord, straat, huisnummer, postcode, woonplaats, telefoonNummer);
         this.voornaam = voornaam;
         this.tussenvoegsel = tussenvoegsel;

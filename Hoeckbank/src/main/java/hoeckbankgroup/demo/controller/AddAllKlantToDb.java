@@ -23,7 +23,6 @@ import java.util.Scanner;
 
 @Controller
 public class AddAllKlantToDb {
-
     @Autowired
    private ParticulierDAO particulierDao;
     @Autowired
