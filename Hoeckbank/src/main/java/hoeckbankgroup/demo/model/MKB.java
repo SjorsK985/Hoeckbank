@@ -24,7 +24,13 @@ public class MKB extends Klant{
         this.bedrijfsnaam = bedrijfsnaam;
         this.sector = sector;
         this.accountmanager = accountmanager;
+    }
 
+    public MKB(String email, String wachtwoord, String straat, String huisnummer, String postcode, String woonplaats, String telefoonNummer, String bedrijfsnaam, String sector, String accountmanager) {
+        super(email, wachtwoord, straat, huisnummer, postcode, woonplaats, telefoonNummer);
+        this.bedrijfsnaam = bedrijfsnaam;
+        this.sector = sector;
+        this.accountmanager = accountmanager;
     }
 
     public String getBedrijfsnaam() {return bedrijfsnaam;}

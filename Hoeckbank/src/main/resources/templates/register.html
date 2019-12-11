@@ -11,10 +11,10 @@
         <h2 id="register-welcome" class="text-center py-5">Welkom bij Hoeckbank, vul hier uw gegevens in</h2>
 
         <div class="form-wrapper mx-auto">
-            <form action="#" method="post">
+            <form action="#" th:action = "@{do_register}" method="post">
                 <div class="text-center">
-                    <input type="radio" class="accountradio" name="accounttype-radio" value="particulier" checked><label class="mx-2">Particulier</label>
-                    <input type="radio" class="accountradio" name="accounttype-radio" value="bedrijf"><label class="mx-2">Zakelijk</label>
+                    <input type="radio" class="accountradio" name="accounttype_radio" value="particulier" checked><label class="mx-2">Particulier</label>
+                    <input type="radio" class="accountradio" name="accounttype_radio" value="bedrijf"><label class="mx-2">Zakelijk</label>
                 </div>
                 <table id="register-form"class="table">
                     <colgroup>
@@ -74,7 +74,7 @@
                         <td></td>
 
                         <td class="first-row">Geboortedatum:</td>
-                        <td class="first-row"><input class="register-form-input" type="date" name="dob"></td>
+                        <td class="first-row"><input class="register-form-input" type="text" name="dob"></td>
                     </tr>
                     <tr>
                         <td></td>
@@ -127,7 +127,7 @@
                         <td></td>
 
                         <td>Huisnummer:</td>
-                        <td><input class="register-form-input" type="number" name="house_number"></td>
+                        <td><input class="register-form-input" type="text" name="house_number"></td>
                     </tr>
                     <tr>
                         <td></td>
@@ -150,7 +150,7 @@
                     <tr>
                         <td class="first-row"><i class="fas fa-phone-alt fa-2x text-muted"></i></td>
                         <td class="first-row">Telefoonnummer:</td>
-                        <td class="first-row"><input class="register-form-input" type="tel" name="telephone"></td>
+                        <td class="first-row"><input class="register-form-input" type="text" name="telephone"></td>
                     </tr>
 
                     <tr>
