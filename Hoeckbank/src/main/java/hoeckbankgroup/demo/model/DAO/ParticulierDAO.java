@@ -9,4 +9,6 @@ public interface ParticulierDAO extends JpaRepository<Particulier, Integer> {
 
     Particulier findParticulierByBSN(int bsn);
 
+    Particulier findParticulierByEmail(String email);
+
 }
