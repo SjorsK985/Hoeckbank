@@ -1,5 +1,6 @@
 package hoeckbankgroup.demo.controller;
 
+import hoeckbankgroup.demo.model.Klant;
 import hoeckbankgroup.demo.model.Particulier;
 import hoeckbankgroup.demo.model.Rekening;
 import org.springframework.stereotype.Controller;
@@ -7,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.awt.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 @Controller
@@ -23,11 +25,32 @@ public class RekeningenOverzichtController {
         rekeningen.add(rekening1);
         rekeningen.add(rekening2);
         rekeningen.add(rekening3);
+        Particulier klant1 = new Particulier("test@test.com", "test", "Appelmansstraat",
+                "1", "1423AK", "uithoorn", "065745621", rekeningen,
+                "Klant1", "", "Kulk", 456456546, "man", LocalDate.now() );
+        Particulier klant2 = new Particulier("test@test.com", "test", "Appelmansstraat",
+                "1", "1423AK", "uithoorn", "065745621", rekeningen,
+                "Klant2", "de", "Boer", 456456546, "man", LocalDate.now() );
+        Particulier klant3 = new Particulier("test@test.com", "test", "Appelmansstraat",
+                "1", "1423AK", "uithoorn", "065745621", rekeningen,
+                "Klant3", "van der", "Beek", 456456546, "man", LocalDate.now() );
         /** Test Data  **/
 
-        Particulier particulier = new Particulier("test@test.com", "test", "Appelmansstraat", "1", "1423AK", "uithoorn", "065745621", rekeningen );
-        model.addAttribute("gebruiker", particulier);
+        ArrayList<Klant> klanten = new ArrayList<>();
+        klanten.add(klant1);
+        klanten.add(klant2);
+        klanten.add(klant3);
+
+        rekening1.setRekeninghouder(klanten);
+
+        System.out.println("Rekening houder: " + rekening1.getRekeninghouder());
+
+        // "tenaamstelling van de rekening"
+        // https://together.bunq.com/d/10339-tenaamstelling-rekening/4
+
+        model.addAttribute("gebruiker", klant1);
         model.addAttribute("rekeningen", rekeningen);
+
         return "rekeningenoverzicht";
     }
 

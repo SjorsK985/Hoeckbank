@@ -5,22 +5,21 @@
 <nav th:replace="fragments/navbar :: navbar"/>
 <!--BEGIN HIER MET NIEUWE TEMPLATE-->
 
-<div class="container w-50 justify-content-between"  align="center">
+<div class="container w-75 justify-content-between"  align="center">
     <h3>Rekeningenoverzicht</h3>
 
 
-    </table>
+
     <table>
-        <tr th:each="rekening : ${rekeningen}">
-            <td th:text="${rekening.rekeningnummer}"></td>
-        </tr>
-    </table>
-    
-    <table>
-        <tr>
+        <tr class="font-weight-bold">
             <td>Rekeningnummer</td>
             <td>Tennaamstelling</td>
             <td>Saldo</td>
+        <tr>
+        <tr th:each="rekening : ${rekeningen}">
+            <td><span th:text="${rekening.rekeningnummer}" /></td>
+            <td><span th:text="${gebruiker.voornaam}"/> <span th:text="${gebruiker.achternaam}"/> </td>
+            <td>€ <span th:text="${rekening.saldo}" /></td>
             <td>
                 <a href="#">
                     <button class="btn btn-primary my-2 my-sm-0-mt5" type="submit" value="select-rekening">
@@ -30,35 +29,22 @@
 
             </td>
         </tr>
-
-        <tr>
-            <td><!--<span th:text="${rekeningen[0]}"/>--></td>
-            <td>Tennaamstelling</td>
-            <td>Saldo</td>
-        </tr>
-
-        <tr>
-            <td>Rekeningnummer</td>
-            <td>Tennaamstelling</td>
-            <td>Saldo</td>
-        </tr>
-
-
+    </table>
 
     <br>
     <div class="d-flex justify-content-between w-75" >
-        <a href="#">
+        <a href="nieuwerekening">
             <button class="btn btn-primary my-2 my-sm-0-mt5" type="submit" value="nieuwe-rekening">
                 Nieuwe rekening
             </button>
         </a>
-        <a href="#">
+        <a href="koppelrekening">
             <button class="btn btn-primary my-2 my-sm-0-mt5" type="submit" value="koppel-rekening">
                 Koppel rekening
             </button>
         </a>
-        <a href="#">
-            <button class="btn btn-primary my-2 my-sm-0-mt5" type="submit" value="koppel-rekening">
+        <a href="bewerkprofiel">
+            <button class="btn btn-primary my-2 my-sm-0-mt5" type="submit" value="Bewerk profiel">
                 Bewerk profiel
             </button>
         </a>
