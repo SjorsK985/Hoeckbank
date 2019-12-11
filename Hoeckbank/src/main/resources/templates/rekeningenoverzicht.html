@@ -18,7 +18,7 @@
         <tr>
         <tr th:each="rekening : ${rekeningen}">
             <td><span th:text="${rekening.rekeningnummer}" /></td>
-            <td><span th:text="${gebruiker.voornaam}"/> <span th:text="${gebruiker.achternaam}"/> </td>
+            <td><span th:text="${rekening.tenaamstelling}"/> </td>
             <td>€ <span th:text="${rekening.saldo}" /></td>
             <td>
                 <a href="#">

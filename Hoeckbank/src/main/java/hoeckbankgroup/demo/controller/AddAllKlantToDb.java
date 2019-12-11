@@ -36,7 +36,7 @@ public class AddAllKlantToDb {
                 //regelsUitBestand.add(invoer.nextLine());
 
 
-               String[] regelArray;
+               /*String[] regelArray;
                 regelArray = regelUitBestand.split(";");
                 List<Rekening> rekeningen = new ArrayList<>();
                 Rekening rekening = new Rekening(regelArray[7],0.0);
@@ -44,7 +44,7 @@ public class AddAllKlantToDb {
                 Particulier particulier=new Particulier(regelArray[0],regelArray[1],regelArray[2],regelArray[3],regelArray[4],regelArray[5],regelArray[6],rekeningen);
                 System.out.println(regelArray[0]);
 
-                klantDAO.save(particulier);
+                klantDAO.save(particulier);*/
 
 
             }

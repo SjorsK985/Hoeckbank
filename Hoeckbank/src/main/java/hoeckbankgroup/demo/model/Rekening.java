@@ -18,13 +18,15 @@ public class Rekening {
 
     private String rekeningnummer;
     private double saldo;
+    private String tenaamstelling;
 
     @OneToMany
     private List<Klant> rekeninghouder;
 
-    public Rekening(String rekeningnummer, double saldo) {
+    public Rekening(String rekeningnummer, double saldo, String tenaamstelling) {
         this.rekeningnummer = rekeningnummer;
         this.saldo = saldo;
+        this.tenaamstelling = tenaamstelling;
     }
 
     public Rekening(){
@@ -41,6 +43,14 @@ public class Rekening {
 
     public int getRekeningID() {
         return rekeningID;
+    }
+
+    public String getTenaamstelling() {
+        return tenaamstelling;
+    }
+
+    public void setTenaamstelling(String tenaamstelling) {
+        this.tenaamstelling = tenaamstelling;
     }
 
     public List<Klant> getRekeninghouder() {

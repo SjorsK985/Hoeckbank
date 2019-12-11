@@ -17,10 +17,10 @@ public class RekeningenOverzichtController {
     @GetMapping("rekeningenoverzicht")
     public String registerHandler(Model model){
 
-        /** Test Data  **/
-        Rekening rekening1 = new Rekening("118014305", 200.25);
-        Rekening rekening2 = new Rekening("1180197534", 3501.89);
-        Rekening rekening3 = new Rekening("3180197992\n", 0.34);
+        /**####################### Test Data  #######################**/
+        Rekening rekening1 = new Rekening("118014305", 200.25, "R. Kulk");
+        Rekening rekening2 = new Rekening("1180197534", 3501.89, "P. van der Beek");
+        Rekening rekening3 = new Rekening("3180197992\n", 0.34, "L. Elshout");
         ArrayList<Rekening> rekeningen = new ArrayList<>();
         rekeningen.add(rekening1);
         rekeningen.add(rekening2);
@@ -34,20 +34,8 @@ public class RekeningenOverzichtController {
         Particulier klant3 = new Particulier("test@test.com", "test", "Appelmansstraat",
                 "1", "1423AK", "uithoorn", "065745621", rekeningen,
                 "Klant3", "van der", "Beek", 456456546, "man", LocalDate.now() );
-        /** Test Data  **/
-
-        ArrayList<Klant> klanten = new ArrayList<>();
-        klanten.add(klant1);
-        klanten.add(klant2);
-        klanten.add(klant3);
-
-        rekening1.setRekeninghouder(klanten);
-
-        System.out.println("Rekening houder: " + rekening1.getRekeninghouder());
-
-        // "tenaamstelling van de rekening"
-        // https://together.bunq.com/d/10339-tenaamstelling-rekening/4
-
+        /**####################### Test Data  #######################**/
+        
         model.addAttribute("gebruiker", klant1);
         model.addAttribute("rekeningen", rekeningen);
 
