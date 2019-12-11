@@ -3,6 +3,7 @@ package hoeckbankgroup.demo.controller;
 
 import hoeckbankgroup.demo.model.Klant;
 import hoeckbankgroup.demo.model.Particulier;
+import hoeckbankgroup.demo.model.Rekening;
 import hoeckbankgroup.demo.model.Sessie;
 import hoeckbankgroup.demo.model.service.KlantService;
 import hoeckbankgroup.demo.model.service.LoginService;
@@ -12,6 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+
+import java.util.List;
 
 @Controller
 @SessionAttributes("gebruiker")
@@ -31,16 +34,21 @@ public class LoginController {
         if (loginService.validatePassword(email, gebruikerWachtwoord)) {
             Klant klant = klantService.findKlantByEmail(email);
             model.addAttribute("gebruiker", klant);
-            return setup(klant);
+            return setup(klant, model);
         } else {
             model.addAttribute("login_error", "Gebruiker / wachtwoord combi niet geldig");
             return "Login";
         }
     }
-    public String setup(Klant klant){
+    public String setup(Klant klant, Model model){
         if (klant instanceof Particulier) {
             Sessie sessie = new Sessie(klant.getPersonId(), klant.getRekeningen(), "Particulier");
+            model.addAttribute("sessie", sessie);
+
             System.out.println("Particulier");
+
+
+            model.addAttribute("rekeningen", sessie.getRekeningen());
             return "rekeningenoverzicht";
         } else {
             Sessie sessie = new Sessie(klant.getPersonId(), klant.getRekeningen(), "MKB");

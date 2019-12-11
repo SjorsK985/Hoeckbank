@@ -23,9 +23,8 @@ import java.util.Scanner;
 
 @Controller
 public class AddAllKlantToDb {
-
     @Autowired
-   private ParticulierDAO particulierDao;
+    private ParticulierDAO particulierDao;
     @Autowired
     private MKBDAO mkbDao;
     @Autowired
@@ -34,7 +33,7 @@ public class AddAllKlantToDb {
     @GetMapping("inleesmedewerker")
     private String inleesmedewerker(){
         try {
-            Scanner invoer = new Scanner(new File("/Users/Ling/Desktop/inleesmedewerker.csv"));
+            Scanner invoer = new Scanner(new File("/Users/Roeland/Desktop/inleesmedewerker.csv"));
             while (invoer.hasNextLine()) {
                 String regelUitBestand = invoer.nextLine();
 
@@ -56,7 +55,7 @@ public class AddAllKlantToDb {
     private String inlezenMKB(){
         // ArrayList<String> regelsUitBestand= new ArrayList<>();;
         try {
-            Scanner invoer = new Scanner(new File("d:/inleesmkb.csv"));
+            Scanner invoer = new Scanner(new File("/Users/Roeland/Desktop/inleesmkb.csv"));
             while (invoer.hasNextLine()) {
                 String regelUitBestand = invoer.nextLine();
                 //regelsUitBestand.add(invoer.nextLine());
@@ -74,7 +73,7 @@ public class AddAllKlantToDb {
                         regelArray[5],regelArray[6],rekeningen,regelArray[8],regelArray[9]);
 
                 System.out.println(regelArray[0]);
-               mkbDao.save(mkb);
+                mkbDao.save(mkb);
                 // klantDAO.save(particulier);
 
 
@@ -89,15 +88,15 @@ public class AddAllKlantToDb {
 
     @GetMapping("inleesparticulier")
     private String inlezen(){
-       // ArrayList<String> regelsUitBestand= new ArrayList<>();;
+        // ArrayList<String> regelsUitBestand= new ArrayList<>();;
         try {
-            Scanner invoer = new Scanner(new File("d:/inleesparticulier.csv"));
+            Scanner invoer = new Scanner(new File("/Users/Roeland/Desktop/inleesparticulier.csv"));
             while (invoer.hasNextLine()) {
                 String regelUitBestand = invoer.nextLine();
                 //regelsUitBestand.add(invoer.nextLine());
 
 
-               String[] regelArray;
+                String[] regelArray;
                 regelArray = regelUitBestand.split(";");
                 List<Rekening> rekeningen = new ArrayList<>();
                 String tenaamstelling = String.format("%s %s %s",regelArray[9],regelArray[10],regelArray[11]);
@@ -113,7 +112,7 @@ public class AddAllKlantToDb {
 
                 System.out.println(regelArray[0]);
                 particulierDao.save(particulier);
-               // klantDAO.save(particulier);
+                // klantDAO.save(particulier);
 
 
             }
