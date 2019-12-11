@@ -7,7 +7,7 @@ import javax.persistence.*;
 public abstract class Persoon {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int personId;
 
     private String email;
