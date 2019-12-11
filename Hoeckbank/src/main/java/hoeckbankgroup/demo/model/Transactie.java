@@ -1,18 +1,29 @@
 package hoeckbankgroup.demo.model;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
 /**
  * Auteur Anne van den Bosch
  * POJO Transactie
  */
+@Entity
 public class Transactie {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private int transactieID;
+    @OneToOne
     private Rekening creditRekening;
+    @OneToOne
     private Rekening debitRekening;
+
     private double bedrag;
     private String omschrijving;
     private LocalDate datum;
+
+    public Transactie(){
+        super();
+    }
 
     public Transactie(Rekening creditRekening, Rekening debitRekening, double bedrag, String omschrijving, LocalDate datum) {
         this.creditRekening = creditRekening;
