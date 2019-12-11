@@ -1,5 +1,6 @@
 package hoeckbankgroup.demo.controller;
 
+import hoeckbankgroup.demo.Service.GenereerRekeningnummerService;
 import hoeckbankgroup.demo.model.Klant;
 import hoeckbankgroup.demo.model.MKB;
 import hoeckbankgroup.demo.model.Particulier;
@@ -7,9 +8,11 @@ import hoeckbankgroup.demo.model.service.MKBService;
 import hoeckbankgroup.demo.model.service.ParticulierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -18,6 +21,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 @Controller
+@SessionAttributes("gebruiker")
 public class RegisterController {
 
     @Autowired
@@ -25,6 +29,9 @@ public class RegisterController {
 
     @Autowired
     private MKBService mkbService;
+
+    @Autowired
+    private GenereerRekeningnummerService genereerRekeningnummerService;
 
     @GetMapping("register")
     public String registerHandler(){
@@ -41,7 +48,7 @@ public class RegisterController {
                                     @RequestParam(required = false, name = "prepositions") String tussenvoegsel, @RequestParam(required = false, name ="last_name") String achternaam,
                                     @RequestParam(required = false, name = "dob") String geboortedatumString, @RequestParam(required = false, name = "bsn") String bsnstring,
                                     @RequestParam(required = false, name = "company_name") String bedrijfsnaam, @RequestParam(required = false, name = "segment") String segment,
-                                    @RequestParam(required = false, name = "kvk") String kvk){
+                                    @RequestParam(required = false, name = "kvk") String kvk, Model model){
         System.out.println(geboortedatumString);
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         LocalDate geboortedatum = LocalDate.parse(geboortedatumString, dateTimeFormatter);
@@ -49,12 +56,16 @@ public class RegisterController {
         if (rekeningSoort.equals("bedrijf")){
             MKB mkb = new MKB(emailadres, wachtwoord, straat, huisnummer, postcode, woonplaats, telefoon, bedrijfsnaam, segment, null);
             mkbService.save(mkb);
-            return "login";
+            model.addAttribute("gebruiker", mkb);
+            model.addAttribute("rekeningnummer", genereerRekeningnummerService.genereerRekeningnummer());
+            return "newaccount";
         }else{
             Particulier particulier = new Particulier(emailadres, wachtwoord, straat, huisnummer,
                     postcode, woonplaats, telefoon, voornaam, tussenvoegsel, achternaam, bsn, geslacht, geboortedatumString);
             particulierService.save(particulier);
-            return "index";
+            model.addAttribute("gebruiker", particulier);
+            model.addAttribute("rekeningnummer", genereerRekeningnummerService.genereerRekeningnummer());
+            return "newaccount";
         }
     }
 

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/header :: header"/>
+<body class="bg-light">
+<nav th:replace="fragments/navbar :: navbar"/>
+<!--BEGIN HIER MET NIEUWE TEMPLATE-->
+
+<!-- newaccount start -->
+<section id="new-account">
+    <div class="container">
+        <h2 class="text-center mb-5">Uw nieuwe rekeningnummer</h2>
+        <div class="form-wrapper mx-auto">
+            <form action="#" method="post">
+                <table id="newaccount-form" class="table">
+                    <tr class="font-weight-bold">
+                        <th class="first-row"><i class="fas fa-money-check"></i></i>&nbspRekeningnummer</th>
+                        <th class="first-row"><i class="fas fa-user-friends"></i>&nbspHouder(s)</th>
+                        <th class="first-row"><i class="fas fa-piggy-bank"></i></i></i>&nbspSaldo</th>
+                    </tr>
+                    <tr>
+                        <td>NL42HCK76653916512</td>
+                        <td class="text-uppercase">Dhr. L. LAAKMAN</td>
+                        <td>€ 0,00</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="first-row"><a href="#" class="text-muted cancel-link">Annuleren</a></td>
+                        <td class="first-row"></td>
+                        <td class="first-row"><a href="#"><button class="btn btn-primary my-5 my-sm-0" type="submit">Bevestig</button></a></td>
+                    </tr>
+
+                </table>
+            </form>
+
+        </div>
+
+
+</section><!-- new account end -->
+
+
+
+<!--NIEUWE TEMPLATE TOT HIER-->
+<footer th:replace="fragments/footer :: footer"/>
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</html>
