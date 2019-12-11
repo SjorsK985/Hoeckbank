@@ -39,10 +39,11 @@ public class LoginController {
     }
     public String setup(Klant klant){
         if (klant instanceof Particulier) {
-            Sessie sessie = new Sessie();
+            Sessie sessie = new Sessie(klant.getPersonId(), klant.getRekeningen(), "Particulier");
             System.out.println("Particulier");
             return "rekeningenoverzicht";
         } else {
+            Sessie sessie = new Sessie(klant.getPersonId(), klant.getRekeningen(), "MKB");
             System.out.println("MKB");
             return "rekeningenoverzicht";
         }
