@@ -26,39 +26,30 @@ public class Rekening {
     @OneToMany (cascade = CascadeType.ALL)
     private List<Transactie>transactiehistorie;
 
-    public Rekening(String rekeningnummer, double saldo) {
+    public Rekening(String rekeningnummer, double saldo, String tenaamstelling) {
         this.rekeningnummer = rekeningnummer;
         this.saldo = saldo;
+        this.tenaamstelling = tenaamstelling;
     }
 
-    protected Rekening(){
+    public Rekening(){
         super();
     }
 
-    public String getRekeningnummer() {
-        return rekeningnummer;
-    }
+    public String getRekeningnummer() {return rekeningnummer;}
 
-    public void setRekeningnummer(String rekeningnummer) {
-        this.rekeningnummer = rekeningnummer;
-    }
+    public void setRekeningnummer(String rekeningnummer) {this.rekeningnummer = rekeningnummer;}
 
-    public double getSaldo() {
-        return saldo;
-    }
+    public double getSaldo() {return saldo;}
 
-    public void setSaldo(double saldo) {
-        this.saldo = saldo;
-    }
+    public void setSaldo(double saldo) {this.saldo = saldo;}
 
     public String getTenaamstelling() {
         return tenaamstelling;
     }
-
     public void setTenaamstelling(String tenaamstelling) {
         this.tenaamstelling = tenaamstelling;
     }
-
     public List<Klant> getRekeninghouder() {
         return rekeninghouder;
     }
