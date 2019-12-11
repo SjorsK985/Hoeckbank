@@ -33,7 +33,7 @@ public class AddAllKlantToDb {
     private String inlezen(){
        // ArrayList<String> regelsUitBestand= new ArrayList<>();;
         try {
-            Scanner invoer = new Scanner(new File("d:/inleesparticulier1.csv"));
+            Scanner invoer = new Scanner(new File("c:/inleesparticulier1.csv"));
             while (invoer.hasNextLine()) {
                 String regelUitBestand = invoer.nextLine();
                 //regelsUitBestand.add(invoer.nextLine());
