@@ -3,6 +3,7 @@ package hoeckbankgroup.demo.controller;
 
 import hoeckbankgroup.demo.model.Klant;
 import hoeckbankgroup.demo.model.Particulier;
+import hoeckbankgroup.demo.model.Sessie;
 import hoeckbankgroup.demo.model.service.KlantService;
 import hoeckbankgroup.demo.model.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,17 +33,18 @@ public class LoginController {
             model.addAttribute("gebruiker", klant);
             return setup(klant);
         } else {
-            model.addAttribute("Login_error", "Gebruiker / wachtwoord combi niet geldig");
+            model.addAttribute("login_error", "Gebruiker / wachtwoord combi niet geldig");
             return "Login";
         }
     }
     public String setup(Klant klant){
         if (klant instanceof Particulier) {
+            Sessie sessie = new Sessie();
             System.out.println("Particulier");
-            return "Login";
+            return "rekeningenoverzicht";
         } else {
             System.out.println("MKB");
-            return "Login";
+            return "rekeningenoverzicht";
         }
     }
 }
