@@ -27,6 +27,7 @@ public class AddAllKlantToDb {
     @Autowired
    private ParticulierDAO particulierDao;
 
+    @Autowired
     private MKBDAO mkbDao;
     @Autowired
     private MedewerkerDAO medewerkerDao;
