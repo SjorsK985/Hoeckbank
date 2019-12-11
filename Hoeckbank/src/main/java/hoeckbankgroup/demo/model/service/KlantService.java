@@ -2,7 +2,7 @@ package hoeckbankgroup.demo.model.service;
 
 import hoeckbankgroup.demo.model.DAO.KlantDAO;
 import hoeckbankgroup.demo.model.Klant;
-import hoeckbankgroup.demo.model.TestKlant;
+import hoeckbankgroup.demo.model.Persoon;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +15,9 @@ public class KlantService {
     public Klant findKlantByEmail(String email){
         return klantDAO.findKlantByEmail(email);
     }
-
+    public void save (Klant klant) {
+        klantDAO.save(klant);}
    // public void save (TestKlant klant) {klantDAO.save(klant);}
+
 }
 

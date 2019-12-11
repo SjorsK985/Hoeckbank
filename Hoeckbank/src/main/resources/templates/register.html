@@ -6,11 +6,16 @@
 <!--BEGIN HIER MET NIEUWE TEMPLATE-->
 
 <!--registerform start-->
-<section>
+<section id="register" class="border-top border-muted">
     <div class="container">
-        <h2 class="text-center py-5">Vul hier uw gegevens in</h2>
+        <h2 id="register-welcome" class="text-center py-5">Welkom bij Hoeckbank, vul hier uw gegevens in</h2>
+
         <div class="form-wrapper mx-auto">
-            <form action="#" method="post">
+            <form action="#" th:action = "@{do_register}" method="post">
+                <div class="text-center">
+                    <input type="radio" class="accountradio" name="accounttype_radio" value="particulier" checked><label class="mx-2">Particulier</label>
+                    <input type="radio" class="accountradio" name="accounttype_radio" value="bedrijf"><label class="mx-2">Zakelijk</label>
+                </div>
                 <table id="register-form"class="table">
                     <colgroup>
                         <col span="1">
@@ -19,21 +24,29 @@
                     </colgroup>
                     <tbody>
                     <tr>
+                        <td class="first-row"></td>
+                        <td class="first-row">&nbsp</td>
+                        <td class="first-row">&nbsp</td>
+                    </tr>
+
+                    <tr>
                         <td class="first-row"><i class=" fas fa-key fa-2x text-muted"></i></td>
-                        <td class="first-row"></i>Gebruikersnaam:</td>
-                        <td class="first-row"><input class="register-form-input" type="text" name="user_name"></td>
+                        <td class="first-row"></i>Emailadres:</td>
+                        <td class="first-row"><input class="register-form-input" type="email" name="user_email"></td>
                     </tr>
                     <tr>
                         <td></td>
                         <td>Wachtwoord:</td>
                         <td><input class="register-form-input" type="password" name="password"></td>
                     </tr>
+                    </tbody>
                     <tr>
                         <td></td>
                         <td>&nbsp</td>
                         <td>&nbsp</td>
                     </tr>
-                    <tr>
+                    <tbody id="private-register-fields">
+                    <tr class="private-info">
                         <td class="first-row"><i class="fas fa-user fa-2x text-muted"></i></td>
                         <td class="first-row">Aanhef:</td>
                         <td class="first-row"><input type="radio" name="gender" value="male">&nbsp Dhr &nbsp
@@ -41,9 +54,8 @@
                             <input type="radio" name="gender" value="other">&nbsp Neutraal
                         </td>
                     </tr>
-                    <tr>
+                    <tr class="private-info">
                         <td></td>
-
                         <td>Voornaam:</td>
                         <td><input class="register-form-input" type="text" name="first_name"></td>
                     </tr>
@@ -55,7 +67,6 @@
                     </tr>
                     <tr>
                         <td></td>
-
                         <td>Achternaam:</td>
                         <td><input class="register-form-input" type="text" name="last_name"></td>
                     </tr>
@@ -63,7 +74,7 @@
                         <td></td>
 
                         <td class="first-row">Geboortedatum:</td>
-                        <td class="first-row"><input class="register-form-input" type="date" name="dob"></td>
+                        <td class="first-row"><input class="register-form-input" type="text" name="dob"></td>
                     </tr>
                     <tr>
                         <td></td>
@@ -74,13 +85,40 @@
 
                     <tr>
                         <td></td>
+                        <td>&nbsp</td>
+                        <td>&nbsp</td>
+                    </tr>
+                    </tbody>
+
+
+                    <tbody class="d-none first-row" id="company-register-fields">
+                    <tr>
+                        <td class="first-row"><i class="fas fa-user-tie fa-2x text-muted"></i></td>
+                        <td class="first-row">Bedrijfsnaam:</td>
+                        <td class="first-row"><input class="register-form-input" type="text" name="company_name"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+
+                        <td>Segment:</td>
+                        <td><input class="register-form-input" type="text" name="segment"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>KvK-nummer:</td>
+                        <td><input class="register-form-input" type="text" name="kvk"></td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
 
                         <td>&nbsp</td>
                         <td>&nbsp</td>
                     </tr>
+                    </tbody>
 
                     <tr>
-                        <td class="first-row"><i class="fas fa-home fa-2x text-muted"></i></td>
+                        <td class="first-row"><i id="address-icon" class="fas fa-home fa-2x text-muted"></i></td>
 
                         <td class="first-row">Straat:</td>
                         <td class="first-row"><input class="register-form-input" type="text" name="street"></td>
@@ -89,7 +127,7 @@
                         <td></td>
 
                         <td>Huisnummer:</td>
-                        <td><input class="register-form-input" type="number" name="house_number"></td>
+                        <td><input class="register-form-input" type="text" name="house_number"></td>
                     </tr>
                     <tr>
                         <td></td>
@@ -100,7 +138,7 @@
                     <tr>
                         <td></td>
 
-                        <td>Woonplaats:</td>
+                        <td id="register-field-city">Woonplaats:</td>
                         <td><input class="register-form-input" type="text" name="city"></td>
                     </tr>
                     <tr>
@@ -111,15 +149,8 @@
                     </tr>
                     <tr>
                         <td class="first-row"><i class="fas fa-phone-alt fa-2x text-muted"></i></td>
-                        <td class="first-row">Emailadres:</td>
-                        <td class="first-row"><input class="register-form-input" type="email" name="email"></td>
-                    </tr>
-                    <tr>
-
-                        <td></td>
-
-                        <td>Telefoonnummer:</td>
-                        <td><input class="register-form-input" type="tel" name="telephone"></td>
+                        <td class="first-row">Telefoonnummer:</td>
+                        <td class="first-row"><input class="register-form-input" type="text" name="telephone"></td>
                     </tr>
 
                     <tr>
@@ -136,8 +167,8 @@
                         <td class="first-row"><input type="checkbox" name="agree"></td>
                     </tr>
                     <tr>
-                        <td>&nbsp</td>
-                        <td>&nbsp</td>
+                        <td></td>
+                        <td></td>
                         <td><a href="#"><button class="btn btn-primary my-2 my-sm-0" type="submit">Registreer</button></a></td>
                     </tr>
                     </tbody>
@@ -146,6 +177,7 @@
         </div>
     </div>
 </section><!--registerform end-->
+
 
 <!--NIEUWE TEMPLATE TOT HIER-->
 <footer th:replace="fragments/footer :: footer"/>

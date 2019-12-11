@@ -6,34 +6,39 @@
 <nav th:replace="fragments/navbar :: navbar"/>
 <!--BEGIN HIER MET NIEUWE TEMPLATE-->
 <div class="container" align = "center">
-<h2><span th:text="${header_text}"/></h2>
-<div class="jumbotron">
+<h2 class="py-5"><span th:text="${header_text}"/></h2>
+<div class="form-wrapper mx-auto">
 <form action="#" th:action="@{do_login}" method="post" onsubmit=" return validationError()" name="loginForm" >
-    <table>
+    <table id="register-form"class="table">
+            <colgroup>
+                <col span="1">
+                <col span="1">
+                <col span="1">
+            </colgroup>
+        <tbody>
         <tr>
-            <td>Naam:</td>
-            <td><input type ="text" name="gebruiker_naam"></td>
+            <td class="first-row"><i class=" fas fa-key fa-2x text-muted"></i></td>
+            <td class="first-row"></i>Gebruikersnaam:</td>
+            <td class="first-row"><input class="register-form-input" type="text" name="gebruiker_naam"></td>
+        </tr>
+        <tr>
+            <td>&nbsp</td>
+            <td>Wachtwoord:</td>
+            <td><input class="register-form-input" type="password" name="gebruiker_paswoord"></td>
         </tr>
         <tr>
             <td></td>
-            <td><div id="userNameError" class="validate-error"></div></td>
-        </tr>
-        <tr>
-            <td>Password:</td>
-            <td><input type ="password" name="gebruiker_paswoord"></td>
-        </tr>
-        <tr>
             <td></td>
             <td><div id="passwordError" class="validate-error"></div></td>
         </tr>
         <tr>
-            <td>
-
-            </td>
+            <td></td>
+            <td></td>
             <td align="right">
                 <a href="#"><button class="btn btn-primary my-2 my-sm-0" type="submit" value="Inloggen">Inloggen</button></a>
             </td>
         </tr>
+        </tbody>
     </table>
 </form>
     <span th:text="${login_error}" class="validate-error"/>

@@ -13,17 +13,34 @@ public class MKB extends Klant{
 
     private String bedrijfsnaam;
     private String sector;
-    private String accountmanager;
+    @OneToOne
+    private Medewerker accountmanager;
 
-    public MKB(){
+    protected MKB(){
         super();
     }
 
-    public MKB(String email, String wachtwoord, String straat, String huisnummer, String postcode, String woonplaats, String telefoonNummer, List<Rekening> rekeningen, String bedrijfsnaam, String sector, String accountmanager) {
+    public MKB(String email, String wachtwoord, String straat, String huisnummer, String postcode, String woonplaats,
+                    String telefoonNummer, List<Rekening> rekeningen, String bedrijfsnaam, String sector, Medewerker accountmanager) {
         super(email, wachtwoord, straat, huisnummer, postcode, woonplaats, telefoonNummer, rekeningen);
         this.bedrijfsnaam = bedrijfsnaam;
         this.sector = sector;
         this.accountmanager = accountmanager;
+    }
+
+    public MKB(String email, String wachtwoord, String straat, String huisnummer, String postcode, String woonplaats, String telefoonNummer, String bedrijfsnaam, String sector, Medewerker accountmanager) {
+        super(email, wachtwoord, straat, huisnummer, postcode, woonplaats, telefoonNummer);
+        this.bedrijfsnaam = bedrijfsnaam;
+        this.sector = sector;
+        this.accountmanager = accountmanager;
+    }
+
+    public MKB(String email, String wachtwoord, String straat, String huisnummer, String postcode, String woonplaats,
+               String telefoonNummer, List<Rekening> rekeningen, String bedrijfsnaam, String sector) {
+        super(email, wachtwoord, straat, huisnummer, postcode, woonplaats, telefoonNummer, rekeningen);
+        this.bedrijfsnaam = bedrijfsnaam;
+        this.sector = sector;
+        this.accountmanager=null;
 
     }
 
@@ -35,9 +52,9 @@ public class MKB extends Klant{
 
     public void setSector(String sector) {this.sector = sector;}
 
-    public String getAccountmanager() {return accountmanager;}
+    public Medewerker getAccountmanager() {return accountmanager;}
 
-    public void setAccountmanager(String accountmanager) {this.accountmanager = accountmanager;}
+    public void setAccountmanager(Medewerker accountmanager) {this.accountmanager = accountmanager;}
 
 
 
