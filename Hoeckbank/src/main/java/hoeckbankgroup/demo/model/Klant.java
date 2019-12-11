@@ -20,7 +20,7 @@ public class Klant extends Persoon{
     @OneToMany(cascade = CascadeType.ALL)
     private List<Rekening> rekeningen;
 
-    public Klant(){
+    protected Klant(){
         super();
     }
 

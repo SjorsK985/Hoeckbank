@@ -1,8 +1,9 @@
 package hoeckbankgroup.demo.controller;
 
-import hoeckbankgroup.demo.model.DAO.KlantDAO;
+
 import hoeckbankgroup.demo.model.Klant;
-import hoeckbankgroup.demo.model.TestKlant;
+import hoeckbankgroup.demo.model.Particulier;
+import hoeckbankgroup.demo.model.Sessie;
 import hoeckbankgroup.demo.model.service.KlantService;
 import hoeckbankgroup.demo.model.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
-
-import java.util.List;
 
 @Controller
 @SessionAttributes("gebruiker")
@@ -32,11 +31,21 @@ public class LoginController {
         if (loginService.validatePassword(email, gebruikerWachtwoord)) {
             Klant klant = klantService.findKlantByEmail(email);
             model.addAttribute("gebruiker", klant);
-            return "testaccount";
+            return setup(klant);
         } else {
-            model.addAttribute("Login_error", "Gebruiker / wachtwoord combi niet geldig");
+            model.addAttribute("login_error", "Gebruiker / wachtwoord combi niet geldig");
             return "Login";
         }
     }
-
+    public String setup(Klant klant){
+        if (klant instanceof Particulier) {
+            Sessie sessie = new Sessie(klant.getPersonId(), klant.getRekeningen(), "Particulier");
+            System.out.println("Particulier");
+            return "rekeningenoverzicht";
+        } else {
+            Sessie sessie = new Sessie(klant.getPersonId(), klant.getRekeningen(), "MKB");
+            System.out.println("MKB");
+            return "rekeningenoverzicht";
+        }
+    }
 }

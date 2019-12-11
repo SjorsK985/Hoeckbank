@@ -47,12 +47,12 @@ public class RegisterController {
         LocalDate geboortedatum = LocalDate.parse(geboortedatumString, dateTimeFormatter);
         int bsn = Integer.parseInt(bsnstring);
         if (rekeningSoort.equals("bedrijf")){
-            MKB mkb = new MKB(emailadres, wachtwoord, straat, huisnummer, postcode, woonplaats, telefoon, bedrijfsnaam, segment, "onbekend");
+            MKB mkb = new MKB(emailadres, wachtwoord, straat, huisnummer, postcode, woonplaats, telefoon, bedrijfsnaam, segment, null);
             mkbService.save(mkb);
             return "login";
         }else{
             Particulier particulier = new Particulier(emailadres, wachtwoord, straat, huisnummer,
-                    postcode, woonplaats, telefoon, voornaam, tussenvoegsel, achternaam, bsn, geslacht, geboortedatum);
+                    postcode, woonplaats, telefoon, voornaam, tussenvoegsel, achternaam, bsn, geslacht, geboortedatumString);
             particulierService.save(particulier);
             return "index";
         }
