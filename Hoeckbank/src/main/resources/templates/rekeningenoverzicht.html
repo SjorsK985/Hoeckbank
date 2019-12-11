@@ -21,7 +21,7 @@
             <td><span th:text="${rekening.tenaamstelling}"/> </td>
             <td>€ <span th:text="${rekening.saldo}" /></td>
             <td>
-                <a href="#">
+                <a th:href="@{/rekeningdetail(id=${rekening.rekeningID})}">
                     <button class="btn btn-primary my-2 my-sm-0-mt5" type="submit" value="select-rekening">
                         Overzicht
                     </button>

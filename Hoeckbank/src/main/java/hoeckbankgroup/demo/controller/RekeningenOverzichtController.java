@@ -35,7 +35,7 @@ public class RekeningenOverzichtController {
                 "1", "1423AK", "uithoorn", "065745621", rekeningen,
                 "Klant3", "van der", "Beek", 456456546, "man", LocalDate.now() );
         /**####################### Test Data  #######################**/
-        
+
         model.addAttribute("gebruiker", klant1);
         model.addAttribute("rekeningen", rekeningen);
 
