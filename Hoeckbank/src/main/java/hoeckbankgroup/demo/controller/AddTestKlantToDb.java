@@ -14,8 +14,8 @@ public class AddTestKlantToDb {
 
     @GetMapping("fdb")
     public String fillDatabase(){
-        Klant klant = new Klant();
-        klantDAO.save(klant);
+/*       Klant klant = new Klant();
+        klantDAO.save(klant);*/
 
         return "login";
     }
