@@ -13,13 +13,13 @@ import java.util.List;
 public class Rekening {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int rekeningID;
 
     private String rekeningnummer;
     private double saldo;
 
-    @OneToMany
+    @OneToMany (cascade = CascadeType.ALL)
     private List<Klant> rekeninghouder;
 
     public Rekening(String rekeningnummer, double saldo) {
