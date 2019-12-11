@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import java.util.List;
 
 @Controller
-@SessionAttributes("gebruiker")
+@SessionAttributes({"gebruiker", "sessie"})
 public class LoginController {
 
 
@@ -42,14 +42,13 @@ public class LoginController {
     }
     public String setup(Klant klant, Model model){
         if (klant instanceof Particulier) {
-            System.out.println("rekening 0 = " + klant.getRekeningen().get(0).getRekeningnummer());
             Sessie sessie = new Sessie(klant.getPersonId(), klant.getRekeningen(), "Particulier");
             model.addAttribute("sessie", sessie);
 
             System.out.println("Particulier");
 
 
-            model.addAttribute("rekeningen", sessie.getRekeningen());
+            //model.addAttribute("rekeningen", sessie.getRekeningen());
             return "redirect:/rekeningenoverzicht";
         } else {
             Sessie sessie = new Sessie(klant.getPersonId(), klant.getRekeningen(), "MKB");
