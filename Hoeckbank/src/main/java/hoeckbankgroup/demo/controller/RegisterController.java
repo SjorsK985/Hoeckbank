@@ -40,9 +40,7 @@ public class RegisterController {
                                     @RequestParam(required = false, name = "gender") String geslacht, @RequestParam(required = false, name = "first_name") String voornaam,
                                     @RequestParam(required = false, name = "prepositions") String tussenvoegsel, @RequestParam(required = false, name ="last_name") String achternaam,
                                     @RequestParam(required = false, name = "dob") String geboortedatumString, @RequestParam(required = false, name = "bsn") String bsnstring,
-                                    @RequestParam(required = false, name = "company_name") String bedrijfsnaam, @RequestParam(required = false, name = "segment") String segment,
-                                    @RequestParam(required = false, name = "kvk") String kvk){
-        System.out.println(geboortedatumString);
+                                    @RequestParam(required = false, name = "company_name") String bedrijfsnaam, @RequestParam(required = false, name = "segment") String segment){
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate geboortedatum = LocalDate.parse(geboortedatumString, dateTimeFormatter);
         int bsn = Integer.parseInt(bsnstring);
@@ -52,7 +50,7 @@ public class RegisterController {
             return "login";
         }else{
             Particulier particulier = new Particulier(emailadres, wachtwoord, straat, huisnummer,
-                    postcode, woonplaats, telefoon, voornaam, tussenvoegsel, achternaam, bsn, geslacht, geboortedatum);
+                    postcode, woonplaats, telefoon, voornaam, tussenvoegsel, achternaam, bsn, geslacht, geboortedatumString);
             particulierService.save(particulier);
             return "index";
         }

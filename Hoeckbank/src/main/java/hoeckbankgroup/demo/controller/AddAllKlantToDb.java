@@ -19,7 +19,6 @@ import java.util.Scanner;
 
 @Controller
 public class AddAllKlantToDb {
-
     @Autowired
     private KlantDAO klantDAO;
     @Autowired
