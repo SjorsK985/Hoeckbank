@@ -42,6 +42,7 @@ public class LoginController {
     }
     public String setup(Klant klant, Model model){
         if (klant instanceof Particulier) {
+            System.out.println("rekening 0 = " + klant.getRekeningen().get(0).getRekeningnummer());
             Sessie sessie = new Sessie(klant.getPersonId(), klant.getRekeningen(), "Particulier");
             model.addAttribute("sessie", sessie);
 
@@ -49,7 +50,7 @@ public class LoginController {
 
 
             model.addAttribute("rekeningen", sessie.getRekeningen());
-            return "rekeningenoverzicht";
+            return "redirect:/rekeningenoverzicht";
         } else {
             Sessie sessie = new Sessie(klant.getPersonId(), klant.getRekeningen(), "MKB");
             System.out.println("MKB");
