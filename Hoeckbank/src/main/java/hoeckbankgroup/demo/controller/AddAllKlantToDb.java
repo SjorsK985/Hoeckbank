@@ -1,10 +1,12 @@
 package hoeckbankgroup.demo.controller;
 
 import hoeckbankgroup.demo.model.DAO.KlantDAO;
+import hoeckbankgroup.demo.model.DAO.MedewerkerDAO;
 import hoeckbankgroup.demo.model.DAO.MKBDAO;
 import hoeckbankgroup.demo.model.DAO.ParticulierDAO;
 
 import hoeckbankgroup.demo.model.Klant;
+import hoeckbankgroup.demo.model.Medewerker;
 import hoeckbankgroup.demo.model.MKB;
 import hoeckbankgroup.demo.model.Particulier;
 import hoeckbankgroup.demo.model.Rekening;
@@ -23,10 +25,32 @@ import java.util.Scanner;
 public class AddAllKlantToDb {
 
     @Autowired
+   private ParticulierDAO particulierDao;
+
     private MKBDAO mkbDao;
     @Autowired
-    private ParticulierDAO particulierDao;
+    private MedewerkerDAO medewerkerDao;
 
+    @GetMapping("inleesmedewerker")
+    private String inleesmedewerker(){
+        try {
+            Scanner invoer = new Scanner(new File("/Users/Ling/Desktop/inleesmedewerker.csv"));
+            while (invoer.hasNextLine()) {
+                String regelUitBestand = invoer.nextLine();
+
+                String[] regelArray;
+                regelArray = regelUitBestand.split(";");
+                Medewerker medewerker =new Medewerker(regelArray[0],regelArray[1],regelArray[2]);
+
+                System.out.println(regelArray[0]);
+                medewerkerDao.save(medewerker);
+            }
+
+        } catch (FileNotFoundException nietGevonden) {
+            System.out.println("Het bestand is niet gevonden.");
+        }
+        return "login";
+    }
 
     @GetMapping("inleesmkb")
     private String inlezenMKB(){
