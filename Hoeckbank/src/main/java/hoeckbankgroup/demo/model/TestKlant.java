@@ -14,7 +14,7 @@ public class TestKlant {
     private String gebruikersnaam;
     private String wachtwoord;
 
-    public TestKlant() {
+    protected TestKlant() {
         super();
     }
 

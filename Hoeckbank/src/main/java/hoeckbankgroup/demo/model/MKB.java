@@ -16,7 +16,7 @@ public class MKB extends Klant{
     @OneToOne
     private Medewerker accountmanager;
 
-    public MKB(){
+    protected MKB(){
         super();
     }
 

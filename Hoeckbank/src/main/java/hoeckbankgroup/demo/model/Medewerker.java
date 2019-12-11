@@ -9,7 +9,7 @@ public class Medewerker extends Persoon{
 
     private String functie;
 
-    public Medewerker(){
+    protected Medewerker(){
         super();
     }
 
