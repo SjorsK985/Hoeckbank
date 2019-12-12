@@ -76,4 +76,8 @@ public class Klant extends Persoon{
     public void setRekeningen(List<Rekening> rekeningen) {
         this.rekeningen = rekeningen;
     }
+
+    public void addRekening(Rekening rekening){
+        rekeningen.add(rekening);
+    }
 }

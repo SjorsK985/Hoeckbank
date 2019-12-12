@@ -10,16 +10,16 @@
     <div class="container">
         <h2 class="text-center my-5">Uw nieuwe rekeningnummer</h2>
         <div class="form-wrapper mx-auto">
-            <form action="#" method="post">
-                <table id="newaccount-form" class="table">
+            <form th:action="@{/confirm-newbank}" method="post" th:object="${gebruiker}">
+                <table class="table new-rekening-table">
                     <tr class="font-weight-bold">
                         <th class="first-row"><i class="fas fa-money-check"></i></i>&nbspRekeningnummer</th>
                         <th class="first-row"><i class="fas fa-user-friends"></i>&nbspHouder(s)</th>
                         <th class="first-row"><i class="fas fa-piggy-bank"></i></i></i>&nbspSaldo</th>
                     </tr>
                     <tr>
-                        <td>RekNL74834784</td>
-                        <td class="text-uppercase">Dhr. L. LAAKMAN</td>
+                        <td><span th:text="${nieuwrekeningnummer}"/></td>
+                        <td class="text-uppercase"><span th:text="${tenaamstelling}"/></td>
                         <td>€ 0,00</td>
                     </tr>
                     <tr>
@@ -30,15 +30,14 @@
                     <tr>
                         <td class="first-row"><a href="#" class="text-muted cancel-link">Annuleren</a></td>
                         <td class="first-row"></td>
-                        <td class="first-row"><a href="#"><button class="btn btn-primary my-5 my-sm-0" type="submit">Bevestig</button></a></td>
+                        <td class="first-row"><input class="btn btn-primary my-5 my-sm-0" type="submit" value="Bevestig"></td>
                     </tr>
 
                 </table>
             </form>
-
         </div>
 
-
+    </div>
 </section><!-- new account end -->
 
 

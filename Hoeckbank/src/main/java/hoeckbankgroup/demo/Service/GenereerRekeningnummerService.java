@@ -25,8 +25,8 @@ public class GenereerRekeningnummerService {
         String landCode = "NL";
         String bankCode = "HCKB";
         int controleGetal = (int) (Math.random() * 100);
-        int rekeningIdentificatieEen = (int) (Math.random() * 100000);
-        int rekeningIdentificatieTwee = (int) (Math.random() * 100000);
+        int rekeningIdentificatieEen = (int) (Math.random() * 100000 - 1);
+        int rekeningIdentificatieTwee = (int) (Math.random() * 100000 - 1);
         rekeningNummer = landCode + String.valueOf(controleGetal) + bankCode + String.valueOf(rekeningIdentificatieEen) + String.valueOf(rekeningIdentificatieTwee);
         return rekeningNummer;
     }

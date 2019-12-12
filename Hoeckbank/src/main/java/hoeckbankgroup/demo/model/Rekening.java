@@ -70,4 +70,8 @@ public class Rekening {
     public int getRekeningID() {
         return rekeningID;
     }
+
+    public void addRekeninghouder(Klant klant){
+        rekeninghouder.add(klant);
+    }
 }

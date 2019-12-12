@@ -1,8 +1,8 @@
 package hoeckbankgroup.demo.controller;
 
 import hoeckbankgroup.demo.Service.GenereerRekeningnummerService;
-import hoeckbankgroup.demo.model.MKB;
-import hoeckbankgroup.demo.model.Particulier;
+import hoeckbankgroup.demo.model.*;
+import hoeckbankgroup.demo.model.service.KlantService;
 import hoeckbankgroup.demo.model.service.MKBService;
 import hoeckbankgroup.demo.model.service.ParticulierService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +17,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 
 @Controller
 @SessionAttributes("gebruiker")
@@ -27,6 +28,9 @@ public class RegisterController {
 
     @Autowired
     private MKBService mkbService;
+
+    @Autowired
+    private KlantService klantService;
 
 
     @GetMapping("register")
@@ -48,15 +52,18 @@ public class RegisterController {
         if (rekeningSoort.equals("bedrijf")){
             MKB mkb = new MKB(emailadres, wachtwoord, straat, huisnummer, postcode, woonplaats, telefoon, bedrijfsnaam, segment, null);
             mkbService.save(mkb);
-            model.addAttribute("gebruiker", mkb);
+            Klant klant = klantService.findKlantByEmail(mkb.getEmail());
+            Gebruiker gebruiker = new Gebruiker(klant.getPersonId(),"MKB");
+            model.addAttribute("gebruiker", gebruiker);
             return "redirect:/newbankaccount";
         }else{
             if (particulierService.controleerGeboortedatum(geboortedatumString) && particulierService.controleerBestaandeKlant(bsn, emailadres)){
                 Particulier particulier = new Particulier(emailadres, wachtwoord, straat, huisnummer,
                         postcode, woonplaats, telefoon, voornaam, tussenvoegsel, achternaam, bsn, geslacht, geboortedatumString);
                 particulierService.save(particulier);
-                model.addAttribute("gebruiker", particulier);
-                System.out.println("gebruiker particulier in sessie gezet");
+                Klant klant = klantService.findKlantByEmail(particulier.getEmail());
+                Gebruiker gebruiker = new Gebruiker(klant.getPersonId(),"Particulier");
+                model.addAttribute("gebruiker", gebruiker);
                 return "redirect:/newbankaccount";
             } else {
                 return "redirect:/register";
