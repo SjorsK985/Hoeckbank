@@ -20,7 +20,6 @@ import java.util.List;
 @SessionAttributes({"gebruiker", "sessie"})
 public class LoginController {
 
-
     @Autowired
     private LoginService loginService;
 
@@ -50,6 +49,7 @@ public class LoginController {
 
             //model.addAttribute("rekeningen", sessie.getRekeningen());
             return "redirect:/rekeningenoverzicht";
+            //return "rekeningenoverzicht";
         } else {
             Sessie sessie = new Sessie(klant.getPersonId(), klant.getRekeningen(), "MKB");
             System.out.println("MKB");
