@@ -3,6 +3,7 @@ package hoeckbankgroup.demo.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
 public class IndexController {
@@ -13,8 +14,6 @@ public class IndexController {
     }
 
     @GetMapping("index")
-    public String indexHandler(){
-        return "index";
-    }
+    public String indexHandler(){return "index";}
 
 }
