@@ -13,7 +13,7 @@ public abstract class Persoon {
     private String email;
     private String wachtwoord;
 
-    public Persoon(){
+    protected Persoon(){
         super();
     }
 

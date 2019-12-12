@@ -1,5 +1,7 @@
 package hoeckbankgroup.demo.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -12,20 +14,17 @@ public class Particulier extends Klant {
     private String tussenvoegsel;
     private String achternaam;
     private int BSN;
-
     private String geslacht;
     private String geboorteDatum;
 
 
-    public Particulier(){
+    protected Particulier(){
         super();
     }
 
-/*    public Particulier(String email, String wachtwoord, String straat, String huisnummer, String postcode, String woonplaats, String telefoonNummer, List<Rekening> rekeningen) {
-        super(email, wachtwoord, straat, huisnummer, postcode, woonplaats, telefoonNummer, rekeningen);
-    }*/
-
-    public Particulier(String email, String wachtwoord, String straat, String huisnummer, String postcode, String woonplaats, String telefoonNummer, List<Rekening> rekeningen, String voornaam, String tussenvoegsel, String achternaam, int BSN, String geslacht, String geboorteDatum) {
+    public Particulier(String email, String wachtwoord, String straat, String huisnummer, String postcode,
+                String woonplaats, String telefoonNummer, List<Rekening> rekeningen, String voornaam,
+                String tussenvoegsel, String achternaam, int BSN, String geslacht, String geboorteDatum) {
         super(email, wachtwoord, straat, huisnummer, postcode, woonplaats, telefoonNummer, rekeningen);
         this.voornaam = voornaam;
         this.tussenvoegsel = tussenvoegsel;
@@ -35,7 +34,9 @@ public class Particulier extends Klant {
         this.geboorteDatum = geboorteDatum;
     }
 
-    public Particulier(String email, String wachtwoord, String straat, String huisnummer, String postcode, String woonplaats, String telefoonNummer, String voornaam, String tussenvoegsel, String achternaam, int BSN, String geslacht, String geboorteDatum) {
+    public Particulier(String email, String wachtwoord, String straat, String huisnummer, String postcode,
+                String woonplaats, String telefoonNummer, String voornaam, String tussenvoegsel,
+                String achternaam, int BSN, String geslacht, String geboorteDatum) {
         super(email, wachtwoord, straat, huisnummer, postcode, woonplaats, telefoonNummer);
         this.voornaam = voornaam;
         this.tussenvoegsel = tussenvoegsel;
@@ -92,6 +93,4 @@ public class Particulier extends Klant {
     public void setGeboorteDatum(String geboorteDatum) {
         this.geboorteDatum = geboorteDatum;
     }
-
-
 }
