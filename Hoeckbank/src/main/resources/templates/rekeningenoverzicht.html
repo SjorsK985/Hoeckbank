@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/header :: header"/>
+<body class="bg-light">
+<nav th:replace="fragments/navbar :: navbar"/>
+<!--BEGIN HIER MET NIEUWE TEMPLATE-->
+
+<div class="container w-75 justify-content-between"  align="center">
+    <h3>Rekeningenoverzicht</h3>
+
+
+
+    <table>
+        <tr class="font-weight-bold">
+            <td>Rekeningnummer</td>
+            <td>Tennaamstelling</td>
+            <td>Saldo</td>
+        <tr>
+        <tr th:each="rekening : ${rekeningen}">
+            <td><span th:text="${rekening.rekeningnummer}" /></td>
+            <td><span th:text="${rekening.tenaamstelling}"/> </td>
+            <td>€ <span th:text="${rekening.saldo}" /></td>
+            <td>
+                <a th:href="@{/rekeningdetail(id=${rekening.rekeningID})}">
+                    <button class="btn btn-primary my-2 my-sm-0-mt5" type="submit" value="select-rekening">
+                        Overzicht
+                    </button>
+                </a>
+
+            </td>
+        </tr>
+    </table>
+
+    <br>
+    <div class="d-flex justify-content-between w-75" >
+        <a href="nieuwerekening">
+            <button class="btn btn-primary my-2 my-sm-0-mt5" type="submit" value="nieuwe-rekening">
+                Nieuwe rekening
+            </button>
+        </a>
+        <a href="koppelrekening">
+            <button class="btn btn-primary my-2 my-sm-0-mt5" type="submit" value="koppel-rekening">
+                Koppel rekening
+            </button>
+        </a>
+        <a href="bewerkprofiel">
+            <button class="btn btn-primary my-2 my-sm-0-mt5" type="submit" value="Bewerk profiel">
+                Bewerk profiel
+            </button>
+        </a>
+    </div>
+
+</div>
+
+
+
+<!--NIEUWE TEMPLATE TOT HIER-->
+<footer th:replace="fragments/footer :: footer"/>
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</html>

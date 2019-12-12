@@ -3,7 +3,7 @@ package hoeckbankgroup.demo.controller;
 
 import hoeckbankgroup.demo.model.Klant;
 import hoeckbankgroup.demo.model.Particulier;
-import hoeckbankgroup.demo.model.Sessie;
+import hoeckbankgroup.demo.model.Gebruiker;
 import hoeckbankgroup.demo.model.service.KlantService;
 import hoeckbankgroup.demo.model.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 @SessionAttributes("gebruiker")
 public class LoginController {
 
-
     @Autowired
     private LoginService loginService;
 
@@ -30,23 +29,22 @@ public class LoginController {
                                  Model model) {
         if (loginService.validatePassword(email, gebruikerWachtwoord)) {
             Klant klant = klantService.findKlantByEmail(email);
-            model.addAttribute("gebruiker", klant);
-            model.addAttribute("log", "login");
-            return setup(klant);
+            return setup(klant, model);
         } else {
             model.addAttribute("login_error", "Gebruiker / wachtwoord combi niet geldig");
             return "Login";
         }
     }
-    public String setup(Klant klant){
+    public String setup(Klant klant, Model model){
         if (klant instanceof Particulier) {
-            Sessie sessie = new Sessie(klant.getPersonId(), klant.getRekeningen(), "Particulier");
-            System.out.println("Particulier");
-            return "rekeningenoverzicht";
+            Gebruiker gebruiker = new Gebruiker(klant.getPersonId(), klant.getRekeningen(), "Particulier");
+            model.addAttribute("gebruiker", gebruiker);
+            return "redirect:/rekeningenoverzicht";
+
         } else {
-            Sessie sessie = new Sessie(klant.getPersonId(), klant.getRekeningen(), "MKB");
-            System.out.println("MKB");
-            return "rekeningenoverzicht";
+            Gebruiker gebruiker = new Gebruiker(klant.getPersonId(), klant.getRekeningen(), "MKB");
+            model.addAttribute("gebruiker", gebruiker);
+            return "redirect:/rekeningenoverzicht";
         }
     }
 }
