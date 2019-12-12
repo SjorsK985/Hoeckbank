@@ -34,7 +34,7 @@ public class AddAllKlantToDb {
     @GetMapping("inleesmedewerker")
     private String inleesmedewerker(){
         try {
-            Scanner invoer = new Scanner(new File("/Users/Ling/Desktop/inleesmedewerker.csv"));
+            Scanner invoer = new Scanner(new File("d:/inleesmedewerker.csv"));
             while (invoer.hasNextLine()) {
                 String regelUitBestand = invoer.nextLine();
 
@@ -42,7 +42,7 @@ public class AddAllKlantToDb {
                 regelArray = regelUitBestand.split(";");
                 Medewerker medewerker =new Medewerker(regelArray[0],regelArray[1],regelArray[2]);
 
-                System.out.println(regelArray[0]);
+             //   System.out.println(regelArray[0]);
                 medewerkerDao.save(medewerker);
             }
 
@@ -73,7 +73,7 @@ public class AddAllKlantToDb {
                 MKB mkb=new MKB(regelArray[0],regelArray[1],regelArray[2],regelArray[3],regelArray[4],
                         regelArray[5],regelArray[6],rekeningen,regelArray[8],regelArray[9]);
 
-                System.out.println(regelArray[0]);
+                //System.out.println(regelArray[0]);
                mkbDao.save(mkb);
                 // klantDAO.save(particulier);
 
@@ -111,7 +111,7 @@ public class AddAllKlantToDb {
                 Particulier particulier=new Particulier(regelArray[0],regelArray[1],regelArray[2],regelArray[3],regelArray[4],
                         regelArray[5],regelArray[6],rekeningen,regelArray[9],regelArray[10],regelArray[11],bsn,regelArray[13],regelArray[14]);
 
-                System.out.println(regelArray[0]);
+              //  System.out.println(regelArray[0]);
                 particulierDao.save(particulier);
                // klantDAO.save(particulier);
 

@@ -31,6 +31,7 @@ public class LoginController {
         if (loginService.validatePassword(email, gebruikerWachtwoord)) {
             Klant klant = klantService.findKlantByEmail(email);
             model.addAttribute("gebruiker", klant);
+            model.addAttribute("log", "login");
             return setup(klant);
         } else {
             model.addAttribute("login_error", "Gebruiker / wachtwoord combi niet geldig");
@@ -42,7 +43,7 @@ public class LoginController {
             Sessie sessie = new Sessie(klant.getPersonId(), klant.getRekeningen(), "Particulier");
             System.out.println("Particulier");
             return "rekeningenoverzicht";
-        } else {
+        } else {w
             Sessie sessie = new Sessie(klant.getPersonId(), klant.getRekeningen(), "MKB");
             System.out.println("MKB");
             return "rekeningenoverzicht";
