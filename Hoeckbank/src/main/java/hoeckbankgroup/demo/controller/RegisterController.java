@@ -39,42 +39,23 @@ public class RegisterController {
                                     @RequestParam(name = "telephone") String telefoon, @RequestParam(name = "agree") boolean akkoord,
                                     @RequestParam(required = false, name = "gender") String geslacht, @RequestParam(required = false, name = "first_name") String voornaam,
                                     @RequestParam(required = false, name = "prepositions") String tussenvoegsel, @RequestParam(required = false, name ="last_name") String achternaam,
-                                    @RequestParam(required = false, name = "dob") String geboortedatumString, @RequestParam(required = false, name = "bsn") String bsnstring,
-                                    @RequestParam(required = false, name = "company_name") String bedrijfsnaam, @RequestParam(required = false, name = "segment") String segment,
-                                    @RequestParam(required = false, name = "kvk") String kvk){
-        System.out.println(geboortedatumString);
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        LocalDate geboortedatum = LocalDate.parse(geboortedatumString, dateTimeFormatter);
-        int bsn = Integer.parseInt(bsnstring);
+                                    @RequestParam(required = false, name = "dob") String geboortedatumString, @RequestParam(required = false, name = "bsn") int bsn,
+                                    @RequestParam(required = false, name = "company_name") String bedrijfsnaam, @RequestParam(required = false, name = "segment") String segment){
         if (rekeningSoort.equals("bedrijf")){
             MKB mkb = new MKB(emailadres, wachtwoord, straat, huisnummer, postcode, woonplaats, telefoon, bedrijfsnaam, segment, null);
             mkbService.save(mkb);
             return "login";
         }else{
-            Particulier particulier = new Particulier(emailadres, wachtwoord, straat, huisnummer,
-                    postcode, woonplaats, telefoon, voornaam, tussenvoegsel, achternaam, bsn, geslacht, geboortedatumString);
-            particulierService.save(particulier);
-            return "index";
+            if (particulierService.controleerGeboortedatum(geboortedatumString) && particulierService.controleerBestaandeKlant(bsn, emailadres)){
+                Particulier particulier = new Particulier(emailadres, wachtwoord, straat, huisnummer,
+                        postcode, woonplaats, telefoon, voornaam, tussenvoegsel, achternaam, bsn, geslacht, geboortedatumString);
+                particulierService.save(particulier);
+                return "index";
+            } else {
+                return "register";
+            }
         }
     }
-
-   public boolean controleerGeboortedatum (LocalDate geboortedatum){
-       LocalDate vandaag = LocalDate.now(ZoneId.of("Europe/Paris"));
-       int leeftijd = (int)ChronoUnit.YEARS.between(geboortedatum, vandaag);
-       if (leeftijd >= 18){
-           return true;
-       }else{
-           return false;
-       }
-   }
-
-   public boolean controleerBSN (int bsn){
-       if (particulierService.findParticulierbyBSN(bsn)==null){
-           return true;
-       }else{
-           return false;
-       }
-   }
 
    public boolean controleerTelefoon (String telefoon){
        return false;
