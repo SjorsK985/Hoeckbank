@@ -14,6 +14,12 @@ public class KlantService {
     public Klant findKlantByEmail(String email){
         return klantDAO.findKlantByEmail(email);
     }
+
+    public Klant findKlantByPersonId(int personId){
+        return klantDAO.findKlantByPersonId(personId);
+
+    }
+
     public void save (Klant klant) {
         klantDAO.save(klant);}
 
