@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 
 public class LogUitController {
 
-    @PostMapping("loguit")
+    @GetMapping("loguit")
     public String logUitHandler(){
         return "index";
     }
