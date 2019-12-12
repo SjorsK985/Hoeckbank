@@ -6,5 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RekeningDAO extends JpaRepository<Rekening, Integer> {
+    Rekening findRekeningByRekeningID(int rekeningID);
 
 }
