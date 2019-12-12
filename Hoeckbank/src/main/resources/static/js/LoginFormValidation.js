@@ -1,4 +1,5 @@
 function validationError(){
+    window.alert("sometext");
     var userName = document.loginForm.gebruiker_naam.value;
     var password = document.loginForm.gebruiker_paswoord.value;
 
