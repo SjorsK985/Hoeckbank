@@ -17,13 +17,12 @@ public class Klant extends Persoon{
     private String postcode;
     private String woonplaats;
     private String telefoonNummer;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Rekening> rekeningen;
 
     protected Klant(){
         super();
     }
-
 
     public Klant(String email, String wachtwoord, String straat, String huisnummer, String postcode, String woonplaats, String telefoonNummer, List<Rekening> rekeningen) {
         super(email, wachtwoord);

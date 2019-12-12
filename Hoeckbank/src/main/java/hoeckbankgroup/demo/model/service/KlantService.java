@@ -15,8 +15,9 @@ public class KlantService {
         return klantDAO.findKlantByEmail(email);
     }
 
-    public Klant findKlantByPersonId(int id){
-        return klantDAO.findKlantByPersonId(id);
+    public Klant findKlantByPersonId(int personId){
+        return klantDAO.findKlantByPersonId(personId);
+
     }
 
     public void save (Klant klant) {
