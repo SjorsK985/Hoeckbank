@@ -21,16 +21,13 @@ public class GenereerRekeningnummerService {
     }
 
     public String genereerRekeningnummer(){
-        boolean uniek = false;
         String rekeningNummer = "";
-        while(!uniek) {
-            String landCode = "NL";
-            String bankCode = "HCKB";
-            int controleGetal = (int) Math.random() * 100 - 1;
-            int rekeningIdentificatie = (int) Math.random() * 1000000000 - 1;
-            rekeningNummer = landCode + Integer.toString(controleGetal) + bankCode + Integer.toString(rekeningIdentificatie);
-            uniek = checkRekeningnummer(rekeningNummer);
-        }
+        String landCode = "NL";
+        String bankCode = "HCKB";
+        int controleGetal = (int) (Math.random() * 100);
+        int rekeningIdentificatieEen = (int) (Math.random() * 100000);
+        int rekeningIdentificatieTwee = (int) (Math.random() * 100000);
+        rekeningNummer = landCode + String.valueOf(controleGetal) + bankCode + String.valueOf(rekeningIdentificatieEen) + String.valueOf(rekeningIdentificatieTwee);
         return rekeningNummer;
     }
 

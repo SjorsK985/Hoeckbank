@@ -1,5 +1,6 @@
 package hoeckbankgroup.demo.controller;
 
+import hoeckbankgroup.demo.Service.GenereerRekeningnummerService;
 import hoeckbankgroup.demo.Service.NewBankAccountService;
 import hoeckbankgroup.demo.model.Klant;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,16 @@ public class NewBankAccountController {
 
     @Autowired
     private NewBankAccountService newBankAccountService;
+
+    @Autowired
+    private GenereerRekeningnummerService genereerRekeningnummerService;
+
+    @GetMapping("newbankaccount")
+    private String newBankAccountHandler(){
+        //rekeningnummer = genereerRekeningnummerService.genereerRekeningnummer();
+        return "newbankaccount";
+    }
+
 
     @PostMapping("confirm_newbankaccount")
     private String confirmNewBankAccount(@ModelAttribute(name="gebruiker") Klant klant){
