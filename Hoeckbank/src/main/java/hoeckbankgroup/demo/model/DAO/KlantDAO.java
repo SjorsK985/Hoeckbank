@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface KlantDAO extends JpaRepository<Klant, Integer> {
     Klant findKlantByEmail(String email);
+    Klant findKlantByPersonId(int personId);
 }
