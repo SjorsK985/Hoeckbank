@@ -1,24 +1,20 @@
 package hoeckbankgroup.demo.controller;
 
-import hoeckbankgroup.demo.model.DAO.KlantDAO;
-import hoeckbankgroup.demo.model.DAO.MedewerkerDAO;
-import hoeckbankgroup.demo.model.DAO.MKBDAO;
-import hoeckbankgroup.demo.model.DAO.ParticulierDAO;
+import hoeckbankgroup.demo.model.*;
+import hoeckbankgroup.demo.model.DAO.*;
 
-import hoeckbankgroup.demo.model.Klant;
-import hoeckbankgroup.demo.model.Medewerker;
-import hoeckbankgroup.demo.model.MKB;
-import hoeckbankgroup.demo.model.Particulier;
-import hoeckbankgroup.demo.model.Rekening;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 
 @Controller
@@ -33,12 +29,13 @@ public class AddAllKlantToDb {
     @GetMapping("inleesmedewerker")
     private String inleesmedewerker(){
         try {
-            Scanner invoer = new Scanner(new File("/Users/Ling/Desktop/inleesmedewerker.csv"));
+            Scanner invoer = new Scanner(new File("Hoeckbank/src/main/resources/static/inleesdocumenten/inleesmedewerker.csv"));
             while (invoer.hasNextLine()) {
                 String regelUitBestand = invoer.nextLine();
 
                 String[] regelArray;
                 regelArray = regelUitBestand.split(";");
+
                 Medewerker medewerker =new Medewerker(regelArray[0],regelArray[1],regelArray[2]);
 
                 System.out.println(regelArray[0]);
@@ -55,7 +52,7 @@ public class AddAllKlantToDb {
     private String inlezenMKB(){
         // ArrayList<String> regelsUitBestand= new ArrayList<>();;
         try {
-            Scanner invoer = new Scanner(new File("d:/inleesmkb.csv"));
+            Scanner invoer = new Scanner(new File("Hoeckbank/src/main/resources/static/inleesdocumenten/inleesmkb.csv"));
             while (invoer.hasNextLine()) {
                 String regelUitBestand = invoer.nextLine();
                 //regelsUitBestand.add(invoer.nextLine());
@@ -90,7 +87,7 @@ public class AddAllKlantToDb {
     private String inlezen(){
        // ArrayList<String> regelsUitBestand= new ArrayList<>();;
         try {
-            Scanner invoer = new Scanner(new File("d:/inleesparticulier.csv"));
+            Scanner invoer = new Scanner(new File("Hoeckbank/src/main/resources/static/inleesdocumenten/inleesparticulier.csv"));
             while (invoer.hasNextLine()) {
                 String regelUitBestand = invoer.nextLine();
                 //regelsUitBestand.add(invoer.nextLine());

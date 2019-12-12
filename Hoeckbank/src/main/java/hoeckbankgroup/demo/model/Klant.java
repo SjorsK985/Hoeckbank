@@ -24,7 +24,6 @@ public class Klant extends Persoon{
         super();
     }
 
-
     public Klant(String email, String wachtwoord, String straat, String huisnummer, String postcode, String woonplaats, String telefoonNummer, List<Rekening> rekeningen) {
         super(email, wachtwoord);
         this.straat = straat;
