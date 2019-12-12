@@ -42,11 +42,15 @@ public class RegisterController {
                                     @RequestParam(required = false, name = "dob") String geboortedatumString, @RequestParam(required = false, name = "bsn") int bsn,
                                     @RequestParam(required = false, name = "company_name") String bedrijfsnaam, @RequestParam(required = false, name = "segment") String segment){
         if (rekeningSoort.equals("bedrijf")){
-            MKB mkb = new MKB(emailadres, wachtwoord, straat, huisnummer, postcode, woonplaats, telefoon, bedrijfsnaam, segment, null);
-            mkbService.save(mkb);
-            return "login";
+            if (mkbService.controleerBestaanMKB(emailadres)){
+                MKB mkb = new MKB(emailadres, wachtwoord, straat, huisnummer, postcode, woonplaats, telefoon, bedrijfsnaam, segment, null);
+                mkbService.save(mkb);
+                return "index";
+            } else{
+                return "register";
+            }
         }else{
-            if (particulierService.controleerGeboortedatum(geboortedatumString) && particulierService.controleerBestaandeKlant(bsn, emailadres)){
+            if (particulierService.controleerGeboortedatum(geboortedatumString) && particulierService.controleerBestaandeParticulier(bsn, emailadres)){
                 Particulier particulier = new Particulier(emailadres, wachtwoord, straat, huisnummer,
                         postcode, woonplaats, telefoon, voornaam, tussenvoegsel, achternaam, bsn, geslacht, geboortedatumString);
                 particulierService.save(particulier);
@@ -56,12 +60,4 @@ public class RegisterController {
             }
         }
     }
-
-   public boolean controleerTelefoon (String telefoon){
-       return false;
-   }
-
-   public boolean controleerWachtwoord(String wachtwoord){
-       return false;
-   }
 }
