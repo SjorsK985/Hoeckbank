@@ -120,7 +120,7 @@ public class AddAllKlantToDb {
         inlezenmedewerker();
         inlezenMKB();
         inlezenparticulier();
-       rekeninginlezen();
+        rekeninginlezen();
         return "login";
     }
 
@@ -140,7 +140,7 @@ public class AddAllKlantToDb {
                 transacties.add(transactie);
                 System.out.println(bedrag);
             }
-        return transacties;
+            return transacties;
         } catch (FileNotFoundException nietGevonden) {
             System.out.println("Het bestand is niet gevonden.");
         }
@@ -160,8 +160,6 @@ public class AddAllKlantToDb {
         }
         return "login";
     }
-
-
 
     public static int geefRandomGetal(int aantal, int vanaf) { //van doet mee tot doet mee
         return (int) ((aantal + 1) * Math.random() + vanaf); //hoogste getal=antal+vanaf -- laagste=vanaf
