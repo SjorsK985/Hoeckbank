@@ -43,7 +43,7 @@ public class LoginController {
             Sessie sessie = new Sessie(klant.getPersonId(), klant.getRekeningen(), "Particulier");
             System.out.println("Particulier");
             return "rekeningenoverzicht";
-        } else {w
+        } else {
             Sessie sessie = new Sessie(klant.getPersonId(), klant.getRekeningen(), "MKB");
             System.out.println("MKB");
             return "rekeningenoverzicht";

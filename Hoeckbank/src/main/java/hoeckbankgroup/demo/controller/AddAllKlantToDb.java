@@ -31,7 +31,7 @@ public class AddAllKlantToDb {
     private MedewerkerDAO medewerkerDao;
 
     @GetMapping("inleesmedewerker")
-    private String inleesmedewerker(){
+    private String inlezenmedewerker(){
         try {
             Scanner invoer = new Scanner(new File("d:/inleesmedewerker.csv"));
             while (invoer.hasNextLine()) {
@@ -41,7 +41,7 @@ public class AddAllKlantToDb {
                 regelArray = regelUitBestand.split(";");
                 Medewerker medewerker =new Medewerker(regelArray[0],regelArray[1],regelArray[2]);
 
-             //   System.out.println(regelArray[0]);
+             System.out.println("Medewerker :" + regelArray[0]);
                 medewerkerDao.save(medewerker);
             }
 
@@ -72,7 +72,7 @@ public class AddAllKlantToDb {
                 MKB mkb=new MKB(regelArray[0],regelArray[1],regelArray[2],regelArray[3],regelArray[4],
                         regelArray[5],regelArray[6],rekeningen,regelArray[8],regelArray[9]);
 
-                //System.out.println(regelArray[0]);
+                System.out.println("MKB: "+ regelArray[0]);
                mkbDao.save(mkb);
                 // klantDAO.save(particulier);
 
@@ -87,7 +87,7 @@ public class AddAllKlantToDb {
 
 
     @GetMapping("inleesparticulier")
-    private String inlezen(){
+    private String inlezenparticulier(){
        // ArrayList<String> regelsUitBestand= new ArrayList<>();;
         try {
             Scanner invoer = new Scanner(new File("d:/inleesparticulier.csv"));
@@ -110,7 +110,7 @@ public class AddAllKlantToDb {
                 Particulier particulier=new Particulier(regelArray[0],regelArray[1],regelArray[2],regelArray[3],regelArray[4],
                         regelArray[5],regelArray[6],rekeningen,regelArray[9],regelArray[10],regelArray[11],bsn,regelArray[13],regelArray[14]);
 
-              //  System.out.println(regelArray[0]);
+              System.out.println("Particulier: "+ regelArray[0]);
                 particulierDao.save(particulier);
                // klantDAO.save(particulier);
 
@@ -120,6 +120,14 @@ public class AddAllKlantToDb {
         } catch (FileNotFoundException nietGevonden) {
             System.out.println("Het bestand is niet gevonden.");
         }
+        return "login";
+    }
+
+    @GetMapping("inleesall")
+    private String inlezenall(){
+        inlezenmedewerker();
+        inlezenMKB();
+        inlezenparticulier();
         return "login";
     }
 }
