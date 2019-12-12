@@ -2,9 +2,9 @@ package hoeckbankgroup.demo.controller;
 
 
 import hoeckbankgroup.demo.model.Klant;
+import hoeckbankgroup.demo.model.MKB;
 import hoeckbankgroup.demo.model.Particulier;
-import hoeckbankgroup.demo.model.Rekening;
-import hoeckbankgroup.demo.model.Sessie;
+import hoeckbankgroup.demo.model.Gebruiker;
 import hoeckbankgroup.demo.model.service.KlantService;
 import hoeckbankgroup.demo.model.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import java.util.List;
-
 @Controller
-@SessionAttributes({"gebruiker", "sessie"})
+@SessionAttributes("gebruiker")
 public class LoginController {
 
     @Autowired
@@ -32,7 +30,6 @@ public class LoginController {
                                  Model model) {
         if (loginService.validatePassword(email, gebruikerWachtwoord)) {
             Klant klant = klantService.findKlantByEmail(email);
-            model.addAttribute("gebruiker", klant);
             return setup(klant, model);
         } else {
             model.addAttribute("login_error", "Gebruiker / wachtwoord combi niet geldig");
@@ -41,19 +38,14 @@ public class LoginController {
     }
     public String setup(Klant klant, Model model){
         if (klant instanceof Particulier) {
-            Sessie sessie = new Sessie(klant.getPersonId(), klant.getRekeningen(), "Particulier");
-            model.addAttribute("sessie", sessie);
-
-            System.out.println("Particulier");
-
-
-            //model.addAttribute("rekeningen", sessie.getRekeningen());
+            Gebruiker gebruiker = new Gebruiker(klant.getPersonId(), klant.getRekeningen(), "Particulier");
+            model.addAttribute("gebruiker", gebruiker);
             return "redirect:/rekeningenoverzicht";
-            //return "rekeningenoverzicht";
+
         } else {
-            Sessie sessie = new Sessie(klant.getPersonId(), klant.getRekeningen(), "MKB");
-            System.out.println("MKB");
-            return "rekeningenoverzicht";
+            Gebruiker gebruiker = new Gebruiker(klant.getPersonId(), klant.getRekeningen(), "MKB");
+            model.addAttribute("gebruiker", gebruiker);
+            return "redirect:/rekeningenoverzicht";
         }
     }
 }
