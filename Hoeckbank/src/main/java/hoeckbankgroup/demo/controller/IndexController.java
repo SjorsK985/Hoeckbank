@@ -7,13 +7,17 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
 public class IndexController {
-    @GetMapping("login")
-    public String loginHandler(Model model) {
-        model.addAttribute("header_text", "Hier kan je inloggen");
-        return "login";
-    }
 
     @GetMapping("index")
-    public String indexHandler(){return "index";}
+    public String indexHandler(Model model){
+        model.addAttribute("log", "login");
+        return "index";
+    }
+
+    @GetMapping("/")
+    public String indexHandler1(Model model){
+        model.addAttribute("log", "login");
+        return "index";
+    }
 
 }
