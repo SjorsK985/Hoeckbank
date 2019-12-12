@@ -33,12 +33,13 @@ public class AddAllKlantToDb {
     @GetMapping("inleesmedewerker")
     private String inleesmedewerker(){
         try {
-            Scanner invoer = new Scanner(new File("/Users/Roeland/Desktop/inleesmedewerker.csv"));
+            Scanner invoer = new Scanner(new File("Hoeckbank/src/main/resources/static/inleesdocumenten/inleesmedewerker.csv"));
             while (invoer.hasNextLine()) {
                 String regelUitBestand = invoer.nextLine();
 
                 String[] regelArray;
                 regelArray = regelUitBestand.split(";");
+
                 Medewerker medewerker =new Medewerker(regelArray[0],regelArray[1],regelArray[2]);
 
                 System.out.println(regelArray[0]);
@@ -55,7 +56,7 @@ public class AddAllKlantToDb {
     private String inlezenMKB(){
         // ArrayList<String> regelsUitBestand= new ArrayList<>();;
         try {
-            Scanner invoer = new Scanner(new File("/Users/Roeland/Desktop/inleesmkb.csv"));
+            Scanner invoer = new Scanner(new File("Hoeckbank/src/main/resources/static/inleesdocumenten/inleesmkb.csv"));
             while (invoer.hasNextLine()) {
                 String regelUitBestand = invoer.nextLine();
                 //regelsUitBestand.add(invoer.nextLine());
@@ -88,15 +89,15 @@ public class AddAllKlantToDb {
 
     @GetMapping("inleesparticulier")
     private String inlezen(){
-        // ArrayList<String> regelsUitBestand= new ArrayList<>();;
+       // ArrayList<String> regelsUitBestand= new ArrayList<>();;
         try {
-            Scanner invoer = new Scanner(new File("/Users/Roeland/Desktop/inleesparticulier.csv"));
+            Scanner invoer = new Scanner(new File("Hoeckbank/src/main/resources/static/inleesdocumenten/inleesparticulier.csv"));
             while (invoer.hasNextLine()) {
                 String regelUitBestand = invoer.nextLine();
                 //regelsUitBestand.add(invoer.nextLine());
 
 
-                String[] regelArray;
+               String[] regelArray;
                 regelArray = regelUitBestand.split(";");
                 List<Rekening> rekeningen = new ArrayList<>();
                 String tenaamstelling = String.format("%s %s %s",regelArray[9],regelArray[10],regelArray[11]);
@@ -112,7 +113,7 @@ public class AddAllKlantToDb {
 
                 System.out.println(regelArray[0]);
                 particulierDao.save(particulier);
-                // klantDAO.save(particulier);
+               // klantDAO.save(particulier);
 
 
             }
