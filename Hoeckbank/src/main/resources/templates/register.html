@@ -11,7 +11,7 @@
         <h2 id="register-welcome" class="text-center py-5">Welkom bij Hoeckbank, vul hier uw gegevens in</h2>
 
         <div class="form-wrapper mx-auto">
-            <form action="#" th:action = "@{do_register}" method="post">
+            <form action="#" th:action = "@{do_register}" method="post" name="registerform">
                 <div class="text-center">
                     <input type="radio" class="accountradio" name="accounttype_radio" value="particulier" checked><label class="mx-2">Particulier</label>
                     <input type="radio" class="accountradio" name="accounttype_radio" value="bedrijf"><label class="mx-2">Zakelijk</label>
