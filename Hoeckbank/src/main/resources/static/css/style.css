@@ -26,6 +26,7 @@ h1, h2, h3, h4, h5, h6 {
 /*Links*/
 a:link{
     color: blue;
+    text-decoration: none;
 }
 
 a:visited{
@@ -59,7 +60,7 @@ a:active{
 }
 
 .form-wrapper{
-    width: 75%;
+    width: 85%;
     padding: 2rem 2rem;
     border-radius: .5rem;
     background-color: #e9ecef;
@@ -92,9 +93,42 @@ th.subject{
     border-top: none;
 }
 
-/*
-martijn
- */
+#new-rekening-table tr > *:nth-child(1) { width:30%; }
+#new-rekening-table tr > *:nth-child(2) { width:40%; }
+#new-rekening-table tr > *:nth-child(3) { width:30%; }
 
+#overzicht-rekening-table tr > *:nth-child(1) { width:30%; }
+#overzicht-rekening-table tr > *:nth-child(2) { width:30%; }
+#overzicht-rekening-table tr > *:nth-child(3) { width:20%; }
+#overzicht-rekening-table tr > *:nth-child(4) { width:20%; }
 
+.table-row-link td a {
+    display: block;
+    color: black!important;
+}
 
+.table-row-link td a:link {
+    color: black!important;
+}
+.table-row-link:hover {
+    background: #666363!important;
+    color: white!important;
+}
+
+.table-row-link td a:hover {
+    color: white;
+    text-decoration: none;
+}
+
+table th{
+    font-weight: bold;
+}
+
+.cancel-link:link{
+    text-decoration: underline;
+    color: #6C757D;
+}
+
+.cancel-link:hover{
+    color: #343a40 !important;
+}

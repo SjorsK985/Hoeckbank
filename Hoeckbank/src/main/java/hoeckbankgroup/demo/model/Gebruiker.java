@@ -1,5 +1,6 @@
 package hoeckbankgroup.demo.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Gebruiker {
@@ -11,6 +12,12 @@ public class Gebruiker {
         this.id = id;
         this.rekeningen = rekeningen;
         this.rol = rol;
+    }
+
+    public Gebruiker(int id, String rol){
+        this.id = id;
+        this.rol = rol;
+        this.rekeningen = new ArrayList<>();
     }
 
     public int getId() {
