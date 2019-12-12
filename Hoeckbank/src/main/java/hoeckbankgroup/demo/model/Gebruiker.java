@@ -2,12 +2,12 @@ package hoeckbankgroup.demo.model;
 
 import java.util.List;
 
-public class Sessie {
+public class Gebruiker {
     private int id;
     private List<Rekening> rekeningen;
     private String rol;
 
-    public Sessie(int id, List<Rekening> rekeningen, String rol) {
+    public Gebruiker(int id, List<Rekening> rekeningen, String rol) {
         this.id = id;
         this.rekeningen = rekeningen;
         this.rol = rol;
