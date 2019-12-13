@@ -1,6 +1,7 @@
 package hoeckbankgroup.demo.model.service;
 
 
+import hoeckbankgroup.demo.model.DAO.MKBDAO;
 import hoeckbankgroup.demo.model.Particulier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,7 @@ public class ParticulierService {
     @Autowired
     private ParticulierDAO particulierDAO;
 
-    public Particulier findParticulierbyBSN(int bsn){
+    public Particulier findParticulierbyBSN(String bsn){
         return particulierDAO.findParticulierByBSN(bsn);
     }
 
@@ -35,7 +36,7 @@ public class ParticulierService {
         }
     }
 
-    public boolean controleerBestaandeKlant (int bsn, String email){
+    public boolean controleerBestaandeParticulier (String bsn, String email){
         if (particulierDAO.findParticulierByBSN(bsn)==null && particulierDAO.findParticulierByEmail(email) == null){
             return true;
         }else{
@@ -43,4 +44,9 @@ public class ParticulierService {
         }
     }
 
+    public boolean controleerTelefoon (String telefoon){
+        return false;
+    }
+
+    public boolean controleerWachtwoord(String wachtwoord) {return false;}
 }
