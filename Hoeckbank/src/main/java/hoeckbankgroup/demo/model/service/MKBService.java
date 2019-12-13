@@ -12,4 +12,14 @@ public class MKBService {
     private MKBDAO mkbdao;
 
     public void save(MKB mkb){mkbdao.save(mkb);}
+
+    public MKB findMKBByEmail (String email){return mkbdao.findMKBByEmail(email);}
+
+    public boolean controleerBestaanMKB (String email){
+        if ( mkbdao.findMKBByEmail(email)== null){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
