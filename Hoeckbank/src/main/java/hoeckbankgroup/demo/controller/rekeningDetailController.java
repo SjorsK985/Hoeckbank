@@ -24,10 +24,13 @@ public class rekeningDetailController {
         Rekening rekening = rekeningService.findRekeningByRekeningID(id);
         List<Transactie> alleTransacties = rekening.getTransactiehistorie();
         Collections.sort(alleTransacties);
+
+        // Zet transacties in nieuwe lijst om er max 10 te weergeven:
         ArrayList<Transactie> transacties = new ArrayList<>();
-        for (int i = 0; i < 10 ; i++) {
+        for (int i = 0; i < 10 && i < alleTransacties.size(); i++) {
             transacties.add(alleTransacties.get(i));
         }
+        
         model.addAttribute("rekening", rekening);
         model.addAttribute("transacties", transacties);
         return "rekeningdetail";
