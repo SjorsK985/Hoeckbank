@@ -39,8 +39,9 @@ public class RegisterController {
                                     @RequestParam(name = "telephone") String telefoon, @RequestParam(name = "agree") boolean akkoord,
                                     @RequestParam(required = false, name = "gender") String geslacht, @RequestParam(required = false, name = "first_name") String voornaam,
                                     @RequestParam(required = false, name = "prepositions") String tussenvoegsel, @RequestParam(required = false, name ="last_name") String achternaam,
-                                    @RequestParam(required = false, name = "dob") String geboortedatumString, @RequestParam(required = false, name = "bsn") int bsn,
+                                    @RequestParam(required = false, name = "dob") String geboortedatumString, @RequestParam(required = false, name = "bsn") String bsnString,
                                     @RequestParam(required = false, name = "company_name") String bedrijfsnaam, @RequestParam(required = false, name = "segment") String segment){
+        System.out.println(emailadres + wachtwoord + straat + huisnummer + postcode + woonplaats + telefoon + bedrijfsnaam + segment);
         if (rekeningSoort.equals("bedrijf")){
             if (mkbService.controleerBestaanMKB(emailadres)){
                 MKB mkb = new MKB(emailadres, wachtwoord, straat, huisnummer, postcode, woonplaats, telefoon, bedrijfsnaam, segment, null);
@@ -50,9 +51,9 @@ public class RegisterController {
                 return "register";
             }
         }else{
-            if (particulierService.controleerGeboortedatum(geboortedatumString) && particulierService.controleerBestaandeParticulier(bsn, emailadres)){
+            if (particulierService.controleerGeboortedatum(geboortedatumString) && particulierService.controleerBestaandeParticulier(bsnString, emailadres)){
                 Particulier particulier = new Particulier(emailadres, wachtwoord, straat, huisnummer,
-                        postcode, woonplaats, telefoon, voornaam, tussenvoegsel, achternaam, bsn, geslacht, geboortedatumString);
+                        postcode, woonplaats, telefoon, voornaam, tussenvoegsel, achternaam, bsnString, geslacht, geboortedatumString);
                 particulierService.save(particulier);
                 return "index";
             } else {

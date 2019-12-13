@@ -18,7 +18,7 @@ public class ParticulierService {
     @Autowired
     private ParticulierDAO particulierDAO;
 
-    public Particulier findParticulierbyBSN(int bsn){
+    public Particulier findParticulierbyBSN(String bsn){
         return particulierDAO.findParticulierByBSN(bsn);
     }
 
@@ -36,7 +36,7 @@ public class ParticulierService {
         }
     }
 
-    public boolean controleerBestaandeParticulier (int bsn, String email){
+    public boolean controleerBestaandeParticulier (String bsn, String email){
         if (particulierDAO.findParticulierByBSN(bsn)==null && particulierDAO.findParticulierByEmail(email) == null){
             return true;
         }else{

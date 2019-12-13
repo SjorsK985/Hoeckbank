@@ -23,7 +23,7 @@ import java.util.Scanner;
 
 @Controller
 public class AddAllKlantToDb {
-    @Autowired
+   /* @Autowired
    private ParticulierDAO particulierDao;
     @Autowired
     private MKBDAO mkbDao;
@@ -121,5 +121,5 @@ public class AddAllKlantToDb {
             System.out.println("Het bestand is niet gevonden.");
         }
         return "login";
-    }
+    }*/
 }
