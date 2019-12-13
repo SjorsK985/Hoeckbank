@@ -10,6 +10,7 @@ public abstract class Persoon {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int personId;
 
+    @Column(unique = true)
     private String email;
     private String wachtwoord;
 
