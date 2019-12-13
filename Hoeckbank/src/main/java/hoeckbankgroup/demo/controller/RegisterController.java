@@ -46,17 +46,21 @@ public class RegisterController {
                                     @RequestParam(name = "telephone") String telefoon, @RequestParam(name = "agree") boolean akkoord,
                                     @RequestParam(required = false, name = "gender") String geslacht, @RequestParam(required = false, name = "first_name") String voornaam,
                                     @RequestParam(required = false, name = "prepositions") String tussenvoegsel, @RequestParam(required = false, name ="last_name") String achternaam,
-                                    @RequestParam(required = false, name = "dob") String geboortedatumString, @RequestParam(required = false, name = "bsn") int bsn,
+                                   @RequestParam(required = false, name = "dob") String geboortedatumString, @RequestParam(required = false, name = "bsn") int bsn,
                                     @RequestParam(required = false, name = "company_name") String bedrijfsnaam, @RequestParam(required = false, name = "segment") String segment,
                                     @RequestParam(required = false, name = "kvk") String kvk, Model model){
         if (rekeningSoort.equals("bedrijf")){
+
+            System.out.println("test");
             MKB mkb = new MKB(emailadres, wachtwoord, straat, huisnummer, postcode, woonplaats, telefoon, bedrijfsnaam, segment, null);
             mkbService.save(mkb);
             Klant klant = klantService.findKlantByEmail(mkb.getEmail());
             Gebruiker gebruiker = new Gebruiker(klant.getPersonId(),"MKB");
             model.addAttribute("gebruiker", gebruiker);
+
             return "redirect:/newbankaccount";
         }else{
+            System.out.println("test1");
             if (particulierService.controleerGeboortedatum(geboortedatumString) && particulierService.controleerBestaandeKlant(bsn, emailadres)){
                 Particulier particulier = new Particulier(emailadres, wachtwoord, straat, huisnummer,
                         postcode, woonplaats, telefoon, voornaam, tussenvoegsel, achternaam, bsn, geslacht, geboortedatumString);
