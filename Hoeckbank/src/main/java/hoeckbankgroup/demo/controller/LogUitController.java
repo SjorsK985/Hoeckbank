@@ -15,7 +15,8 @@ import javax.servlet.http.HttpSession;
 public class LogUitController {
 
     @GetMapping("loguit")
-    public String logUitHandler(){
+    public String logUitHandler(HttpSession session){
+        session.invalidate();
         return "index";
     }
 

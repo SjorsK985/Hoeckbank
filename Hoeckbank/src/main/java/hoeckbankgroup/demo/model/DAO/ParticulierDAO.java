@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ParticulierDAO extends JpaRepository<Particulier, Integer> {
 
-    Particulier findParticulierByBSN(int bsn);
+    Particulier findParticulierByBSN(String bsn);
 
     Particulier findParticulierByEmail(String email);
 

@@ -101,9 +101,8 @@ public class AddAllKlantToDb {
                 rekeningen.add(rekening2);
 
                 int bsn = Integer.parseInt(regelArray[12]);
-                Particulier particulier = new Particulier(regelArray[0], regelArray[1], regelArray[2], regelArray[3], regelArray[4],
-                        regelArray[5], regelArray[6], rekeningen, regelArray[9], regelArray[10], regelArray[11], bsn, regelArray[13], regelArray[14]);
-
+                Particulier particulier=new Particulier(regelArray[0],regelArray[1],regelArray[2],regelArray[3],regelArray[4],
+                        regelArray[5],regelArray[6],rekeningen,regelArray[9],regelArray[10],regelArray[11],regelArray[12],regelArray[13],regelArray[14]);
                 System.out.println("Particulier: " + regelArray[0]);
                 particulierDao.save(particulier);
 
