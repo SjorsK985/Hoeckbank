@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MKBDAO extends JpaRepository<MKB, Integer> {
 
+    MKB findMKBByEmail(String email);
+
 }

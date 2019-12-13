@@ -11,7 +11,7 @@
         <h2 id="register-welcome" class="text-center py-5">Welkom bij Hoeckbank, vul hier uw gegevens in</h2>
 
         <div class="form-wrapper mx-auto">
-            <form action="#" th:action = "@{do_register}" method="post">
+            <form action="#" th:action = "@{do_register}" method="post" name="registerform">
                 <div class="text-center">
                     <input type="radio" class="accountradio" name="accounttype_radio" value="particulier" checked><label class="mx-2">Particulier</label>
                     <input type="radio" class="accountradio" name="accounttype_radio" value="bedrijf"><label class="mx-2">Zakelijk</label>
@@ -80,7 +80,7 @@
                         <td></td>
 
                         <td>BSN-nummer:</td>
-                        <td><input class="register-form-input" type="number" name="bsn"></td>
+                        <td><input class="register-form-input" type="text" name="bsn"></td>
                     </tr>
 
                     <tr>
@@ -89,8 +89,6 @@
                         <td>&nbsp</td>
                     </tr>
                     </tbody>
-
-
                     <tbody class="d-none first-row" id="company-register-fields">
                     <tr>
                         <td class="first-row"><i class="fas fa-user-tie fa-2x text-muted"></i></td>
@@ -105,7 +103,6 @@
                     </tr>
                     <tr>
                         <td></td>
-
                         <td>&nbsp</td>
                         <td>&nbsp</td>
                     </tr>
@@ -163,7 +160,7 @@
                     <tr>
                         <td></td>
                         <td></td>
-                        <td><a href="#"><button class="btn btn-primary my-2 my-sm-0" type="submit">Registreer</button></a></td>
+                        <td><a href="newbankaccount"><button class="btn btn-primary my-2 my-sm-0" type="submit">Registreer</button></a></td>
                     </tr>
                     </tbody>
                 </table>

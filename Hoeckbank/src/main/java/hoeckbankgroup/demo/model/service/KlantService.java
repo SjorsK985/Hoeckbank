@@ -19,6 +19,7 @@ public class KlantService {
         return klantDAO.findKlantByPersonId(personId);
 
     }
+
     public void save (Klant klant) {
         klantDAO.save(klant);}
 

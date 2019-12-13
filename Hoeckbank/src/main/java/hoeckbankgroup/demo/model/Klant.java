@@ -17,7 +17,7 @@ public class Klant extends Persoon{
     private String postcode;
     private String woonplaats;
     private String telefoonNummer;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Rekening> rekeningen;
 
     protected Klant(){
@@ -74,5 +74,9 @@ public class Klant extends Persoon{
 
     public void setRekeningen(List<Rekening> rekeningen) {
         this.rekeningen = rekeningen;
+    }
+
+    public void addRekening(Rekening rekening){
+        rekeningen.add(rekening);
     }
 }

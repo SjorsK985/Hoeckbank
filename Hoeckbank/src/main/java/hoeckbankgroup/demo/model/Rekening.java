@@ -16,6 +16,7 @@ public class Rekening {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int rekeningID;
 
+    @Column(name="rekeningnummer", unique = true)
     private String rekeningnummer;
     private double saldo;
     private String tenaamstelling;
@@ -24,6 +25,7 @@ public class Rekening {
     private List<Klant> rekeninghouder;
 
     @OneToMany (cascade = CascadeType.ALL)
+
     private List<Transactie>transactiehistorie;
 
     public Rekening(String rekeningnummer, double saldo, String tenaamstelling) {
@@ -68,5 +70,9 @@ public class Rekening {
 
     public int getRekeningID() {
         return rekeningID;
+    }
+
+    public void addRekeninghouder(Klant klant){
+        rekeninghouder.add(klant);
     }
 }
