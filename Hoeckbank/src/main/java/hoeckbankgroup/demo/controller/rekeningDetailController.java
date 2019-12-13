@@ -19,6 +19,7 @@ public class rekeningDetailController {
     public String rekeningDetailHandler(@RequestParam int id, Model model){
         Rekening rekening = rekeningService.findRekeningByRekeningID(id);
         model.addAttribute("rekening", rekening);
+        model.addAttribute("transacties", rekening.getTransactiehistorie());
         return "rekeningdetail";
     }
 }

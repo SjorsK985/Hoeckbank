@@ -60,6 +60,13 @@
             <td>Tegenrekening</td>
             <td>Bedrag</td>
         </tr>
+        <tr th:each="transactie : ${transacties}" class="table-row-link">
+            <td><span th:text="${transactie.datum}" /></td>
+            <td><span th:text="${transactie.omschrijving}" /></td>
+            <td><span th:text="${transactie.tegenRekening}" /></td>
+            <td>€ <span th:text="${transactie.bedrag}" /></td>
+        </tr>
+
     </table>
 
     <script>
