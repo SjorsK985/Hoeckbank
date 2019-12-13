@@ -35,6 +35,7 @@ public class LoginController {
             return "Login";
         }
     }
+    
     public String setup(Klant klant, Model model){
         if (klant instanceof Particulier) {
             Gebruiker gebruiker = new Gebruiker(klant.getPersonId(), klant.getRekeningen(), "Particulier");
