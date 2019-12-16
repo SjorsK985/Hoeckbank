@@ -9,7 +9,7 @@
 <table>
     <tr>
         <td>Naam:</td>
-        <td><span th:text="${rekening.tenaamstelling}"/></td>
+        <td><span th:text="${rekening.tenaamstelling}" /></td>
     </tr>
     <tr>
         <td>Rekeningnummer:</td>
@@ -22,18 +22,20 @@
 </table>
 <hr>
 
-<form action="#" th:action="@{do_transactie}" method="post"  >
+<form action="#" th:action="@{do_transactie}" method="post" name="transactie_form" >
+    <input type="hidden" th:value="${param.id}"  name="rekening_id">
     <b>Bedrag</b><br>
+
     <input type="text" name="bedrag"><br><br>
 
     <b>Naam ontvanger</b><br>
     <input type="text" name="naam_ontvanger"><br><br>
 
     <b>Rekeningnummmr (IBAN) ontvanger</b><br>
-    <input type="text" name="naam_ontvanger"><br><br>
+    <input type="text" name="rekeningnummer_ontvanger"><br><br>
 
     <b>Omschrijving</b><br>
-    <input type="text" name="naam_ontvanger"><br><br>
+    <input type="text" name="omschrijving"><br><br>
     <input type="submit" name="submit" value="Bevestigen" ><br><br>
     <a th:href="@{/rekeningdetail(id=${rekening.rekeningID})}">Annuleren</a>
 </form>
