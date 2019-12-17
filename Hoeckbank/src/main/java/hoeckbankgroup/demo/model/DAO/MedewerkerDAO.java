@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MedewerkerDAO extends JpaRepository<Medewerker, Integer> {
-
+Medewerker findMedewerkerByEmail(String email);
 }

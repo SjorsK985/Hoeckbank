@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/header :: header"/>
+
+<body class="bg-light">
+<nav th:replace="fragments/navbargeenknop :: navbar"/>
+<!--BEGIN HIER MET NIEUWE TEMPLATE-->
+<div class="container" align = "center">
+    <h2 class="py-5"><span th:text="${header_text}"/></h2>
+    <div class="form-wrapper mx-auto">
+        <form action="#" th:action="@{do_loginmedewerker}" method="post" onsubmit=" return validationError()" name="loginForm" >
+            <table id="register-form"class="table">
+                <colgroup>
+                    <col span="1">
+                    <col span="1">
+                    <col span="1">
+                </colgroup>
+                <tbody>
+                <tr>
+                    <td class="first-row"><i class=" fas fa-key fa-2x text-muted"></i></td>
+                    <td class="first-row"></i>E-mail medewerker:</td>
+                    <td class="first-row"><input class="register-form-input" type="text" name="gebruiker_naam"></td>
+                </tr>
+                <!--
+                <tr>
+                    <td class="first-row"></td>
+                    <td class="first-row"></td>
+                    <td class="first-row"><div id="userNameError" class="validate-error">&nbsp</div></td>
+                </tr>-->
+                <tr>
+                    <td>&nbsp</td>
+                    <td>Wachtwoord:</td>
+                    <td><input class="register-form-input" type="password" name="gebruiker_paswoord"></td>
+                </tr>
+                <!--<tr>
+                    <td></td>
+                    <td></td>
+                    <td><div id="passwordError" class="validate-error"></div></td>
+                </tr>-->
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td align="right">
+                        <a href="#"><button class="btn btn-primary my-2 my-sm-0" type="submit" value="Inloggen">Inloggen</button></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </form>
+        <span th:text="${login_error}" class="validate-error"/>
+    </div></div>
+
+<footer th:replace="fragments/footer :: footer"/>
+</body>
+<script src="js/loginFormValidation.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</html>
