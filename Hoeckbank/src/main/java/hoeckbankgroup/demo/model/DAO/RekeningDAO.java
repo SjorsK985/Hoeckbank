@@ -12,4 +12,6 @@ public interface RekeningDAO extends JpaRepository<Rekening, Integer> {
     Rekening findRekeningByRekeningID(int rekeningID);
 
     boolean existsByRekeningnummerEquals(String rekeningnummer);
+
+    Rekening findRekeningByRekeningnummer(String rekeningnummer);
 }

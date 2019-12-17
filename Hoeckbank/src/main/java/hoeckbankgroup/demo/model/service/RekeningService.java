@@ -29,8 +29,12 @@ public class RekeningService {
         return rekeningDAO.findRekeningByRekeningID(rekeningID);
     }
 
+    public Rekening findRekeningByRekeningnummer(String rekeningNummer){
+        return rekeningDAO.findRekeningByRekeningnummer(rekeningNummer);
+    }
+
     /**
-     * Methode voor testen om saldo op te hogen van test rekeningen
+     * Test methode voor testen om saldo op te hogen van test rekeningen
      * **/
     public void setTestSaldo(int rekeningId, double bedrag){
         Rekening rekening = findRekeningByRekeningID(rekeningId);
