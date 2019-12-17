@@ -3,6 +3,7 @@ package hoeckbankgroup.demo.controller;
 import hoeckbankgroup.demo.model.Rekening;
 import hoeckbankgroup.demo.model.Transactie;
 import hoeckbankgroup.demo.model.service.RekeningService;
+import hoeckbankgroup.demo.model.service.TransactieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,39 +38,33 @@ public class BetalingMakenController {
                                       @RequestParam String omschrijving,
                                       Model model){
 
-        System.out.println("\nbedrag: " + bedrag);
-        System.out.println("naam_ontvanger: " + naamOntvanger);
-        System.out.println("rekeningnummerOntvanger: " + rekeningnummerOntvanger);
-        System.out.println("omschrijving: " + omschrijving);
-
         //TODO: Controleer of bedrag niet negatief, 0 of groter dan saldo is
         //TODO: Check of tegenrekening bestaan (en naam overeenkomt)
         Rekening rekening = rekeningService.findRekeningByRekeningID(rekeningId);
-        Rekening rekeningOntvanger =  rekeningService.findRekeningByRekeningnummer(rekeningnummerOntvanger);
-        String validatieError = valideerTransactie(bedrag, rekening, rekeningOntvanger);
+        Rekening tegenRekening =  rekeningService.findRekeningByRekeningnummer(rekeningnummerOntvanger);
+        String validatieError = valideerTransactie(bedrag, rekening, tegenRekening);
         if(!validatieError.equals("")){
             model.addAttribute("error", validatieError);
+            System.out.println(validatieError);
             return "redirect:/betalingmaken?id=" + rekeningId;
         }
         //TODO: Maak object aan transactie aan
-        Transactie transactie = new Transactie(rekeningnummerOntvanger, bedrag, omschrijving, LocalDate.now());
-        //String tegenRekening, double bedrag, String omschrijving, LocalDate datum
+        Transactie transactie = new Transactie(rekeningnummerOntvanger, -bedrag, omschrijving, LocalDate.now());
+        Transactie tegenTransactie = new Transactie(rekeningnummerOntvanger, bedrag, omschrijving, LocalDate.now());
         //TODO: Sla transactie object op in DB
+        transactieService.save(transactie);
+        transactieService.save(tegenTransactie);
+        rekening.addTransactie(transactie);
+        tegenRekening.addTransactie(tegenTransactie);
 
-        //TODO: Pas saldo eigen rekening aan
-
-        //TODO: Pas saldo tegenrekening aan
-
-        //TODO: Backend form validation
-
-        //TODO: Front-end form validation
-
+        //TODO: Pas saldo eigen rekening  & tegenrekening aan
+        saldosAanpassen(rekening, tegenRekening, bedrag);
         return "redirect:/rekeningdetail?id=" + rekeningId;
     }
 
-    public String valideerTransactie(double bedrag, Rekening rekening, Rekening rekeningnummerOntvanger){
+    public String valideerTransactie(double bedrag, Rekening rekening, Rekening tegenRekening){
         String error = "";
-        if(rekeningnummerOntvanger == null){
+        if(tegenRekening == null){
             error = "Tegenrekening bestaat niet";
         }
         if(bedrag > rekening.getSaldo()){
@@ -78,7 +73,21 @@ public class BetalingMakenController {
         if(bedrag <= 0){
             error = "Het bedrag mag niet 0 of lager zijn";
         }
+        if(rekening.getRekeningnummer().equals(tegenRekening.getRekeningnummer())){
+            error = "De tegenrekening mag niet hetzelfde zijn";
+        }
         return error;
+    }
+
+    public void saldosAanpassen(Rekening rekening, Rekening tegenRekening, double bedrag){
+        setNieuwSaldo(-bedrag, rekening);
+        setNieuwSaldo(bedrag, tegenRekening);
+    }
+
+    public void setNieuwSaldo(double bedrag, Rekening rekening){
+        double nieuwSaldo = bedrag + rekening.getSaldo();
+        rekening.setSaldo(nieuwSaldo);
+        rekeningService.save(rekening);
     }
 
 

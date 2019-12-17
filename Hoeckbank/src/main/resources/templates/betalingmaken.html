@@ -21,7 +21,7 @@
     </tr>
 </table>
 <hr>
-
+<span th:text="${error}" class="validate-error"/>
 <form action="#" th:action="@{do_transactie}" method="post" name="transactie_form" >
     <input type="hidden" th:value="${param.id}"  name="rekening_id">
     <b>Bedrag</b><br>
