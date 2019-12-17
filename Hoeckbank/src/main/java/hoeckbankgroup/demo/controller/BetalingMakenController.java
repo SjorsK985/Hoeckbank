@@ -33,7 +33,11 @@ public class BetalingMakenController {
                                       @RequestParam (name="rekeningnummer_ontvanger") String rekeningnummerOntvanger,
                                       @RequestParam String omschrijving,
                                       Model model){
-
+        System.out.println("");
+        System.out.println("bedrag :" + bedrag);
+        System.out.println("naam_ontvanger :" + naamOntvanger);
+        System.out.println("rekeningnummerOntvanger :" + rekeningnummerOntvanger);
+        System.out.println("omschrijving :" + omschrijving);
         //TODO: Selenium scriptje voor bedrag overmaken
 
         //TODO: Controleer of bedrag niet negatief, 0 of groter dan saldo is
