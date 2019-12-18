@@ -11,7 +11,9 @@ function validationError(){
     document.getElementById("rekeningnummer_ontvanger_error").innerHTML = "";
     document.getElementById("omschrijving_error").innerHTML = "";
 
-    var error_list = new Array("Bedrag", "");
+    var error_list = ["Bedrag", "Naam ontvanger", "Rekeningnummmer ontvanger", "omschrijving"];
+
+    // Todo: Maak Array van veld elementen?
 
     if(password === "" && userName === ""){
         document.getElementById("userNameError").innerHTML = "Gebruikersnaam mag niet leeg zijn";
