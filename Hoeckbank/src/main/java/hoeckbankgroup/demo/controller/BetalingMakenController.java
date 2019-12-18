@@ -34,6 +34,7 @@ public class BetalingMakenController {
     }
     //Todo: Refactor
     //Todo: Los data probleem op met none unique rekening
+    //Todo: transacties sorteren op dag en tijd
     //Todo: Front-end validatie
     //Todo:
 
