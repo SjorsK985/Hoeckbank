@@ -1,10 +1,6 @@
 package hoeckbankgroup.demo.model;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -13,7 +9,7 @@ public class Particulier extends Klant {
     private String voornaam;
     private String tussenvoegsel;
     private String achternaam;
-    private int BSN;
+    private String BSN;
     private String geslacht;
     private String geboorteDatum;
 
@@ -23,8 +19,8 @@ public class Particulier extends Klant {
     }
 
     public Particulier(String email, String wachtwoord, String straat, String huisnummer, String postcode,
-                String woonplaats, String telefoonNummer, List<Rekening> rekeningen, String voornaam,
-                String tussenvoegsel, String achternaam, int BSN, String geslacht, String geboorteDatum) {
+                       String woonplaats, String telefoonNummer, List<Rekening> rekeningen, String voornaam,
+                       String tussenvoegsel, String achternaam, String BSN, String geslacht, String geboorteDatum) {
         super(email, wachtwoord, straat, huisnummer, postcode, woonplaats, telefoonNummer, rekeningen);
         this.voornaam = voornaam;
         this.tussenvoegsel = tussenvoegsel;
@@ -35,8 +31,8 @@ public class Particulier extends Klant {
     }
 
     public Particulier(String email, String wachtwoord, String straat, String huisnummer, String postcode,
-                String woonplaats, String telefoonNummer, String voornaam, String tussenvoegsel,
-                String achternaam, int BSN, String geslacht, String geboorteDatum) {
+                       String woonplaats, String telefoonNummer, String voornaam, String tussenvoegsel,
+                       String achternaam, String BSN, String geslacht, String geboorteDatum) {
         super(email, wachtwoord, straat, huisnummer, postcode, woonplaats, telefoonNummer);
         this.voornaam = voornaam;
         this.tussenvoegsel = tussenvoegsel;
@@ -70,11 +66,11 @@ public class Particulier extends Klant {
         this.achternaam = achternaam;
     }
 
-    public int getBSN() {
+    public String getBSN() {
         return BSN;
     }
 
-    public void setBSN(int BSN) {
+    public void setBSN(String BSN) {
         this.BSN = BSN;
     }
 

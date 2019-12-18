@@ -9,6 +9,7 @@ import java.util.List;
 
 @Repository
 public interface RekeningDAO extends JpaRepository<Rekening, Integer> {
+    Rekening findRekeningByRekeningID(int rekeningID);
 
     boolean existsByRekeningnummerEquals(String rekeningnummer);
 }

@@ -24,4 +24,9 @@ public class RekeningService {
     public void save (Rekening rekening){
         rekeningDAO.save(rekening);
     }
+
+    public Rekening findRekeningByRekeningID(int rekeningID){
+        return rekeningDAO.findRekeningByRekeningID(rekeningID);
+    }
+
 }
