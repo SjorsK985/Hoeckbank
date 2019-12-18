@@ -32,11 +32,10 @@ public class BetalingMakenController {
         //rekeningService.setTestSaldo(id, 2000.00);
         return "betalingmaken";
     }
+    //Todo: Front-end validatie
     //Todo: Refactor
     //Todo: Los data probleem op met none unique rekening
-    //Todo: transacties sorteren op dag en tijd
-    //Todo: Front-end validatie
-    //Todo:
+    //Todo: Tijd netjes weergeven in transactieoverzicht
 
     @PostMapping("do_transactie")
     public String doTransactieHandler(@RequestParam (name="rekening_id") int rekeningId,
@@ -56,8 +55,8 @@ public class BetalingMakenController {
             return "redirect:/betalingmaken?id=" + rekeningId + "&melding=" +validatieError;
         }
         //TODO: Maak object aan transactie aan
-        Transactie transactie = new Transactie(rekeningnummerOntvanger, -bedrag, omschrijving, LocalDate.now());
-        Transactie tegenTransactie = new Transactie(rekeningnummerOntvanger, bedrag, omschrijving, LocalDate.now());
+        Transactie transactie = new Transactie(rekeningnummerOntvanger, -bedrag, omschrijving, LocalDateTime.now());
+        Transactie tegenTransactie = new Transactie(rekeningnummerOntvanger, bedrag, omschrijving, LocalDateTime.now());
         //TODO: Sla transactie object op in DB
         transactieService.save(transactie);
         transactieService.save(tegenTransactie);

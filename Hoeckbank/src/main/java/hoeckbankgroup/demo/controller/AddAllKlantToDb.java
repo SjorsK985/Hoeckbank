@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -132,9 +133,9 @@ public class AddAllKlantToDb {
                 String[] regelArray;
                 regelArray = regelUitBestand.split(";");
                 double bedrag = Double.parseDouble(regelArray[1]);
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
                 formatter = formatter.withLocale(Locale.getDefault());  // Locale specifies human language for translating, and cultural norms for lowercase/uppercase and abbreviations and such. Example: Locale.US or Locale.CANADA_FRENCH
-                LocalDate date = LocalDate.parse(regelArray[3], formatter);
+                LocalDateTime date = LocalDateTime.parse(regelArray[3], formatter);
                 Transactie transactie = new Transactie(regelArray[0], bedrag, regelArray[2], date);
                 transacties.add(transactie);
                 System.out.println(bedrag);
