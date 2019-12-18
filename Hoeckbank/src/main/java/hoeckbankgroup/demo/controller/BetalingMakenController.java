@@ -28,14 +28,8 @@ public class BetalingMakenController {
         Rekening rekening = rekeningService.findRekeningByRekeningID(id);
         model.addAttribute("rekening", rekening);
         model.addAttribute("error", melding);
-        //RK: Voor testdoeleinden:
-        //rekeningService.setTestSaldo(id, 2000.00);
         return "betalingmaken";
     }
-    //Todo: Front-end validatie
-    //Todo: Refactor
-    //Todo: Los data probleem op met none unique rekening
-    //Todo: Tijd netjes weergeven in transactieoverzicht
 
     @PostMapping("do_transactie")
     public String doTransactieHandler(@RequestParam (name="rekening_id") int rekeningId,
@@ -44,29 +38,24 @@ public class BetalingMakenController {
                                       @RequestParam (name="rekeningnummer_ontvanger") String rekeningnummerOntvanger,
                                       @RequestParam String omschrijving,
                                       Model model){
-        System.out.println("RekeningID = " + rekeningId);
-        //TODO: Controleer of bedrag niet negatief, 0 of groter dan saldo is
-        //TODO: Check of tegenrekening bestaan (en naam overeenkomt)
         Rekening rekening = rekeningService.findRekeningByRekeningID(rekeningId);
         Rekening tegenRekening =  rekeningService.findRekeningByRekeningnummer(rekeningnummerOntvanger);
+        // Valideer transactie:
         String validatieError = valideerTransactie(bedrag, rekening, tegenRekening);
         if(!validatieError.equals("")){
             model.addAttribute("error", validatieError);
             return "redirect:/betalingmaken?id=" + rekeningId + "&melding=" +validatieError;
         }
-        //TODO: Maak object aan transactie aan
+        //Maak transactie objecten aan en sla deze op
         Transactie transactie = new Transactie(rekeningnummerOntvanger, -bedrag, omschrijving, LocalDateTime.now());
         Transactie tegenTransactie = new Transactie(rekeningnummerOntvanger, bedrag, omschrijving, LocalDateTime.now());
-        //TODO: Sla transactie object op in DB
         transactieService.save(transactie);
         transactieService.save(tegenTransactie);
         rekening.addTransactie(transactie);
         tegenRekening.addTransactie(tegenTransactie);
-
-        //TODO: Pas saldo eigen rekening  & tegenrekening aan
+        //Pas saldo's aan op rekening  & tegenrekening
         saldosAanpassen(rekening, tegenRekening, bedrag);
         return "redirect:/rekeningdetail?id=" + rekeningId;
-
     }
 
     public String valideerTransactie(double bedrag, Rekening rekening, Rekening tegenRekening){

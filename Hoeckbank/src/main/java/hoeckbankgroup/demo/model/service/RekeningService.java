@@ -33,13 +33,4 @@ public class RekeningService {
         return rekeningDAO.findRekeningByRekeningnummer(rekeningNummer);
     }
 
-    /**
-     * Test methode voor testen om saldo op te hogen van test rekeningen
-     * **/
-    public void setTestSaldo(int rekeningId, double bedrag){
-        Rekening rekening = findRekeningByRekeningID(rekeningId);
-        rekening.setSaldo(bedrag);
-        save(rekening);
-    }
-
 }
