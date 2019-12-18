@@ -30,6 +30,9 @@ public class BetalingMakenController {
         model.addAttribute("error", melding);
         return "betalingmaken";
     }
+    //Todo: Front-end validatie
+    //Todo: Los data probleem op met none unique rekening
+    //Todo: Tijd netjes weergeven in transactieoverzicht
 
     @PostMapping("do_transactie")
     public String doTransactieHandler(@RequestParam (name="rekening_id") int rekeningId,

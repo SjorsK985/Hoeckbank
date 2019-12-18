@@ -25,21 +25,25 @@
 <form action="#" th:action="@{do_transactie}" method="post" name="transactie_form" >
     <input type="hidden" th:value="${param.id}"  name="rekening_id">
     <b>Bedrag</b><br>
-
     <input type="text" name="bedrag"><br><br>
+    <div id="bedrag_error" class="validate-error"></div>
 
     <b>Naam ontvanger</b><br>
     <input type="text" name="naam_ontvanger"><br><br>
+    <div id="naam_ontvanger_error" class="validate-error"></div>
 
     <b>Rekeningnummer (IBAN) ontvanger</b><br>
     <input type="text" name="rekeningnummer_ontvanger"><br><br>
+    <div id="rekeningnummer_ontvanger_error" class="validate-error"></div>
 
     <b>Omschrijving</b><br>
     <input type="text" name="omschrijving"><br><br>
+    <div id="omschrijving_error" class="validate-error"></div>
+
     <a href="#"><button class="btn btn-primary my-2 my-sm-0" type="submit" >Overmaken</button></a><br><br>
     <a th:href="@{/rekeningdetail(id=${rekening.rekeningID})}">Annuleren</a>
 </form>
-
+<script src="js/betalingmaken.js"></script>
 <!--NIEUWE TEMPLATE TOT HIER-->
 <footer th:replace="fragments/footer :: footer"/>
 </body>
