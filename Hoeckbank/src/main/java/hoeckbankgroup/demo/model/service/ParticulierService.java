@@ -6,7 +6,7 @@ import hoeckbankgroup.demo.model.Particulier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import hoeckbankgroup.demo.model.DAO.ParticulierDAO;
-
+import javax.servlet.http.Part;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -22,7 +22,13 @@ public class ParticulierService {
         return particulierDAO.findParticulierByBSN(bsn);
     }
 
-    public void save(Particulier particulier){ particulierDAO.save(particulier);}
+    public Particulier findParticulierById(int id){
+        return particulierDAO.findParticulierByPersonId(id);
+    }
+
+    public void save(Particulier particulier){
+        particulierDAO.save(particulier);
+    }
 
     public boolean controleerGeboortedatum (String geboortedatumString){
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");

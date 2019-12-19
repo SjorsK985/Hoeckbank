@@ -10,7 +10,7 @@ public abstract class Persoon {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int personId;
 
-    @Column(unique = true)
+    //@Column(unique = true)
     private String email;
     private String wachtwoord;
 
@@ -38,6 +38,10 @@ public abstract class Persoon {
 
     public void setWachtwoord(String wachtwoord) {
         this.wachtwoord = wachtwoord;
+    }
+
+    public void setPersonId(int personId) {
+        this.personId = personId;
     }
 
     public int getPersonId() {

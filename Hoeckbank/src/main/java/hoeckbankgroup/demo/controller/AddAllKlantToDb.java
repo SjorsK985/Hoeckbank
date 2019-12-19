@@ -1,3 +1,4 @@
+/*
 package hoeckbankgroup.demo.controller;
 
 import hoeckbankgroup.demo.model.*;
@@ -164,4 +165,4 @@ public class AddAllKlantToDb {
     public static int geefRandomGetal(int aantal, int vanaf) { //van doet mee tot doet mee
         return (int) ((aantal + 1) * Math.random() + vanaf); //hoogste getal=antal+vanaf -- laagste=vanaf
     }
-}
+}*/

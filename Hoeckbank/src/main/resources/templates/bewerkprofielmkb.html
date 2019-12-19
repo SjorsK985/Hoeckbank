@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/header :: header"/>
+<body class="bg-light">
+<nav th:replace="fragments/navbarloguit :: navbar"/>
+<!--BEGIN HIER MET NIEUWE TEMPLATE-->
+
+<section id="register-form-mkb">
+
+    <div class="container">
+
+    <h2 class="text-center my-5">Bewerk u profiel</h2>
+
+    <div class="form-wrapper mx-auto">
+        <form action="#" th:action = "@{/do_change_profile_mkb}" method="post" th:object="${mkb}">
+            <table id="register-form"class="table">
+                <colgroup>
+                    <col span="1">
+                    <col span="1">
+                    <col span="1">
+                </colgroup>
+                <tbody>
+                <tr>
+                    <td class="first-row"></td>
+                    <td class="first-row">&nbsp</td>
+                    <td class="first-row">&nbsp</td>
+                </tr>
+
+                <tr>
+                    <input type="hidden" th:field="*{personId}">
+                    <input type="hidden" th:field="*{rekeningen}">
+                    <td class="first-row"><i class=" fas fa-key fa-2x text-muted"></i></td>
+                    <td class="first-row"></i>Emailadres:</td>
+                    <td class="first-row"><input class="register-form-input" type="email" name="user_email" th:field="*{email}"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Wachtwoord:</td>
+                    <td><input class="register-form-input" type="text" name="password" th:field="*{wachtwoord}"></td>
+                </tr>
+                </tbody>
+                <tr>
+                    <td></td>
+                    <td>&nbsp</td>
+                    <td>&nbsp</td>
+                </tr>
+                <tbody class="first-row" id="company-register-fields">
+                <tr>
+                    <td class="first-row"><i class="fas fa-user-tie fa-2x text-muted"></i></td>
+                    <td class="first-row">Bedrijfsnaam:</td>
+                    <td class="first-row"><input class="register-form-input" type="text" name="company_name" th:field="*{bedrijfsnaam}"></td>
+                </tr>
+                <tr>
+                    <td></td>
+
+                    <td>Segment:</td>
+                    <td>
+                        <select name="sector">
+                            <option th:each="sectorOpt : ${T(hoeckbankgroup.demo.model.enums.Branche).values()}"
+                                    th:value="${sectorOpt}" th:text="${sectorOpt.naam}"></option>
+                        </select></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>&nbsp</td>
+                    <td>&nbsp</td>
+                </tr>
+                </tbody>
+                <tr>
+                    <td class="first-row"><i id="address-icon" class="fas fa-home fa-2x text-muted"></i></td>
+                    <td class="first-row">Straat:</td>
+                    <td class="first-row"><input class="register-form-input" type="text" name="street" th:field="*{straat}"></td>
+                </tr>
+                <tr>
+                    <td></td>
+
+                    <td>Huisnummer:</td>
+                    <td><input class="register-form-input" type="text" name="house_number" th:field="*{huisnummer}"></td>
+                </tr>
+                <tr>
+                    <td></td>
+
+                    <td>Postcode:</td>
+                    <td><input class="register-form-input" type="text" name="postcode" th:field="*{postcode}"></td>
+                </tr>
+                <tr>
+                    <td></td>
+
+                    <td id="register-field-city">Woonplaats:</td>
+                    <td><input class="register-form-input" type="text" name="city" th:field="*{woonplaats}"></td>
+                </tr>
+                <tr>
+                    <td></td>
+
+                    <td>&nbsp</td>
+                    <td>&nbsp</td>
+                </tr>
+                <tr>
+                    <td class="first-row"><i class="fas fa-phone-alt fa-2x text-muted"></i></td>
+                    <td class="first-row">Telefoonnummer:</td>
+                    <td class="first-row"><input class="register-form-input" type="text" name="telephone" th:field="*{telefoonNummer}"></td>
+                </tr>
+                <tr>
+                    <td class="first-row"></td>
+                    <td class="first-row"></td>
+                    <td class="first-row"><button class="btn btn-primary my-2 my-sm-0" type="submit">Sla op</button></td>
+                </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+
+    </div>
+
+</section>
+
+
+
+<!--NIEUWE TEMPLATE TOT HIER-->
+<footer th:replace="fragments/footer :: footer"/>
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</html>

@@ -8,5 +8,6 @@ import org.springframework.stereotype.Repository;
 public interface MKBDAO extends JpaRepository<MKB, Integer> {
 
     MKB findMKBByEmail(String email);
+    MKB findMKBByPersonId(int id);
 
 }

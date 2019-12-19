@@ -11,7 +11,7 @@
         <h2 id="register-welcome" class="text-center py-5">Welkom bij Hoeckbank, vul hier uw gegevens in</h2>
 
         <div class="form-wrapper mx-auto">
-            <form action="#" th:action = "@{do_register}" method="post" name="registerform">
+            <form action="#" th:action = "@{do_register}" method="post" th:object="${Geslacht}">
                 <div class="text-center">
                     <input type="radio" class="accountradio" name="accounttype_radio" value="particulier" checked><label class="mx-2">Particulier</label>
                     <input type="radio" class="accountradio" name="accounttype_radio" value="bedrijf"><label class="mx-2">Zakelijk</label>
@@ -49,9 +49,12 @@
                     <tr class="private-info">
                         <td class="first-row"><i class="fas fa-user fa-2x text-muted"></i></td>
                         <td class="first-row">Aanhef:</td>
-                        <td class="first-row"><input type="radio" name="gender" value="male">&nbsp Dhr &nbsp
-                            <input type="radio" name="gender" value="female">&nbsp Mevr &nbsp
-                            <input type="radio" name="gender" value="other">&nbsp Neutraal
+                        <td class="first-row">
+
+                            <select name="gender">
+                                <option th:each="geslachtOpt : ${T(hoeckbankgroup.demo.model.enums.Geslacht).values()}"
+                                        th:value="${geslachtOpt}" th:text="${geslachtOpt.aanhef}"></option>
+                            </select>
                         </td>
                     </tr>
                     <tr class="private-info">
@@ -99,7 +102,11 @@
                         <td></td>
 
                         <td>Segment:</td>
-                        <td><input class="register-form-input" type="text" name="segment"></td>
+                        <td>
+                            <select name="sector">
+                            <option th:each="sectorOpt : ${T(hoeckbankgroup.demo.model.enums.Branche).values()}"
+                                    th:value="${sectorOpt}" th:text="${sectorOpt.naam}"></option>
+                        </select></td>
                     </tr>
                     <tr>
                         <td></td>
