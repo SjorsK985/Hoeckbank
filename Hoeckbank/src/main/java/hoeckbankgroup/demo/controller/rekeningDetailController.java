@@ -21,11 +21,10 @@ public class rekeningDetailController {
     private RekeningService rekeningService;
 
     @GetMapping("rekeningdetail")
-    public String rekeningDetailHandler(@RequestParam int id, Model model, Gebruiker gebruiker){
+    public String rekeningDetailHandler(@RequestParam int id, Model model){
         Rekening rekening = rekeningService.findRekeningByRekeningID(id);
         List<Transactie> alleTransacties = rekening.getTransactiehistorie();
         Collections.sort(alleTransacties);
-        gebruiker.setHuidigeRekeningnummer(rekening.getRekeningnummer());
 
 
         // Zet transacties in nieuwe lijst om er max 10 te weergeven:
