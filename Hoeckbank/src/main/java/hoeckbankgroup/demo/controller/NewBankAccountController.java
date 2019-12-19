@@ -42,7 +42,6 @@ public class NewBankAccountController {
             tenaamstelling = ((Particulier) klant).getGeslacht() + " " + ((Particulier) klant).getVoornaam() + ((Particulier) klant).getTussenvoegsel() + " " + ((Particulier) klant).getAchternaam();
             model.addAttribute("tenaamstelling", tenaamstelling);
         }
-        System.out.println(tenaamstelling);
         return "newbankaccount";
     }
 
@@ -50,8 +49,6 @@ public class NewBankAccountController {
     private String confirmNewBankAccountHandler(){
         rekening = new Rekening(nieuwRekeningNummer, 0, tenaamstelling);
         klant.addRekening(rekening);
-        System.out.println(klant.getWoonplaats());
-        System.out.println(rekening.getRekeningnummer());
         klantService.save(klant);
         return "redirect:/rekeningenoverzicht";
     }
@@ -60,5 +57,4 @@ public class NewBankAccountController {
     private String cancelBankAccountHandler(){
         return "redirect:/rekeningenoverzicht";
     }
-
 }

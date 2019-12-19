@@ -1,9 +1,9 @@
 package hoeckbankgroup.demo.model.enums;
 
 public enum Geslacht {
-    MAN("Hr"),
-    VROUW("Mw"),
-    NEUTRAAL("Ntr");
+    MAN("De heer"),
+    VROUW("Mevrouw"),
+    NEUTRAAL("Neutraal");
 
     public final String aanhef;
 

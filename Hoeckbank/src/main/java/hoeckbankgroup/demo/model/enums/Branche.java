@@ -2,16 +2,18 @@ package hoeckbankgroup.demo.model.enums;
 
 public enum Branche {
     LANDBOUW("Landbouw, Bosbouw & Visserij"),
-    INDUSTRIE("Lichte & Zware industrie"),
+    INDUSTRIE("Lichte & Zware Industrie"),
     BOUW("Bouw & Grondverzet"),
     NUTS("Energie- & Watervoorziening"),
-    GROOTHANDEL("Groothandel & Import"),
-    DETAILHANDEL("Detailhandel & Winkelwezen"),
     LOGISTIEK("Transport & Logistiek"),
-    OVERHEDEN("Landelijke & regionale overheden"),
-    ZORG("Klinieken en Verzorgingshuizen"),
-    ONDERWIJS("Jeugd- & volwassenenonderwijs"),
-    SCHEPPENDEKUNSTEN("Scheppende kunsten");
+    GROOTHANDEL("Groothandel & Import/Export"),
+    DETAILHANDEL("Detailhandel"),
+    VASTGOED("Vastgoedbeheer & Woningcorporaties"),
+    OVERHEDEN("Overheden"),
+    ZORG("Gezondheidszorg"),
+    ONDERWIJS("Onderwijs"),
+    HORECA("Horeca"),
+    CREATIEVESECTOR("Creatieve sector wo Kunsten, Muziek & Vormgeving");
 
     public final String naam;
 
