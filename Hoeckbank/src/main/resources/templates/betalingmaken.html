@@ -17,7 +17,7 @@
     </tr>
     <tr>
         <td>Saldo:</td>
-        <td>€ <span th:text="${rekening.saldo}"/></td>
+        <td>€ <span th:text="${#numbers.formatDecimal(rekening.saldo, 1, 'POINT', 2, 'COMMA')}"/></td>
     </tr>
 </table>
 <hr>
@@ -25,7 +25,7 @@
 <form action="#" th:action="@{do_transactie}" method="post" name="transactie_form" onsubmit="return validationError()">
     <input type="hidden" th:value="${param.id}"  name="rekening_id">
     <b>Bedrag</b><br>
-    <input type="number" name="bedrag"><br>
+    <input type="number" name="bedrag" step=".01"><br>
     <div id="bedrag_error" class="validate-error"></div><br>
 
     <b>Naam ontvanger</b><br>
