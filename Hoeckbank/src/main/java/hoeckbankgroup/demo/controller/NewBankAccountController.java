@@ -39,7 +39,7 @@ public class NewBankAccountController {
             tenaamstelling = ((MKB) klant).getBedrijfsnaam();
             model.addAttribute("tenaamstelling", tenaamstelling);
         } else if(klant instanceof Particulier) {
-            tenaamstelling = ((Particulier) klant).getGeslacht() + ((Particulier) klant).getVoornaam() + ((Particulier) klant).getTussenvoegsel() + ((Particulier) klant).getAchternaam();
+            tenaamstelling = ((Particulier) klant).getGeslacht() + " " + ((Particulier) klant).getVoornaam() + ((Particulier) klant).getTussenvoegsel() + " " + ((Particulier) klant).getAchternaam();
             model.addAttribute("tenaamstelling", tenaamstelling);
         }
         System.out.println(tenaamstelling);

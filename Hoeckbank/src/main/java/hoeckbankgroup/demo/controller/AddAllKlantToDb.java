@@ -1,3 +1,4 @@
+/*
 package hoeckbankgroup.demo.controller;
 
 import hoeckbankgroup.demo.model.*;
@@ -32,7 +33,7 @@ public class AddAllKlantToDb {
     @GetMapping("inleesmedewerker")
     private String inlezenmedewerker() {
         try {
-            Scanner invoer = new Scanner(new File("d:/inleesmedewerker.csv"));
+            Scanner invoer = new Scanner(new File("../Hoeckbank/src/main/resources/static/inleesdocumenten/inleesmedewerker.csv"));
             while (invoer.hasNextLine()) {
                 String regelUitBestand = invoer.nextLine();
 
@@ -53,7 +54,7 @@ public class AddAllKlantToDb {
     @GetMapping("inleesmkb")
     private String inlezenMKB() {
         try {
-            Scanner invoer = new Scanner(new File("d:/inleesmkb.csv"));
+            Scanner invoer = new Scanner(new File("../Hoeckbank/src/main/resources/static/inleesdocumenten/inleesmkb.csv"));
             while (invoer.hasNextLine()) {
                 String regelUitBestand = invoer.nextLine();
 
@@ -83,7 +84,7 @@ public class AddAllKlantToDb {
     @GetMapping("inleesparticulier")
     private String inlezenparticulier() {
         try {
-            Scanner invoer = new Scanner(new File("d:/inleesparticulier2.csv"));
+            Scanner invoer = new Scanner(new File("../Hoeckbank/src/main/resources/static/inleesdocumenten/inleesparticulier.csv"));
             while (invoer.hasNextLine()) {
                 String regelUitBestand = invoer.nextLine();
 
@@ -125,7 +126,7 @@ public class AddAllKlantToDb {
 
     private List<Transactie> gettransacties(){
         try {
-            Scanner invoer = new Scanner(new File("d:/inleestransacties.csv"));
+            Scanner invoer = new Scanner(new File("../Hoeckbank/src/main/resources/static/inleesdocumenten/inleestransacties.csv"));
             List<Transactie> transacties = new ArrayList<>();
             while (invoer.hasNextLine()) {
                 String regelUitBestand = invoer.nextLine();
@@ -163,4 +164,4 @@ public class AddAllKlantToDb {
     public static int geefRandomGetal(int aantal, int vanaf) { //van doet mee tot doet mee
         return (int) ((aantal + 1) * Math.random() + vanaf); //hoogste getal=antal+vanaf -- laagste=vanaf
     }
-}
+}*/

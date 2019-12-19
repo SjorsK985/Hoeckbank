@@ -1,6 +1,8 @@
 package hoeckbankgroup.demo.model;
 
 
+import hoeckbankgroup.demo.model.enums.Branche;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -12,7 +14,8 @@ import java.util.List;
 public class MKB extends Klant{
 
     private String bedrijfsnaam;
-    private String sector;
+    @Enumerated(EnumType.STRING)
+    private Branche sector;
     @OneToOne
     private Medewerker accountmanager;
 
@@ -21,14 +24,14 @@ public class MKB extends Klant{
     }
 
     public MKB(String email, String wachtwoord, String straat, String huisnummer, String postcode, String woonplaats,
-                    String telefoonNummer, List<Rekening> rekeningen, String bedrijfsnaam, String sector, Medewerker accountmanager) {
+               String telefoonNummer, List<Rekening> rekeningen, String bedrijfsnaam, Branche sector, Medewerker accountmanager) {
         super(email, wachtwoord, straat, huisnummer, postcode, woonplaats, telefoonNummer, rekeningen);
         this.bedrijfsnaam = bedrijfsnaam;
         this.sector = sector;
         this.accountmanager = accountmanager;
     }
 
-    public MKB(String email, String wachtwoord, String straat, String huisnummer, String postcode, String woonplaats, String telefoonNummer, String bedrijfsnaam, String sector, Medewerker accountmanager) {
+    public MKB(String email, String wachtwoord, String straat, String huisnummer, String postcode, String woonplaats, String telefoonNummer, String bedrijfsnaam, Branche sector, Medewerker accountmanager) {
         super(email, wachtwoord, straat, huisnummer, postcode, woonplaats, telefoonNummer);
         this.bedrijfsnaam = bedrijfsnaam;
         this.sector = sector;
@@ -36,7 +39,7 @@ public class MKB extends Klant{
     }
 
     public MKB(String email, String wachtwoord, String straat, String huisnummer, String postcode, String woonplaats,
-               String telefoonNummer, List<Rekening> rekeningen, String bedrijfsnaam, String sector) {
+               String telefoonNummer, List<Rekening> rekeningen, String bedrijfsnaam, Branche sector) {
         super(email, wachtwoord, straat, huisnummer, postcode, woonplaats, telefoonNummer, rekeningen);
         this.bedrijfsnaam = bedrijfsnaam;
         this.sector = sector;
@@ -48,9 +51,13 @@ public class MKB extends Klant{
 
     public void setBedrijfsnaam(String bedrijfsnaam) {this.bedrijfsnaam = bedrijfsnaam;}
 
-    public String getSector() {return sector;}
+    public Branche getSector() {
+        return sector;
+    }
 
-    public void setSector(String sector) {this.sector = sector;}
+    public void setSector(Branche sector) {
+        this.sector = sector;
+    }
 
     public Medewerker getAccountmanager() {return accountmanager;}
 

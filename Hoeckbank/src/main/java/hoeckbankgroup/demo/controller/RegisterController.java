@@ -2,6 +2,8 @@ package hoeckbankgroup.demo.controller;
 
 import hoeckbankgroup.demo.Service.GenereerRekeningnummerService;
 import hoeckbankgroup.demo.model.*;
+import hoeckbankgroup.demo.model.enums.Branche;
+import hoeckbankgroup.demo.model.enums.Geslacht;
 import hoeckbankgroup.demo.model.service.KlantService;
 import hoeckbankgroup.demo.model.service.MKBService;
 import hoeckbankgroup.demo.model.service.ParticulierService;
@@ -44,10 +46,10 @@ public class RegisterController {
                                     @RequestParam(name = "street") String straat, @RequestParam(name = "house_number") String huisnummer,
                                     @RequestParam(name = "postcode") String postcode, @RequestParam(name = "city") String woonplaats,
                                     @RequestParam(name = "telephone") String telefoon, @RequestParam(name = "agree") boolean akkoord,
-                                    @RequestParam(required = false, name = "gender") String geslacht, @RequestParam(required = false, name = "first_name") String voornaam,
+                                    @RequestParam(required = false, name = "gender") Geslacht geslacht, @RequestParam(required = false, name = "first_name") String voornaam,
                                     @RequestParam(required = false, name = "prepositions") String tussenvoegsel, @RequestParam(required = false, name ="last_name") String achternaam,
                                     @RequestParam(required = false, name = "dob") String geboortedatumString, @RequestParam(required = false, name = "bsn") String bsn,
-                                    @RequestParam(required = false, name = "company_name") String bedrijfsnaam, @RequestParam(required = false, name = "segment") String segment,
+                                    @RequestParam(required = false, name = "company_name") String bedrijfsnaam, @RequestParam(required = false, name = "segment") Branche segment,
                                     @RequestParam(required = false, name = "kvk") String kvk, Model model){
         if (rekeningSoort.equals("bedrijf")){
             MKB mkb = new MKB(emailadres, wachtwoord, straat, huisnummer, postcode, woonplaats, telefoon, bedrijfsnaam, segment, null);

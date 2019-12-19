@@ -14,7 +14,6 @@
                     <th class="first-row">Rekeningnummer</th>
                     <th class="first-row">Tenaamstelling</th>
                     <th class="first-row">Saldo</th>
-                    <th class="first-row"></th>
                 <tr>
                 <tr th:each="rekening : ${rekeningen}" class="table-row-link">
                     <td><a th:href="@{/rekeningdetail(id=${rekening.rekeningID})}"><span th:text="${rekening.rekeningnummer}" /></a></td>
@@ -24,20 +23,20 @@
                 <tr>
                     <td><a href="newbankaccount">
                             <button class="btn btn-primary my-2 my-sm-0-mt5" type="submit" value="nieuwe-rekening">
-                            Nieuwe rekening
+                                <i class="fas fa-plus-circle mr-1"></i>Nieuwe rekening
                             </button>
                         </a>
                     </td>
                     <td><a href="koppelrekening">
                             <button class="btn btn-primary my-2 my-sm-0-mt5" type="submit" value="koppel-rekening">
-                            Koppel rekening
+                                <i class="fas fa-link mr-1"></i>Koppel rekening
                             </button>
                         </a>
                     </td>
                     <td>
                         <a href="bewerkprofiel">
                             <button class="btn btn-primary my-2 my-sm-0-mt5" type="submit" value="Bewerk profiel">
-                                Bewerk profiel
+                                <i class="fas fa-user-cog mr-1"></i>Bewerk profiel
                             </button>
                         </a>
                     </td>
