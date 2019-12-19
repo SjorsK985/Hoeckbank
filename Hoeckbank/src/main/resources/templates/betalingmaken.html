@@ -22,23 +22,23 @@
 </table>
 <hr>
 <span th:text="${error}" class="validate-error"/>
-<form action="#" th:action="@{do_transactie}" method="post" name="transactie_form" >
+<form action="#" th:action="@{do_transactie}" method="post" name="transactie_form" onsubmit="return validationError()">
     <input type="hidden" th:value="${param.id}"  name="rekening_id">
     <b>Bedrag</b><br>
-    <input type="text" name="bedrag"><br><br>
-    <div id="bedrag_error" class="validate-error"></div>
+    <input type="number" name="bedrag"><br>
+    <div id="bedrag_error" class="validate-error"></div><br>
 
     <b>Naam ontvanger</b><br>
-    <input type="text" name="naam_ontvanger"><br><br>
-    <div id="naam_ontvanger_error" class="validate-error"></div>
+    <input type="text" name="naam_ontvanger"><br>
+    <div id="naam_ontvanger_error" class="validate-error"></div><br>
 
     <b>Rekeningnummer (IBAN) ontvanger</b><br>
-    <input type="text" name="rekeningnummer_ontvanger"><br><br>
-    <div id="rekeningnummer_ontvanger_error" class="validate-error"></div>
+    <input type="text" name="rekeningnummer_ontvanger"><br>
+    <div id="rekeningnummer_ontvanger_error" class="validate-error"></div><br>
 
     <b>Omschrijving</b><br>
-    <input type="text" name="omschrijving"><br><br>
-    <div id="omschrijving_error" class="validate-error"></div>
+    <input type="text" name="omschrijving"><br>
+    <div id="omschrijving_error" class="validate-error"></div><br>
 
     <a href="#"><button class="btn btn-primary my-2 my-sm-0" type="submit" >Overmaken</button></a><br><br>
     <a th:href="@{/rekeningdetail(id=${rekening.rekeningID})}">Annuleren</a>

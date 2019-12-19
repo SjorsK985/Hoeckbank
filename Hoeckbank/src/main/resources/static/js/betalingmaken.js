@@ -1,35 +1,22 @@
-function validationError(){
+function validationError() {
 
-    var bedrag = document.loginForm.bedrag.value;
-    var naam_ontvanger = document.loginForm.naam_ontvanger.value;
-    var rekeningnummer_ontvanger = document.loginForm.rekeningnummer_ontvanger.value;
-    var omschrijving = document.loginForm.omschrijving.value;
+    var submit = true;
+    var form_tag_list = [document.transactie_form.bedrag.value, document.transactie_form.naam_ontvanger.value,
+        document.transactie_form.rekeningnummer_ontvanger.value, document.transactie_form.omschrijving.value ];
+    var error_elements = ["bedrag_error", "naam_ontvanger_error", "rekeningnummer_ontvanger_error", "omschrijving_error" ];
+    var error_strings = ["Bedrag", "Naam ontvanger", "Rekening nummer", "Omschrijving"]
 
-    //RK: reset error berichten voor het geval de gebruik al errors heeft
-    document.getElementById("bedrag_error").innerHTML = "";
-    document.getElementById("naam_ontvanger_error").innerHTML = "";
-    document.getElementById("rekeningnummer_ontvanger_error").innerHTML = "";
-    document.getElementById("omschrijving_error").innerHTML = "";
-
-    var error_list = ["Bedrag", "Naam ontvanger", "Rekeningnummmer ontvanger", "omschrijving"];
-
-    // Todo: Maak Array van veld elementen?
-
-    if(password === "" && userName === ""){
-        document.getElementById("userNameError").innerHTML = "Gebruikersnaam mag niet leeg zijn";
-        document.getElementById("passwordError").innerHTML = "Wachtwoord mag niet leeg zijn";
-        return false;
+    //Haal error berichten weg voor het geval er nog errors berichten stonden
+    for (let i = 0; i < error_elements.length; i++) {
+        document.getElementById(error_elements[i]).innerHTML = " ";
     }
-
-    if(userName === ""){
-        document.getElementById("userNameError").innerHTML = "Gebruikersnaam mag niet leeg zijn";
-        return false;
+    //Geef error voor velden die leeg zijn
+    for (let i = 0; i < form_tag_list.length; i++) {
+        if(form_tag_list[i] === ""){
+            document.getElementById(error_elements[i]).innerHTML = error_strings[i] + " mag niet leeg zijn";
+            submit = false;
+        }
     }
-
-    if(password === ""){
-        document.getElementById("passwordError").innerHTML = "Wachtwoord mag niet leeg zijn";
-        return false;
-    }
-    //return true
+    return submit;
 
 }

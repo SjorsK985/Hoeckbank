@@ -1,5 +1,6 @@
 package hoeckbankgroup.demo.controller;
 
+import hoeckbankgroup.demo.model.Gebruiker;
 import hoeckbankgroup.demo.model.Rekening;
 import hoeckbankgroup.demo.model.Transactie;
 import hoeckbankgroup.demo.model.service.RekeningService;
@@ -10,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
+
 import java.time.*;
 
 @Controller
@@ -22,7 +25,8 @@ public class BetalingMakenController {
     private TransactieService transactieService;
 
     @GetMapping("betalingmaken")
-    public String betalingMakenHandler(@RequestParam int id,
+    public String betalingMakenHandler(@SessionAttribute("gebruiker") Gebruiker gebruiker,
+                                       @RequestParam int id,
                                        @RequestParam (value = "melding", required = false) String melding,
                                        Model model){
         Rekening rekening = rekeningService.findRekeningByRekeningID(id);
@@ -30,9 +34,12 @@ public class BetalingMakenController {
         model.addAttribute("error", melding);
         return "betalingmaken";
     }
-    //Todo: Front-end validatie
-    //Todo: Los data probleem op met none unique rekening
+
     //Todo: Tijd netjes weergeven in transactieoverzicht
+    //Todo: CSS
+    //Todo: Refactor JS code van fron-end validatie
+    //Todo: Front
+
 
     @PostMapping("do_transactie")
     public String doTransactieHandler(@RequestParam (name="rekening_id") int rekeningId,
@@ -64,7 +71,7 @@ public class BetalingMakenController {
     public String valideerTransactie(double bedrag, Rekening rekening, Rekening tegenRekening){
         String error = "";
         if(tegenRekening == null){
-            error = "Tegenrekening bestaat niet";
+            return "Rekeningnummer ontvanger bestaat niet";
         }
         if(bedrag > rekening.getSaldo()){
             error = "Saldo is ontoereikend";
