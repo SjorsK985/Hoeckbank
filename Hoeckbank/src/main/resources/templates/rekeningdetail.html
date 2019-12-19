@@ -47,7 +47,11 @@
                 </a>
             </div>
             <div class="col-sm">
-                <a th:href="@{/voegrekeninghoudertoe(id=${rekening.rekeningID})}">Voeg rekeninghouder toe</a>
+                <a th:href="@{/voegrekeninghoudertoe(id=${rekening.rekeningID})}">
+                     <button class="btn btn-primary my-2 my-sm-0-mt5" type="submit" value="rekeninghouder-toevoegen">
+                    Rekeninghouder toevoegen
+                     </button>
+                </a>
             </div>
         </div>
     </div>
