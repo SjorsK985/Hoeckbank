@@ -35,12 +35,6 @@ public class BetalingMakenController {
         return "betalingmaken";
     }
 
-    //Todo: Tijd netjes weergeven in transactieoverzicht
-    //Todo: CSS
-    //Todo: Refactor JS code van fron-end validatie
-    //Todo: Front
-
-
     @PostMapping("do_transactie")
     public String doTransactieHandler(@RequestParam (name="rekening_id") int rekeningId,
                                       @RequestParam double bedrag,
