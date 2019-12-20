@@ -7,6 +7,7 @@ public class Gebruiker {
     private int id;
     private List<Rekening> rekeningen;
     private String rol;
+    private String huidigRekeningnummer;
 
     public Gebruiker(int id, List<Rekening> rekeningen, String rol) {
         this.id = id;
@@ -18,6 +19,13 @@ public class Gebruiker {
         this.id = id;
         this.rol = rol;
         this.rekeningen = new ArrayList<>();
+    }
+
+    public Gebruiker(int id, List<Rekening> rekeningen, String rol, String huidigRekeningnummer) {
+        this.id = id;
+        this.rekeningen = rekeningen;
+        this.rol = rol;
+        this.huidigRekeningnummer = huidigRekeningnummer;
     }
 
     public int getId() {
@@ -42,5 +50,13 @@ public class Gebruiker {
 
     public void setRol(String rol) {
         this.rol = rol;
+    }
+
+    public String getHuidigRekeningnummer() {
+        return huidigRekeningnummer;
+    }
+
+    public void setHuidigRekeningnummer(String huidigRekeningnummer) {
+        this.huidigRekeningnummer = huidigRekeningnummer;
     }
 }

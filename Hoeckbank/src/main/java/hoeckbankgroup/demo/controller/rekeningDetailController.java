@@ -1,5 +1,6 @@
 package hoeckbankgroup.demo.controller;
 
+import hoeckbankgroup.demo.model.Gebruiker;
 import hoeckbankgroup.demo.model.Rekening;
 import hoeckbankgroup.demo.model.Transactie;
 import hoeckbankgroup.demo.model.service.RekeningService;
@@ -20,10 +21,11 @@ public class rekeningDetailController {
     private RekeningService rekeningService;
 
     @GetMapping("rekeningdetail")
-    public String rekeningDetailHandler(@RequestParam int id, Model model){
+    public String rekeningDetailHandler(@RequestParam int id, Model model, Gebruiker gebruiker){
         Rekening rekening = rekeningService.findRekeningByRekeningID(id);
         List<Transactie> alleTransacties = rekening.getTransactiehistorie();
         Collections.sort(alleTransacties);
+        gebruiker.setHuidigRekeningnummer(rekening.getRekeningnummer());
 
         // Zet transacties in nieuwe lijst om er max 10 te weergeven:
         ArrayList<Transactie> transacties = new ArrayList<>();

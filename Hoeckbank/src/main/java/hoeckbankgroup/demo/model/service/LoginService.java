@@ -17,4 +17,11 @@ public class LoginService {
         return false;
         } else return klant.getWachtwoord().equals(gebruikerWachtwoord);
     }
+
+    public boolean validateEmail(String email){
+        Klant klant = klantDAO.findKlantByEmail(email);
+        if (klant == null) {
+            return false;
+        } else return klant.getEmail().equals(email);
+    }
 }
