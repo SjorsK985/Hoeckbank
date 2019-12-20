@@ -1,4 +1,3 @@
-/*
 package hoeckbankgroup.demo.controller;
 
 import hoeckbankgroup.demo.model.*;
@@ -6,6 +5,8 @@ import hoeckbankgroup.demo.model.DAO.MedewerkerDAO;
 import hoeckbankgroup.demo.model.DAO.MKBDAO;
 import hoeckbankgroup.demo.model.DAO.ParticulierDAO;
 import hoeckbankgroup.demo.model.DAO.RekeningDAO;
+import hoeckbankgroup.demo.model.enums.Branche;
+import hoeckbankgroup.demo.model.enums.Geslacht;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,10 +32,14 @@ public class AddAllKlantToDb {
     @Autowired
     private RekeningDAO rekeningDAO;
 
+    Geslacht geslacht;
+
+    Branche sector;
+
     @GetMapping("inleesmedewerker")
     private String inlezenmedewerker() {
         try {
-            Scanner invoer = new Scanner(new File("Hoeckbank/src/main/resources/static/inleesdocumenten/inleesmedewerker.csv"));
+            Scanner invoer = new Scanner(new File("../Hoeckbank/src/main/resources/static/inleesdocumenten/inleesmedewerker.csv"));
             while (invoer.hasNextLine()) {
                 String regelUitBestand = invoer.nextLine();
 
@@ -55,7 +60,7 @@ public class AddAllKlantToDb {
     @GetMapping("inleesmkb")
     private String inlezenMKB() {
         try {
-            Scanner invoer = new Scanner(new File("Hoeckbank/src/main/resources/static/inleesdocumenten/inleesmkb.csv"));
+            Scanner invoer = new Scanner(new File("../Hoeckbank/src/main/resources/static/inleesdocumenten/inleesmkb.csv"));
             while (invoer.hasNextLine()) {
                 String regelUitBestand = invoer.nextLine();
 
@@ -67,9 +72,11 @@ public class AddAllKlantToDb {
                 double geldbedrag = Math.round(geldbedrag = geld / 1.123) / 100.0;
                 Rekening rekening = new Rekening(regelArray[7], geldbedrag, tenaamstelling);
                 rekeningen.add(rekening);
+                sector = Branche.LANDBOUW;
+
 
                 MKB mkb = new MKB(regelArray[0], regelArray[1], regelArray[2], regelArray[3], regelArray[4],
-                        regelArray[5], regelArray[6], rekeningen, regelArray[8], regelArray[9]);
+                        regelArray[5], regelArray[6], rekeningen, regelArray[8], sector);
 
                 System.out.println("MKB: " + regelArray[0] + " saldo : " + geldbedrag);
                 mkbDao.save(mkb);
@@ -85,7 +92,7 @@ public class AddAllKlantToDb {
     @GetMapping("inleesparticulier")
     private String inlezenparticulier() {
         try {
-            Scanner invoer = new Scanner(new File("Hoeckbank/src/main/resources/static/inleesdocumenten/inleesparticulier.csv"));
+            Scanner invoer = new Scanner(new File("../Hoeckbank/src/main/resources/static/inleesdocumenten/inleesparticulier.csv"));
             while (invoer.hasNextLine()) {
                 String regelUitBestand = invoer.nextLine();
 
@@ -101,10 +108,17 @@ public class AddAllKlantToDb {
                 Rekening rekening2 = new Rekening(regelArray[8], geldbedrag1, tenaamstelling);
                 rekeningen.add(rekening1);
                 rekeningen.add(rekening2);
+                if(regelArray[13].equals("M")){
+                    geslacht = Geslacht.MAN;
+                } else if(regelArray[13].equals("V")){
+                    geslacht = Geslacht.VROUW;
+                } else{
+                    geslacht = Geslacht.NEUTRAAL;
+                }
 
                 int bsn = Integer.parseInt(regelArray[12]);
                 Particulier particulier=new Particulier(regelArray[0],regelArray[1],regelArray[2],regelArray[3],regelArray[4],
-                        regelArray[5],regelArray[6],rekeningen,regelArray[9],regelArray[10],regelArray[11],regelArray[12],regelArray[13],regelArray[14]);
+                        regelArray[5],regelArray[6],rekeningen,regelArray[9],regelArray[10],regelArray[11],regelArray[12], geslacht,regelArray[14]);
                 System.out.println("Particulier: " + regelArray[0]);
                 particulierDao.save(particulier);
 
@@ -127,7 +141,7 @@ public class AddAllKlantToDb {
 
     private List<Transactie> gettransacties(){
         try {
-            Scanner invoer = new Scanner(new File("Hoeckbank/src/main/resources/static/inleesdocumenten/inleestransacties.csv"));
+            Scanner invoer = new Scanner(new File("../Hoeckbank/src/main/resources/static/inleesdocumenten/inleestransacties.csv"));
             List<Transactie> transacties = new ArrayList<>();
             while (invoer.hasNextLine()) {
                 String regelUitBestand = invoer.nextLine();
@@ -165,4 +179,4 @@ public class AddAllKlantToDb {
     public static int geefRandomGetal(int aantal, int vanaf) { //van doet mee tot doet mee
         return (int) ((aantal + 1) * Math.random() + vanaf); //hoogste getal=antal+vanaf -- laagste=vanaf
     }
-}*/
+}

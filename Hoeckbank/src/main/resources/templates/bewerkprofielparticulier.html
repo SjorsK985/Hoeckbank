@@ -48,7 +48,7 @@
                 <td class="first-row"><i class="fas fa-user fa-2x text-muted"></i></td>
                 <td class="first-row">Aanhef:</td>
                 <td class="first-row">
-                    <select name="gender">
+                    <select name="geslacht">
                         <option th:each="geslachtOpt : ${T(hoeckbankgroup.demo.model.enums.Geslacht).values()}"
                                 th:value="${geslachtOpt}" th:text="${geslachtOpt.aanhef}"></option>
                     </select>

@@ -50,9 +50,9 @@ public class RegisterController {
                                     @RequestParam(required = false, name = "prepositions") String tussenvoegsel, @RequestParam(required = false, name ="last_name") String achternaam,
                                     @RequestParam(required = false, name = "dob") String geboortedatumString, @RequestParam(required = false, name = "bsn") String bsn,
                                     @RequestParam(required = false, name = "company_name") String bedrijfsnaam, @RequestParam(required = false, name = "segment") Branche segment,
-                                    @RequestParam(required = false, name = "kvk") String kvk, Model model){
+                                    Model model){
         if (rekeningSoort.equals("bedrijf")){
-            MKB mkb = new MKB(emailadres, wachtwoord, straat, huisnummer, postcode, woonplaats, telefoon, bedrijfsnaam, segment, null);
+            MKB mkb = new MKB(emailadres, wachtwoord, straat, huisnummer, postcode, woonplaats, telefoon, segment, bedrijfsnaam);
             mkbService.save(mkb);
             Klant klant = klantService.findKlantByEmail(mkb.getEmail());
             Gebruiker gebruiker = new Gebruiker(klant.getPersonId(),"MKB");

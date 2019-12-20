@@ -45,6 +45,18 @@ public class Particulier extends Klant {
         this.geboorteDatum = geboorteDatum;
     }
 
+    public Particulier(String email, String wachtwoord, String straat, String huisnummer, String postcode,
+                       String woonplaats, String telefoonNummer, String voornaam, String tussenvoegsel,
+                       String achternaam, String BSN, String geboorteDatum) {
+        super(email, wachtwoord, straat, huisnummer, postcode, woonplaats, telefoonNummer);
+        this.voornaam = voornaam;
+        this.tussenvoegsel = tussenvoegsel;
+        this.achternaam = achternaam;
+        this.BSN = BSN;
+        this.geslacht = Geslacht.NEUTRAAL;
+        this.geboorteDatum = geboorteDatum;
+    }
+
     public String getVoornaam() {
         return voornaam;
     }
