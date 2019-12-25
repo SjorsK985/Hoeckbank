@@ -15,6 +15,13 @@ public class IndexController {
         return "login";
     }
 
+    @GetMapping("loginmedewerker")
+    public String loginMedewerkerHandler(Model model){
+        model.addAttribute("header_text", "Hier kan je inloggen als medewerker");
+        model.addAttribute("log", "loguit");
+        return "login_medewerker";
+    }
+
     @GetMapping("index")
     public String indexHandler(Model model){
         model.addAttribute("log", "login");

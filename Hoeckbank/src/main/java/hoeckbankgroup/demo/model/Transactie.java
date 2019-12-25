@@ -1,5 +1,7 @@
 package hoeckbankgroup.demo.model;
 
+import org.apache.tomcat.jni.Local;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -8,7 +10,7 @@ import java.time.LocalDate;
  * POJO Transactie
  */
 @Entity
-public class Transactie {
+public class Transactie implements Comparable<Transactie> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -65,4 +67,10 @@ public class Transactie {
     public int getTransactieId() {
         return transactieId;
     }
+
+    @Override
+    public int compareTo(Transactie transactie) {
+        return transactie.getDatum().compareTo(this.getDatum());
+    }
+
 }

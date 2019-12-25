@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/header :: header"/>
+<body class="bg-light">
+<nav th:replace="fragments/navbarloguit :: navbar"/>
+<!--BEGIN HIER MET NIEUWE TEMPLATE-->
+
+
+    <div class="container w-75 justify-content-between"  align="center">
+
+        <div class="row">
+            <div class="col">
+                <a href="rekeningenoverzicht" class="justify-content-start">< Rekeningenoverzicht</a>
+            </div>
+            <div class="col">
+                <h3 class="justify-content-center" >Rekeningpagina</h3>
+            </div>
+            <div class="col">
+                &nbsp
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <span th:text="${rekening.rekeningnummer}"/>
+            </div>
+            <div class="col-sm">
+                <span th:text="${rekening.tenaamstelling}"/>
+            </div>
+            <div class="col-sm" id="date-time"/>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                € <span th:text="${rekening.saldo}"/>
+            </div>
+            <div class="col-sm">
+                <a href="#">
+                    <button class="btn btn-primary my-2 my-sm-0-mt5" type="submit" value="select-rekening">
+                        Overmaken
+                    </button>
+                </a>
+            </div>
+            <div class="col-sm">
+                <a href="#">Voeg rekeninghouder toe</a>
+            </div>
+        </div>
+    </div>
+
+    <br><br>
+
+    <table class="table table-condensed">
+        <tr class="font-weight-bold">
+            <td class="first-row">Datum</td>
+            <td class="first-row">Omschrijving</td>
+            <td class="first-row">Tegenrekening</td>
+            <td class="first-row">Bedrag</td>
+        </tr>
+        <tr th:each="transactie : ${transacties}" class="table-row-link">
+            <td><span th:text="${transactie.datum}" /></td>
+            <td><span th:text="${transactie.omschrijving}" /></td>
+            <td><span th:text="${transactie.tegenRekening}" /></td>
+            <td>€ <span th:text="${transactie.bedrag}" /></td>
+        </tr>
+
+    </table>
+
+    <script>
+        window.onload = function(){
+            const now = new Date();
+            console.log(now);
+            document.getElementById("date-time").innerHTML = now.toUTCString() ;
+        }
+    </script>
+
+
+<!--NIEUWE TEMPLATE TOT HIER-->
+<footer th:replace="fragments/footer :: footer"/>
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</html>

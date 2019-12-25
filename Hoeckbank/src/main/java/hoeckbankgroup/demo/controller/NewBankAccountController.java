@@ -55,4 +55,10 @@ public class NewBankAccountController {
         klantService.save(klant);
         return "redirect:/rekeningenoverzicht";
     }
+
+    @GetMapping("cancel_bankaccount")
+    private String cancelBankAccountHandler(){
+        return "redirect:/rekeningenoverzicht";
+    }
+
 }

@@ -19,4 +19,5 @@ public class LoginMedewerkerService {
             return false;
         } else return medewerker.getWachtwoord().equals(gebruikerWachtwoord);
     }
+
 }
