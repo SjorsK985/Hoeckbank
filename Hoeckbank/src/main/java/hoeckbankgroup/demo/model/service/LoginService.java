@@ -17,4 +17,5 @@ public class LoginService {
         return false;
         } else return klant.getWachtwoord().equals(gebruikerWachtwoord);
     }
+
 }

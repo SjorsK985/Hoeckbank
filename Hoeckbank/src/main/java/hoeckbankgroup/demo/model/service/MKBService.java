@@ -15,6 +15,10 @@ public class MKBService {
 
     public MKB findMKBByEmail (String email){return mkbdao.findMKBByEmail(email);}
 
+    public MKB findMKBById(int id){
+        return mkbdao.findMKBByPersonId(id);
+    }
+
     public boolean controleerBestaanMKB (String email){
         if ( mkbdao.findMKBByEmail(email)== null){
             return true;

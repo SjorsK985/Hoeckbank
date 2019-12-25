@@ -33,5 +33,4 @@ public class IndexController {
         model.addAttribute("log", "login");
         return "index";
     }
-
 }
