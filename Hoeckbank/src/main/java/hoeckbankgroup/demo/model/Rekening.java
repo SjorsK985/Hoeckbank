@@ -25,7 +25,6 @@ public class Rekening {
     private List<Klant> rekeninghouder;
 
     @OneToMany (cascade = CascadeType.ALL)
-
     private List<Transactie>transactiehistorie;
 
     public Rekening(String rekeningnummer, double saldo, String tenaamstelling) {
@@ -58,6 +57,12 @@ public class Rekening {
 
     public void setRekeninghouder(List<Klant> rekeninghouder) {
         this.rekeninghouder = rekeninghouder;
+    }
+    public void addTransactie(Transactie transactie){
+        if(transactiehistorie == null){
+            transactiehistorie = new ArrayList<>();
+        }
+        this.transactiehistorie.add(transactie);
     }
 
     public List<Transactie> getTransactiehistorie() {

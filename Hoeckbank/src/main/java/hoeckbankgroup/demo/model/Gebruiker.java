@@ -20,6 +20,9 @@ public class Gebruiker {
         this.rol = rol;
         this.rekeningen = new ArrayList<>();
     }
+    public Gebruiker(){
+        super();
+    }
 
     public Gebruiker(int id, List<Rekening> rekeningen, String rol, String huidigRekeningnummer) {
         this.id = id;
@@ -60,3 +63,4 @@ public class Gebruiker {
         this.huidigRekeningnummer = huidigRekeningnummer;
     }
 }
+

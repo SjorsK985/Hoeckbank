@@ -3,7 +3,7 @@ package hoeckbankgroup.demo.model;
 import org.apache.tomcat.jni.Local;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * Auteur Anne van den Bosch
@@ -19,13 +19,13 @@ public class Transactie implements Comparable<Transactie> {
     private String tegenRekening;
     private double bedrag;
     private String omschrijving;
-    private LocalDate datum;
+    private LocalDateTime datum;
 
     protected Transactie(){
         super();
     }
 
-    public Transactie(String tegenRekening, double bedrag, String omschrijving, LocalDate datum) {
+    public Transactie(String tegenRekening, double bedrag, String omschrijving, LocalDateTime datum) {
         this.tegenRekening = tegenRekening;
         this.bedrag = bedrag;
         this.omschrijving = omschrijving;
@@ -56,11 +56,11 @@ public class Transactie implements Comparable<Transactie> {
         this.omschrijving = omschrijving;
     }
 
-    public LocalDate getDatum() {
+    public LocalDateTime getDatum() {
         return datum;
     }
 
-    public void setDatum(LocalDate datum) {
+    public void setDatum(LocalDateTime datum) {
         this.datum = datum;
     }
 

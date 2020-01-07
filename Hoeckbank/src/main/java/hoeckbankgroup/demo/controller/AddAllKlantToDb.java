@@ -1,3 +1,4 @@
+/*
 package hoeckbankgroup.demo.controller;
 
 import hoeckbankgroup.demo.model.*;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +35,7 @@ public class AddAllKlantToDb {
     @GetMapping("inleesmedewerker")
     private String inlezenmedewerker() {
         try {
-            Scanner invoer = new Scanner(new File("../Hoeckbank/src/main/resources/static/inleesdocumenten/inleesmedewerker.csv"));
+            Scanner invoer = new Scanner(new File("Hoeckbank/src/main/resources/static/inleesdocumenten/inleesmedewerker.csv"));
             while (invoer.hasNextLine()) {
                 String regelUitBestand = invoer.nextLine();
 
@@ -54,7 +56,7 @@ public class AddAllKlantToDb {
     @GetMapping("inleesmkb")
     private String inlezenMKB() {
         try {
-            Scanner invoer = new Scanner(new File("../Hoeckbank/src/main/resources/static/inleesdocumenten/inleesmkb.csv"));
+            Scanner invoer = new Scanner(new File("Hoeckbank/src/main/resources/static/inleesdocumenten/inleesmkb.csv"));
             while (invoer.hasNextLine()) {
                 String regelUitBestand = invoer.nextLine();
 
@@ -84,7 +86,7 @@ public class AddAllKlantToDb {
     @GetMapping("inleesparticulier")
     private String inlezenparticulier() {
         try {
-            Scanner invoer = new Scanner(new File("../Hoeckbank/src/main/resources/static/inleesdocumenten/inleesparticulier.csv"));
+            Scanner invoer = new Scanner(new File("Hoeckbank/src/main/resources/static/inleesdocumenten/inleesparticulier.csv"));
             while (invoer.hasNextLine()) {
                 String regelUitBestand = invoer.nextLine();
 
@@ -126,16 +128,16 @@ public class AddAllKlantToDb {
 
     private List<Transactie> gettransacties(){
         try {
-            Scanner invoer = new Scanner(new File("../Hoeckbank/src/main/resources/static/inleesdocumenten/inleestransacties.csv"));
+            Scanner invoer = new Scanner(new File("Hoeckbank/src/main/resources/static/inleesdocumenten/inleestransacties.csv"));
             List<Transactie> transacties = new ArrayList<>();
             while (invoer.hasNextLine()) {
                 String regelUitBestand = invoer.nextLine();
                 String[] regelArray;
                 regelArray = regelUitBestand.split(";");
                 double bedrag = Double.parseDouble(regelArray[1]);
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
                 formatter = formatter.withLocale(Locale.getDefault());  // Locale specifies human language for translating, and cultural norms for lowercase/uppercase and abbreviations and such. Example: Locale.US or Locale.CANADA_FRENCH
-                LocalDate date = LocalDate.parse(regelArray[3], formatter);
+                LocalDateTime date = LocalDateTime.parse(regelArray[3], formatter);
                 Transactie transactie = new Transactie(regelArray[0], bedrag, regelArray[2], date);
                 transacties.add(transactie);
                 System.out.println(bedrag);
@@ -164,4 +166,4 @@ public class AddAllKlantToDb {
     public static int geefRandomGetal(int aantal, int vanaf) { //van doet mee tot doet mee
         return (int) ((aantal + 1) * Math.random() + vanaf); //hoogste getal=antal+vanaf -- laagste=vanaf
     }
-}
+}*/

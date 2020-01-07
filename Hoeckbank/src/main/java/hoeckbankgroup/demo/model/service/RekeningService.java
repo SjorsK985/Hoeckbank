@@ -29,4 +29,8 @@ public class RekeningService {
         return rekeningDAO.findRekeningByRekeningID(rekeningID);
     }
 
+    public Rekening findRekeningByRekeningnummer(String rekeningNummer){
+        return rekeningDAO.findRekeningByRekeningnummer(rekeningNummer);
+    }
+
 }

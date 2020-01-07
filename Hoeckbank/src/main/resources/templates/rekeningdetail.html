@@ -41,15 +41,16 @@
             <div class="col-sm">
                 <a href="#">
                     <button class="btn btn-primary my-2 my-sm-0-mt5" type="submit" value="select-rekening">
-                        Overmaken
+                        <a th:href="@{/betalingmaken(id=${rekening.rekeningID})}">Overmaken</a>
+
                     </button>
                 </a>
             </div>
             <div class="col-sm">
-                <a href="rekeninghoudertoevoegen">
-                    <button class="btn btn-primary my-2 my-sm-0-mt5" type="submit" value="rekeninghouder-toevoegen">
+                <a th:href="@{/toevoegenrekeninghouder(id=${rekening.rekeningID})}">
+                     <button class="btn btn-primary my-2 my-sm-0-mt5" type="submit" value="rekeninghouder-toevoegen">
                     Rekeninghouder toevoegen
-                    </button>
+                     </button>
                 </a>
             </div>
         </div>

@@ -1,5 +1,7 @@
 package hoeckbankgroup.demo.model;
 
+import hoeckbankgroup.demo.model.enums.Geslacht;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -10,7 +12,8 @@ public class Particulier extends Klant {
     private String tussenvoegsel;
     private String achternaam;
     private String BSN;
-    private String geslacht;
+    @Enumerated(EnumType.STRING)
+    private Geslacht geslacht;
     private String geboorteDatum;
 
 
@@ -20,7 +23,7 @@ public class Particulier extends Klant {
 
     public Particulier(String email, String wachtwoord, String straat, String huisnummer, String postcode,
                        String woonplaats, String telefoonNummer, List<Rekening> rekeningen, String voornaam,
-                       String tussenvoegsel, String achternaam, String BSN, String geslacht, String geboorteDatum) {
+                       String tussenvoegsel, String achternaam, String BSN, Geslacht geslacht, String geboorteDatum) {
         super(email, wachtwoord, straat, huisnummer, postcode, woonplaats, telefoonNummer, rekeningen);
         this.voornaam = voornaam;
         this.tussenvoegsel = tussenvoegsel;
@@ -32,7 +35,7 @@ public class Particulier extends Klant {
 
     public Particulier(String email, String wachtwoord, String straat, String huisnummer, String postcode,
                        String woonplaats, String telefoonNummer, String voornaam, String tussenvoegsel,
-                       String achternaam, String BSN, String geslacht, String geboorteDatum) {
+                       String achternaam, String BSN, Geslacht geslacht, String geboorteDatum) {
         super(email, wachtwoord, straat, huisnummer, postcode, woonplaats, telefoonNummer);
         this.voornaam = voornaam;
         this.tussenvoegsel = tussenvoegsel;
@@ -75,10 +78,10 @@ public class Particulier extends Klant {
     }
 
     public String getGeslacht() {
-        return geslacht;
+        return geslacht.getStringValue();
     }
 
-    public void setGeslacht(String geslacht) {
+    public void setGeslacht(Geslacht geslacht) {
         this.geslacht = geslacht;
     }
 
