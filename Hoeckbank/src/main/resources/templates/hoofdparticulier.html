@@ -21,7 +21,9 @@
     <tr th:each="rekening : ${rekeningen}" class="table-row-link">
         <td><span th:text="${rekening.rekeningnummer}" /></td>
        <td><span th:text="${rekening.tenaamstelling}" /></td>
-        <td><span th:text="${rekening.saldo}" /></td>
+        <td>€ <span th:text="${#numbers.formatDecimal(rekening.saldo, 1, 'POINT', 2, 'COMMA')}"/></td>
+
+
     </tr>
 
 </table>

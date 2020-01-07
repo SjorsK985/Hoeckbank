@@ -1,5 +1,6 @@
 package hoeckbankgroup.demo.controller;
 
+import hoeckbankgroup.demo.model.Gebruiker;
 import hoeckbankgroup.demo.model.Klant;
 import hoeckbankgroup.demo.model.Medewerker;
 import hoeckbankgroup.demo.model.Rekening;
@@ -30,6 +31,7 @@ public class LoginMedewerkerController {
                                  Model model) {
         if (loginMedewerkerService.validatePassword(email, gebruikerWachtwoord)) {
             Medewerker medewerker = medewerkerService.findMedewerkerByEmail(email);
+            System.out.println(setup(medewerker, model));
             return setup(medewerker, model);
         } else {
             model.addAttribute("header_text", "Probeer nog eens in te loggen als medewerker");
@@ -38,8 +40,10 @@ public class LoginMedewerkerController {
         }
     }
     public String setup(Medewerker medewerker, Model model){
-        if (medewerker.getFunctie().equals("HoofdParticulier")) {
+        if (medewerker.getFunctie().equals("Hoofd Particulier")) {
             List<Rekening> rekeningList = medewerkerService.rekeningenHoogsteSaldo();
+
+
             model.addAttribute("rekeningen",rekeningList);
             model.addAttribute("medewerker", medewerker);
 
