@@ -1,5 +1,6 @@
 package hoeckbankgroup.demo.controller;
 
+import hoeckbankgroup.demo.model.DAO.KoppelDAO;
 import hoeckbankgroup.demo.model.Gebruiker;
 import hoeckbankgroup.demo.model.Koppel;
 import hoeckbankgroup.demo.model.Rekening;
@@ -23,6 +24,9 @@ public class ToevoegenRekeninghouderController {
     @Autowired
     private KoppelService koppelService;
 
+    @Autowired
+    private KoppelDAO koppelDAO;
+
     @GetMapping("toevoegenrekeninghouder")
     private String toevoegenRekeninghouderHandler(@SessionAttribute("gebruiker") Gebruiker gebruiker, Model model) {
         return "toevoegenrekeninghouder";
@@ -36,7 +40,7 @@ public class ToevoegenRekeninghouderController {
 
         Rekening rekening = rekeningService.findRekeningByRekeningID(rekeningId);
         if (koppelService.validateEmail(email)) {
-            if (!koppelService.alGekoppeldEmail(email)) {
+            if (koppelService.checkOpGebruikersnaamEnRekeningnummer(email, rekening.getRekeningnummer())) {
                 Koppel koppel = new Koppel(rekening.getRekeningnummer(), email, beveiligingscode);
                 koppelService.save(koppel);
                 return "redirect:/rekeningdetail?id=" + rekeningId;

@@ -26,14 +26,30 @@ public class KoppelService {
             return false;
         } else return klant.getEmail().equals(email);
     }
-    public boolean alGekoppeldEmail(String email){
-        Koppel koppel = koppelDao.findKoppelByEmail(email);
-        if(koppel == null){
+
+    public boolean checkOpGebruikersnaamEnRekeningnummer(String mederekeninghouder, String rekeningnummer){
+        return !koppelDao.existsByMederekeninghouderAndRekeningnummer(mederekeninghouder, rekeningnummer);
+    }
+
+    /*public boolean alGekoppeldMederekeninghouder(String mederekeninghouder){
+        Koppel koppel = koppelDao.findKoppelByMederekeninghouder(mederekeninghouder);
+        if (koppel == null) {
             return true;
-        } else{
+        } else {
             return false;
         }
     }
 
+    public boolean checkOpRekeningnummer(String rekeningnummer){
+        Koppel koppel = koppelDao.findKoppelByRekeningnummer(rekeningnummer);
+        if (koppel == null){
+            return true;
+        } else if (!koppel.getRekeningnummer().equals(rekeningnummer)){
+            return false;
+        } else {
+            return true;
+        }
+    }
+*/
     //methode maken waarbij er gecontroleerd wordt of de email al gekoppeld is aan de rekening
 }
