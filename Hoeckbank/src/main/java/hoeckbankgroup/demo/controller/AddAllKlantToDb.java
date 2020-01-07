@@ -33,7 +33,7 @@ public class AddAllKlantToDb {
     @GetMapping("inleesmedewerker")
     private String inlezenmedewerker() {
         try {
-            Scanner invoer = new Scanner(new File("../Hoeckbank/src/main/resources/static/inleesdocumenten/inleesmedewerker.csv"));
+                Scanner invoer = new Scanner(new File("../Hoeckbank/src/main/resources/static/inleesdocumenten/inleesmedewerker.csv"));
             while (invoer.hasNextLine()) {
                 String regelUitBestand = invoer.nextLine();
 
