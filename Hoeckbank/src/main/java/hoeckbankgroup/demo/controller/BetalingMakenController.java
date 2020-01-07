@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
-
 import java.time.*;
 
 @Controller
 public class BetalingMakenController {
+    //private Model model;
 
     @Autowired
     private RekeningService rekeningService;
@@ -38,7 +38,6 @@ public class BetalingMakenController {
     @PostMapping("do_transactie")
     public String doTransactieHandler(@RequestParam (name="rekening_id") int rekeningId,
                                       @RequestParam double bedrag,
-                                      @RequestParam (name="naam_ontvanger") String naamOntvanger,
                                       @RequestParam (name="rekeningnummer_ontvanger") String rekeningnummerOntvanger,
                                       @RequestParam String omschrijving,
                                       Model model){
@@ -47,8 +46,8 @@ public class BetalingMakenController {
         // Valideer transactie:
         String validatieError = valideerTransactie(bedrag, rekening, tegenRekening);
         if(!validatieError.equals("")){
-            model.addAttribute("error", validatieError);
-            return "redirect:/betalingmaken?id=" + rekeningId + "&melding=" +validatieError;
+            return returnError(model, validatieError, rekeningId);
+
         }
         //Maak transactie objecten aan en sla deze op
         Transactie transactie = new Transactie(rekeningnummerOntvanger, -bedrag, omschrijving, LocalDateTime.now());
@@ -61,8 +60,13 @@ public class BetalingMakenController {
         saldosAanpassen(rekening, tegenRekening, bedrag);
         return "redirect:/rekeningdetail?id=" + rekeningId;
     }
+    public String returnError(Model model, String validatieError, int rekeningId ){
+        model.addAttribute("error", validatieError);
+        return "redirect:/betalingmaken?id=" + rekeningId + "&melding=" +validatieError;
+    }
 
     public String valideerTransactie(double bedrag, Rekening rekening, Rekening tegenRekening){
+        //Todo: tegenRekening != rekening
         String error = "";
         if(tegenRekening == null){
             return "Rekeningnummer ontvanger bestaat niet";
