@@ -33,15 +33,4 @@ public class RekeningService {
         return rekeningDAO.findRekeningByRekeningnummer(rekeningNummer);
     }
 
-    public void saldosAanpassen(Rekening rekening, Rekening tegenRekening, double bedrag){
-        setNieuwSaldo(-bedrag, rekening);
-        setNieuwSaldo(bedrag, tegenRekening);
-    }
-
-    public void setNieuwSaldo(double bedrag, Rekening rekening){
-        double nieuwSaldo = bedrag + rekening.getSaldo();
-        rekening.setSaldo(nieuwSaldo);
-        save(rekening);
-    }
-
 }

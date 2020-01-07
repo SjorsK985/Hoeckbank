@@ -48,8 +48,8 @@ public class BetalingMakenController {
             model.addAttribute("error", validatieError);
             return "redirect:/betalingmaken?id=" + rekeningId + "&melding=" +validatieError;
         } else {
-            String rekeningnummer = rekening.getRekeningnummer(); // Todo: REMOVE
-            transactieService.doValidTransactie(rekeningnummer, rekeningnummerOntvanger, bedrag, omschrijving);
+            transactieService.executeTransactie(rekening, tegenRekening, -bedrag, omschrijving);
+            transactieService.executeTransactie(tegenRekening, rekening, bedrag, omschrijving);
             return "redirect:/rekeningdetail?id=" + rekeningId;
         }
     }

@@ -5,7 +5,6 @@ import hoeckbankgroup.demo.model.Rekening;
 import hoeckbankgroup.demo.model.Transactie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
 
 @Service
@@ -22,33 +21,27 @@ public class TransactieService {
     }
 
     public String valideerTransactie(double bedrag, Rekening rekening, Rekening tegenRekening){
-        String error = "";
         if(tegenRekening == null){
             return "Rekeningnummer ontvanger bestaat niet";
         }
         if(bedrag > rekening.getSaldo()){
-            error = "Saldo is ontoereikend";
+            return "Saldo is ontoereikend";
         }
         if(bedrag <= 0){
-            error = "Het bedrag mag niet 0 of lager zijn";
+            return "Het bedrag mag niet 0 of lager zijn";
         }
         if(rekening.getRekeningnummer().equals(tegenRekening.getRekeningnummer())){
-            error = "De tegenrekening mag niet hetzelfde zijn";
+            return "De tegenrekening mag niet hetzelfde zijn";
         }
-        return error;
+        return "";
     }
 
-    public void doValidTransactie(String rekeningnummer, String rekeningnummerOntvanger, double bedrag, String omschrijving){
-        //Maak transactie objecten aan en sla deze op
-        Transactie transactie = new Transactie(rekeningnummerOntvanger, -bedrag, omschrijving, LocalDateTime.now());
-        Transactie tegenTransactie = new Transactie(rekeningnummerOntvanger, bedrag, omschrijving, LocalDateTime.now());
+    public void executeTransactie(Rekening rekening, Rekening tegenRekening, double bedrag, String omschrijving){
+        Transactie transactie = new Transactie(tegenRekening.getRekeningnummer(), bedrag, omschrijving, LocalDateTime.now());
         save(transactie);
-        save(tegenTransactie);
-        Rekening rekening = rekeningService.findRekeningByRekeningnummer(rekeningnummer);
-        Rekening tegenRekening = rekeningService.findRekeningByRekeningnummer(rekeningnummerOntvanger);
         rekening.addTransactie(transactie);
-        tegenRekening.addTransactie(tegenTransactie);
-        //Pas saldo's aan op rekening  & tegenrekening
-        rekeningService.saldosAanpassen(rekening, tegenRekening, bedrag);
+        //Pas saldo aan
+        rekening.setSaldo(bedrag + rekening.getSaldo());
+        rekeningService.save(rekening);
     }
 }
