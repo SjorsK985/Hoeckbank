@@ -4,46 +4,61 @@
 <body class="bg-light">
 <nav th:replace="fragments/navbarloguit :: navbar"/>
 <!--BEGIN HIER MET NIEUWE TEMPLATE-->
-<h3>Betaling maken</h3>
+<div class="container w-50 justify-content-between" >
+    <h3>Betaling maken</h3>
 
-<table>
-    <tr>
-        <td>Naam:</td>
-        <td><span th:text="${rekening.tenaamstelling}" /></td>
-    </tr>
-    <tr>
-        <td>Rekeningnummer:</td>
-        <td><span th:text="${rekening.rekeningnummer}"/></td>
-    </tr>
-    <tr>
-        <td>Saldo:</td>
-        <td>€ <span th:text="${rekening.saldo}"/></td>
-    </tr>
-</table>
-<hr>
-<span th:text="${error}" class="validate-error"/>
-<form action="#" th:action="@{do_transactie}" method="post" name="transactie_form" >
-    <input type="hidden" th:value="${param.id}"  name="rekening_id">
-    <b>Bedrag</b><br>
+    <table>
+        <tr>
+            <td>Naam:</td>
+            <td><span th:text="${rekening.tenaamstelling}"/></td>
+        </tr>
+        <tr>
+            <td>Rekeningnummer:</td>
+            <td><span th:text="${rekening.rekeningnummer}"/></td>
+        </tr>
+        <tr>
+            <td>Saldo:</td>
+            <td>€ <span th:text="${#numbers.formatDecimal(rekening.saldo, 1, 'POINT', 2, 'COMMA')}"/></td>
+        </tr>
+    </table>
+    <hr>
+    <span th:text="${error}" class="validate-error"/>
+    <form action="#" th:action="@{do_transactie}" method="post" name="transactie_form"
+          onsubmit="return validationError()">
+        <input type="hidden" th:value="${param.id}" name="rekening_id">
+        <b>Bedrag</b><br>
+        <input type="number" name="bedrag" step=".01"><br>
+        <div id="bedrag_error" class="validate-error"></div>
+        <br>
 
-    <input type="text" name="bedrag"><br><br>
+        <b>Rekeningnummer (IBAN) ontvanger</b><br>
+        <input type="text" name="rekeningnummer_ontvanger"><br>
+        <div id="rekeningnummer_ontvanger_error" class="validate-error"></div>
+        <br>
 
-    <b>Naam ontvanger</b><br>
-    <input type="text" name="naam_ontvanger"><br><br>
+        <b>Omschrijving</b><br>
+        <input type="text" name="omschrijving"><br>
+        <div id="omschrijving_error" class="validate-error"></div>
+        <br>
 
-    <b>Rekeningnummer (IBAN) ontvanger</b><br>
-    <input type="text" name="rekeningnummer_ontvanger"><br><br>
-
-    <b>Omschrijving</b><br>
-    <input type="text" name="omschrijving"><br><br>
-    <a href="#"><button class="btn btn-primary my-2 my-sm-0" type="submit" >Overmaken</button></a><br><br>
-    <a th:href="@{/rekeningdetail(id=${rekening.rekeningID})}">Annuleren</a>
-</form>
+        <a href="#">
+            <button class="btn btn-primary my-2 my-sm-0" type="submit">Overmaken</button>
+        </a><br><br>
+        <a th:href="@{/rekeningdetail(id=${rekening.rekeningID})}">Annuleren</a>
+    </form>
+    <script src="js/betalingmaken.js"></script>
+</div>
 
 <!--NIEUWE TEMPLATE TOT HIER-->
 <footer th:replace="fragments/footer :: footer"/>
 </body>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 </html>

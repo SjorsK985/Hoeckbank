@@ -18,7 +18,7 @@
                 <tr th:each="rekening : ${rekeningen}" class="table-row-link">
                     <td><a th:href="@{/rekeningdetail(id=${rekening.rekeningID})}"><span th:text="${rekening.rekeningnummer}" /></a></td>
                     <td class="text-uppercase"><a th:href="@{/rekeningdetail(id=${rekening.rekeningID})}"><span th:text="${rekening.tenaamstelling}"/></a></td>
-                    <td><a th:href="@{/rekeningdetail(id=${rekening.rekeningID})}">€ <span th:text="${rekening.saldo}" /></a></td>
+                    <td><a th:href="@{/rekeningdetail(id=${rekening.rekeningID})}">€ <span th:text="${#numbers.formatDecimal(rekening.saldo, 1, 'POINT', 2, 'COMMA')}"/></a></td>
                 </tr>
                 <tr>
                     <td><a href="newbankaccount">
