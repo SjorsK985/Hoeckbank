@@ -2,7 +2,6 @@ package hoeckbankgroup.demo.controller;
 
 import hoeckbankgroup.demo.model.Gebruiker;
 import hoeckbankgroup.demo.model.Rekening;
-import hoeckbankgroup.demo.model.Transactie;
 import hoeckbankgroup.demo.model.service.RekeningService;
 import hoeckbankgroup.demo.model.service.TransactieService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,11 +11,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
-import java.time.*;
 
 @Controller
 public class BetalingMakenController {
-    //private Model model;
+    private Model model;
+    private int rekeningId;
 
     @Autowired
     private RekeningService rekeningService;
@@ -29,69 +28,30 @@ public class BetalingMakenController {
                                        @RequestParam int id,
                                        @RequestParam (value = "melding", required = false) String melding,
                                        Model model){
-        Rekening rekening = rekeningService.findRekeningByRekeningID(id);
+        this.model = model;
+        this.rekeningId = id;
+        Rekening rekening = rekeningService.findRekeningByRekeningID(rekeningId);
         model.addAttribute("rekening", rekening);
         model.addAttribute("error", melding);
         return "betalingmaken";
     }
 
     @PostMapping("do_transactie")
-    public String doTransactieHandler(@RequestParam (name="rekening_id") int rekeningId,
-                                      @RequestParam double bedrag,
+    public String doTransactieHandler(@RequestParam double bedrag,
                                       @RequestParam (name="rekeningnummer_ontvanger") String rekeningnummerOntvanger,
-                                      @RequestParam String omschrijving,
-                                      Model model){
+                                      @RequestParam String omschrijving){
         Rekening rekening = rekeningService.findRekeningByRekeningID(rekeningId);
         Rekening tegenRekening =  rekeningService.findRekeningByRekeningnummer(rekeningnummerOntvanger);
         // Valideer transactie:
-        String validatieError = valideerTransactie(bedrag, rekening, tegenRekening);
+        String validatieError = transactieService.valideerTransactie(bedrag, rekening, tegenRekening);
         if(!validatieError.equals("")){
-            return returnError(model, validatieError, rekeningId);
-
+            model.addAttribute("error", validatieError);
+            return "redirect:/betalingmaken?id=" + rekeningId + "&melding=" +validatieError;
+        } else {
+            String rekeningnummer = rekening.getRekeningnummer(); // Todo: REMOVE
+            transactieService.doValidTransactie(rekeningnummer, rekeningnummerOntvanger, bedrag, omschrijving);
+            return "redirect:/rekeningdetail?id=" + rekeningId;
         }
-        //Maak transactie objecten aan en sla deze op
-        Transactie transactie = new Transactie(rekeningnummerOntvanger, -bedrag, omschrijving, LocalDateTime.now());
-        Transactie tegenTransactie = new Transactie(rekeningnummerOntvanger, bedrag, omschrijving, LocalDateTime.now());
-        transactieService.save(transactie);
-        transactieService.save(tegenTransactie);
-        rekening.addTransactie(transactie);
-        tegenRekening.addTransactie(tegenTransactie);
-        //Pas saldo's aan op rekening  & tegenrekening
-        saldosAanpassen(rekening, tegenRekening, bedrag);
-        return "redirect:/rekeningdetail?id=" + rekeningId;
-    }
-    public String returnError(Model model, String validatieError, int rekeningId ){
-        model.addAttribute("error", validatieError);
-        return "redirect:/betalingmaken?id=" + rekeningId + "&melding=" +validatieError;
-    }
-
-    public String valideerTransactie(double bedrag, Rekening rekening, Rekening tegenRekening){
-        //Todo: tegenRekening != rekening
-        String error = "";
-        if(tegenRekening == null){
-            return "Rekeningnummer ontvanger bestaat niet";
-        }
-        if(bedrag > rekening.getSaldo()){
-            error = "Saldo is ontoereikend";
-        }
-        if(bedrag <= 0){
-            error = "Het bedrag mag niet 0 of lager zijn";
-        }
-        if(rekening.getRekeningnummer().equals(tegenRekening.getRekeningnummer())){
-            error = "De tegenrekening mag niet hetzelfde zijn";
-        }
-        return error;
-    }
-
-    public void saldosAanpassen(Rekening rekening, Rekening tegenRekening, double bedrag){
-        setNieuwSaldo(-bedrag, rekening);
-        setNieuwSaldo(bedrag, tegenRekening);
-    }
-
-    public void setNieuwSaldo(double bedrag, Rekening rekening){
-        double nieuwSaldo = bedrag + rekening.getSaldo();
-        rekening.setSaldo(nieuwSaldo);
-        rekeningService.save(rekening);
     }
 
 }
