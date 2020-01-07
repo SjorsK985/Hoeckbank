@@ -21,35 +21,35 @@ public class ToevoegenRekeninghouderController {
     private RekeningService rekeningService;
 
     @Autowired
-    private KlantService klantService;
-
-    @Autowired
     private KoppelService koppelService;
 
     @GetMapping("toevoegenrekeninghouder")
     private String toevoegenRekeninghouderHandler(@SessionAttribute("gebruiker") Gebruiker gebruiker, Model model) {
         return "toevoegenrekeninghouder";
     }
+
+    @PostMapping("do_toevoegen_rekeninghouder") //th:action in template
+    public String doToevoegenHandler(@RequestParam(name = "rekening_id") int rekeningId,
+                                     @RequestParam(name = "gebruiker_naam_mede_rekeninghouder") String email, //in template aanwezig
+                                     @RequestParam(name = "beveiligingscode") int beveiligingscode,
+                                     @SessionAttribute("gebruiker") Gebruiker gebruiker, Model model) {
+
+        Rekening rekening = rekeningService.findRekeningByRekeningID(rekeningId);
+        if (koppelService.validateEmail(email)) {
+            if (!koppelService.alGekoppeldEmail(email)) {
+                Koppel koppel = new Koppel(rekening.getRekeningnummer(), email, beveiligingscode);
+                koppelService.save(koppel);
+                return "redirect:/rekeningdetail?id=" + rekeningId;
+            } else {
+                model.addAttribute("koppel1_error", "De ingevoerde rekeninghouder is al gekoppeld");
+                return "toevoegenrekeninghouder";
+            }
+        } else {
+            model.addAttribute("koppel2_error", "De ingevoerde rekeninghouder bestaat niet");
+            return "toevoegenrekeninghouder";
+        }
+        // valideren , als een rekening is gekoppeld, dan kan die niet nog een keer gekoppeld worden
+        // header text maken bij rekeningdetail dat de rekening aanvraag voor koppelen mede rekeninghouder is aangevraagd
+    }
 }
-//met de rekeningid heb je object rekening, en hiermee kan je de rekeningnummer oproepen
-
-
-//    @PostMapping("do_toevoegen_rekeninghouder") //th:action in template
-//    public String doToevoegenHandler(@RequestParam(name = "gebruiker_naam_nieuwe_rekeninghouder") String email, //in template aanwezig
-//                                     @RequestParam(name = "beveiligingcode") int beveiligingscode,
-//                                     Gebruiker gebruiker, Model model) {
-//
-//
-////        if (koppelService.validateEmail(email)) {
-////            Rekening rekening = rekeningService.findRekeningByRekeningID(rekeningId);
-////            Rekening tegenRekening =  rekeningService.findRekeningByRekeningnummer(rekeningnummerOntvanger);
-////
-////            Koppel koppel = new Koppel(gebruiker.getHuidigeRekeningnummer(), email, beveiligingscode);
-////            koppelService.save(koppel);
-////            //return statement moet er nog in.
-////        } else {
-////            model.addAttribute("koppel_error", "Gebruiker / wachtwoord combi niet geldig");
-////            return "toeveogenrekeninghouder";
-////        }
-////    }
 

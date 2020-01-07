@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface KoppelDAO extends JpaRepository<Koppel, Integer> {
 
+    Koppel findKoppelByEmail(String email);
+
 }

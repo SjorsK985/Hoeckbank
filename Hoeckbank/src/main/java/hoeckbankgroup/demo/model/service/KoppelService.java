@@ -26,4 +26,14 @@ public class KoppelService {
             return false;
         } else return klant.getEmail().equals(email);
     }
+    public boolean alGekoppeldEmail(String email){
+        Koppel koppel = koppelDao.findKoppelByEmail(email);
+        if(koppel == null){
+            return true;
+        } else{
+            return false;
+        }
+    }
+
+    //methode maken waarbij er gecontroleerd wordt of de email al gekoppeld is aan de rekening
 }
