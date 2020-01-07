@@ -46,11 +46,11 @@ public class ToevoegenRekeninghouderController {
                 return "redirect:/rekeningdetail?id=" + rekeningId;
             } else {
                 model.addAttribute("koppel1_error", "De ingevoerde rekeninghouder is al gekoppeld");
-                return "toevoegenrekeninghouder";
+                return "redirect:/toevoegenrekeninghouder?id=" + rekeningId;
             }
         } else {
             model.addAttribute("koppel2_error", "De ingevoerde rekeninghouder bestaat niet");
-            return "toevoegenrekeninghouder";
+            return "redirect:/toevoegenrekeninghouder?id=" + rekeningId;
         }
         // valideren , als een rekening is gekoppeld, dan kan die niet nog een keer gekoppeld worden
         // header text maken bij rekeningdetail dat de rekening aanvraag voor koppelen mede rekeninghouder is aangevraagd
