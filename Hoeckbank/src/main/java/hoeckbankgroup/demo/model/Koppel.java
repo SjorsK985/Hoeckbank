@@ -1,27 +1,21 @@
 package hoeckbankgroup.demo.model;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 public class Koppel extends Persoon{
-
-//    @OneToMany(cascade = CascadeType.ALL)
-//    private List<Klant> rekeninghouder;
-
     private String mederekeninghouder;
-
     private String rekeningnummer;
-    private int beveiliginscode;
+    private int beveiligingscode;
 
     protected Koppel(){
         super();
     }
 
-    public Koppel(String rekeningnummer, String rekeninghouder, int beveiliginscode) {
+    public Koppel(String rekeningnummer, String rekeninghouder, int beveiligingscode) {
         this.rekeningnummer = rekeningnummer;
         this.mederekeninghouder = rekeninghouder;
-        this.beveiliginscode = beveiliginscode;
+        this.beveiligingscode = beveiligingscode;
     }
 
     public String getRekeningnummer() {
@@ -40,19 +34,11 @@ public class Koppel extends Persoon{
         this.mederekeninghouder = rekeninghouder;
     }
 
-    //    public List<Klant> getRekeninghouder() {
-//        return rekeninghouder;
-//    }
-//
-//    public void setRekeninghouder(List<Klant> rekeninghouder) {
-//        this.rekeninghouder = rekeninghouder;
-//    }
-
-    public int getBeveiliginscode() {
-        return beveiliginscode;
+    public int getBeveiligingscode() {
+        return beveiligingscode;
     }
 
-    public void setBeveiliginscode(int beveiliginscode) {
-        this.beveiliginscode = beveiliginscode;
+    public void setBeveiligingscode(int beveiligingscode) {
+        this.beveiligingscode = beveiligingscode;
     }
 }

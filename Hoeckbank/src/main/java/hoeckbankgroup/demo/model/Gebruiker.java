@@ -19,6 +19,9 @@ public class Gebruiker {
         this.rol = rol;
         this.rekeningen = new ArrayList<>();
     }
+    public Gebruiker(){
+        super();
+    }
 
     public int getId() {
         return id;

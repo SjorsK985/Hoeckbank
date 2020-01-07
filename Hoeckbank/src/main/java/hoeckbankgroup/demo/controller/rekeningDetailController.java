@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,7 +22,7 @@ public class rekeningDetailController {
     private RekeningService rekeningService;
 
     @GetMapping("rekeningdetail")
-    public String rekeningDetailHandler(@RequestParam int id, Model model){
+    public String rekeningDetailHandler(@RequestParam int id, @SessionAttribute("gebruiker") Gebruiker gebruiker, Model model){
         Rekening rekening = rekeningService.findRekeningByRekeningID(id);
         List<Transactie> alleTransacties = rekening.getTransactiehistorie();
         Collections.sort(alleTransacties);
