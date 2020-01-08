@@ -1,6 +1,5 @@
 package hoeckbankgroup.demo.controller;
 
-
 import hoeckbankgroup.demo.model.Gebruiker;
 import hoeckbankgroup.demo.model.Klant;
 import hoeckbankgroup.demo.model.service.KlantService;
