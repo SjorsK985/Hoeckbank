@@ -16,7 +16,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Controller
-public class rekeningDetailController {
+public class RekeningDetailController {
 
     @Autowired
     private RekeningService rekeningService;
@@ -26,7 +26,6 @@ public class rekeningDetailController {
         Rekening rekening = rekeningService.findRekeningByRekeningID(id);
         List<Transactie> alleTransacties = rekening.getTransactiehistorie();
         Collections.sort(alleTransacties);
-
 
         // Zet transacties in nieuwe lijst om er max 10 te weergeven:
         ArrayList<Transactie> transacties = new ArrayList<>();
