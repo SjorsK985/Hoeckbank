@@ -21,12 +21,12 @@
                 <tr>
                     <td class="first-row"><i class=" fas fa-key fa-2x text-muted"></i></td>
                     <td class="first-row"></i>Gebruikersnaam mede-rekeninghouder:</td>
-                    <td class="first-row"><input class="register-form-input" type="text" name="gebruiker_naam_mede_rekeninghouder"></td>
+                    <td class="first-row"><input class="register-form-input" type="text" name="gebruiker_naam_mede_rekeninghouder" placeholder="example@hoeckbank.nl"></td>
                 </tr>
                 <tr>
                     <td>&nbsp</td>
                     <td>Beveiligingscode:</td>
-                    <td><input class="register-form-input" type="password" name="beveiligingscode"></td>
+                    <td><input class="register-form-input" type="password" name="beveiligingscode" placeholder="12345"></td>
                 </tr>
                 <tr>
                     <td></td>
@@ -38,8 +38,8 @@
                 </tbody>
             </table>
         </form>
-        <span th:text="${koppel1_error}" class="validate-error"/>
-        <span th:text="${koppel2_error}" class="validate-error"/>
+        <span th:text="${koppel_error}" class="validate-error"/>
+
     </div></div>
 
 <!--NIEUWE TEMPLATE TOT HIER-->

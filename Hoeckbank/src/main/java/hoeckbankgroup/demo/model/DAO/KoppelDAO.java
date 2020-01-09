@@ -8,9 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface KoppelDAO extends JpaRepository<Koppel, Integer> {
 
-    Koppel findKoppelByEmail(String email);
-    Koppel findKoppelByMederekeninghouder(String mederekeninghouder);
-    Koppel findKoppelByRekeningnummer(String rekeningnummer);
     boolean existsByMederekeninghouderAndRekeningnummer(String mederekeninghouder, String rekeningnummer);
 
 }

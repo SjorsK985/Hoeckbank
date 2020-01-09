@@ -7,6 +7,8 @@ import hoeckbankgroup.demo.model.Koppel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.regex.Pattern;
+
 @Service
 public class KoppelService {
 
@@ -27,10 +29,13 @@ public class KoppelService {
         } else return klant.getEmail().equals(email);
     }
 
-    public boolean checkOpGebruikersnaamEnRekeningnummer(String mederekeninghouder, String rekeningnummer){
+    public boolean checkOpGebnaamEnReknummer(String mederekeninghouder, String rekeningnummer){
         return !koppelDao.existsByMederekeninghouderAndRekeningnummer(mederekeninghouder, rekeningnummer);
     }
 
+    public boolean checkBeveiligingscode (String beveiligingscode){
+        return Pattern.matches("[0-9]{5}", beveiligingscode);
+    }
     /*public boolean alGekoppeldMederekeninghouder(String mederekeninghouder){
         Koppel koppel = koppelDao.findKoppelByMederekeninghouder(mederekeninghouder);
         if (koppel == null) {
