@@ -6,13 +6,13 @@ import javax.persistence.*;
 public class Koppel extends Persoon{
     private String mederekeninghouder;
     private String rekeningnummer;
-    private int beveiligingscode;
+    private String beveiligingscode;
 
     protected Koppel(){
         super();
     }
 
-    public Koppel(String rekeningnummer, String rekeninghouder, int beveiligingscode) {
+    public Koppel(String rekeningnummer, String rekeninghouder, String beveiligingscode) {
         this.rekeningnummer = rekeningnummer;
         this.mederekeninghouder = rekeninghouder;
         this.beveiligingscode = beveiligingscode;
@@ -34,11 +34,11 @@ public class Koppel extends Persoon{
         this.mederekeninghouder = rekeninghouder;
     }
 
-    public int getBeveiligingscode() {
+    public String getBeveiligingscode() {
         return beveiligingscode;
     }
 
-    public void setBeveiligingscode(int beveiligingscode) {
+    public void setBeveiligingscode(String beveiligingscode) {
         this.beveiligingscode = beveiligingscode;
     }
 }
