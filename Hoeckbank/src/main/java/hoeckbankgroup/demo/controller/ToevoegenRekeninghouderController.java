@@ -4,6 +4,7 @@ import hoeckbankgroup.demo.model.DAO.KoppelDAO;
 import hoeckbankgroup.demo.model.Gebruiker;
 import hoeckbankgroup.demo.model.Koppel;
 import hoeckbankgroup.demo.model.Rekening;
+import hoeckbankgroup.demo.model.service.KlantService;
 import hoeckbankgroup.demo.model.service.KoppelService;
 import hoeckbankgroup.demo.model.service.RekeningService;
 import org.springframework.beans.factory.annotation.Autowired;

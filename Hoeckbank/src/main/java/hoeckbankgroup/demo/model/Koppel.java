@@ -3,7 +3,12 @@ package hoeckbankgroup.demo.model;
 import javax.persistence.*;
 
 @Entity
-public class Koppel extends Persoon{
+public class Koppel {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private int koppelId;
+
     private String mederekeninghouder;
     private String rekeningnummer;
     private String beveiligingscode;
@@ -16,6 +21,10 @@ public class Koppel extends Persoon{
         this.rekeningnummer = rekeningnummer;
         this.mederekeninghouder = rekeninghouder;
         this.beveiligingscode = beveiligingscode;
+    }
+
+    public int getKoppelId() {
+        return koppelId;
     }
 
     public String getRekeningnummer() {
