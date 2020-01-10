@@ -27,7 +27,6 @@ public class rekeningDetailController {
         List<Transactie> alleTransacties = rekening.getTransactiehistorie();
         Collections.sort(alleTransacties);
 
-
         // Zet transacties in nieuwe lijst om er max 10 te weergeven:
         ArrayList<Transactie> transacties = new ArrayList<>();
         for (int i = 0; i < 10 && i < alleTransacties.size(); i++) {

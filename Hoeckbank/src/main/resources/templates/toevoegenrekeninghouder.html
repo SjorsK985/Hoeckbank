@@ -11,6 +11,7 @@
     <div class="form-wrapper mx-auto">
         <form action="#" th:action="@{do_toevoegen_rekeninghouder}" method="post" name="loginForm" >
             <input type="hidden" th:value="${param.id}"  name="rekening_id">
+            <input type="hidden" th:value="${param.id}"  name="koppelId">
             <table id="register-form"class="table">
                 <colgroup>
                     <col span="1">
@@ -38,8 +39,7 @@
                 </tbody>
             </table>
         </form>
-        <span th:text="${koppel1_error}" class="validate-error"/>
-        <span th:text="${koppel2_error}" class="validate-error"/>
+        <span th:text="${koppel_error}" class="validate-error"/>
     </div></div>
 
 <!--NIEUWE TEMPLATE TOT HIER-->
