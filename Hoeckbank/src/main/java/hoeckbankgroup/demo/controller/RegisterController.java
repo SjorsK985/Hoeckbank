@@ -52,7 +52,7 @@ public class RegisterController {
                                     @RequestParam(required = false, name = "company_name") String bedrijfsnaam, @RequestParam(required = false, name = "segment") Branche segment,
                                     Model model){
         if (rekeningSoort.equals("bedrijf")){
-            MKB mkb = new MKB(emailadres, wachtwoord, straat, huisnummer, postcode, woonplaats, telefoon, segment, bedrijfsnaam);
+            MKB mkb = new MKB(emailadres, wachtwoord, new Adres(straat, huisnummer, postcode, woonplaats), telefoon, new ArrayList<>(), bedrijfsnaam, segment);
             mkbService.save(mkb);
             Klant klant = klantService.findKlantByEmail(mkb.getEmail());
             Gebruiker gebruiker = new Gebruiker(klant.getPersonId(),"MKB");
@@ -60,8 +60,8 @@ public class RegisterController {
             return "redirect:/newbankaccount";
         }else{
             if (particulierService.controleerGeboortedatum(geboortedatumString) && particulierService.controleerBestaandeParticulier(bsn, emailadres)){
-                Particulier particulier = new Particulier(emailadres, wachtwoord, straat, huisnummer,
-                        postcode, woonplaats, telefoon, voornaam, tussenvoegsel, achternaam, bsn, geslacht, geboortedatumString);
+                Particulier particulier = new Particulier(emailadres, wachtwoord, new Adres(straat, huisnummer, postcode, woonplaats), telefoon, new ArrayList<>(),
+                        voornaam, tussenvoegsel, achternaam, bsn, geslacht, geboortedatumString);
                 particulierService.save(particulier);
                 Klant klant = klantService.findKlantByEmail(particulier.getEmail());
                 Gebruiker gebruiker = new Gebruiker(klant.getPersonId(),"Particulier");

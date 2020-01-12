@@ -9,6 +9,10 @@ public class Gebruiker {
     private String rol;
     private String huidigeRekeningnummer;
 
+    public Gebruiker(){
+        super();
+    }
+
     public Gebruiker(int id, List<Rekening> rekeningen, String rol) {
         this.id = id;
         this.rekeningen = rekeningen;

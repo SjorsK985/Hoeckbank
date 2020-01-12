@@ -89,27 +89,29 @@
                 <td>&nbsp</td>
             </tr>
             <tr>
+
                 <td class="first-row"><i id="address-icon" class="fas fa-home fa-2x text-muted"></i></td>
                 <td class="first-row">Straat:</td>
-                <td class="first-row"><input class="register-form-input" type="text" name="street" th:field="*{straat}"></td>
+                <td class="first-row"><input type="hidden" th:field="*{adres.adresID}">
+                    <input class="register-form-input" type="text" name="street" th:field="*{adres.straat}"></td>
             </tr>
             <tr>
                 <td></td>
 
                 <td>Huisnummer:</td>
-                <td><input class="register-form-input" type="text" name="house_number" th:field="*{huisnummer}"></td>
+                <td><input class="register-form-input" type="text" name="house_number" th:field="*{adres.huisnummer}"></td>
             </tr>
             <tr>
                 <td></td>
 
                 <td>Postcode:</td>
-                <td><input class="register-form-input" type="text" name="postcode" th:field="*{postcode}"></td>
+                <td><input class="register-form-input" type="text" name="postcode" th:field="*{adres.postcode}"></td>
             </tr>
             <tr>
                 <td></td>
 
                 <td id="register-field-city">Woonplaats:</td>
-                <td><input class="register-form-input" type="text" name="city" th:field="*{woonplaats}"></td>
+                <td><input class="register-form-input" type="text" name="city" th:field="*{adres.plaats}"></td>
             </tr>
             <tr>
                 <td></td>

@@ -1,16 +1,11 @@
 package hoeckbankgroup.demo.controller;
-
 import hoeckbankgroup.demo.model.*;
-import hoeckbankgroup.demo.model.DAO.MedewerkerDAO;
-import hoeckbankgroup.demo.model.DAO.MKBDAO;
-import hoeckbankgroup.demo.model.DAO.ParticulierDAO;
-import hoeckbankgroup.demo.model.DAO.RekeningDAO;
+import hoeckbankgroup.demo.model.DAO.*;
 import hoeckbankgroup.demo.model.enums.Branche;
 import hoeckbankgroup.demo.model.enums.Geslacht;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
@@ -31,6 +26,8 @@ public class AddAllKlantToDb {
     private MedewerkerDAO medewerkerDao;
     @Autowired
     private RekeningDAO rekeningDAO;
+    @Autowired
+    private PostcodeDAO postcodeDAO;
 
     Geslacht geslacht;
 
@@ -73,10 +70,8 @@ public class AddAllKlantToDb {
                 Rekening rekening = new Rekening(regelArray[7], geldbedrag, tenaamstelling);
                 rekeningen.add(rekening);
                 sector = Branche.LANDBOUW;
-
-
-                MKB mkb = new MKB(regelArray[0], regelArray[1], regelArray[2], regelArray[3], regelArray[4],
-                        regelArray[5], regelArray[6], rekeningen, regelArray[8], sector);
+                MKB mkb = new MKB(regelArray[0], regelArray[1], new Adres(regelArray[2], regelArray[3], regelArray[4],
+                        regelArray[5]), regelArray[6], rekeningen, regelArray[8], sector);
 
                 System.out.println("MKB: " + regelArray[0] + " saldo : " + geldbedrag);
                 mkbDao.save(mkb);
@@ -117,8 +112,8 @@ public class AddAllKlantToDb {
                 }
 
                 int bsn = Integer.parseInt(regelArray[12]);
-                Particulier particulier=new Particulier(regelArray[0],regelArray[1],regelArray[2],regelArray[3],regelArray[4],
-                        regelArray[5],regelArray[6],rekeningen,regelArray[9],regelArray[10],regelArray[11],regelArray[12], geslacht,regelArray[14]);
+                Particulier particulier=new Particulier(regelArray[0],regelArray[1], new Adres(regelArray[2],regelArray[3],regelArray[4],
+                        regelArray[5]),regelArray[6],rekeningen,regelArray[9],regelArray[10],regelArray[11],regelArray[12], geslacht,regelArray[14]);
                 System.out.println("Particulier: " + regelArray[0]);
                 particulierDao.save(particulier);
 
@@ -128,6 +123,24 @@ public class AddAllKlantToDb {
             System.out.println("Het bestand is niet gevonden.");
         }
         return "login";
+    }
+
+    @GetMapping("inleespostcodes")
+    private String inlezenPostcode() {
+        try {
+            Scanner invoer = new Scanner(new File("../Hoeckbank/src/main/resources/static/inleesdocumenten/postcodes.csv"));
+            while (invoer.hasNextLine()) {
+                String regelUitBestand = invoer.nextLine();
+                String[] regelArray;
+                regelArray = regelUitBestand.split(",");
+                Postcode postcode = new Postcode(regelArray[0], Integer.parseInt(regelArray[1]), Integer.parseInt(regelArray[2]), regelArray[3], regelArray[4]);
+                postcodeDAO.save(postcode);
+            }
+
+        } catch (FileNotFoundException nietGevonden) {
+            System.out.println("Het bestand is niet gevonden.");
+        }
+        return "index";
     }
 
     @GetMapping("inleesall")

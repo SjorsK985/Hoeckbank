@@ -23,33 +23,18 @@ public class MKB extends Klant{
         super();
     }
 
-    public MKB(String email, String wachtwoord, String straat, String huisnummer, String postcode, String woonplaats,
-               String telefoonNummer, List<Rekening> rekeningen, String bedrijfsnaam, Branche sector, Medewerker accountmanager) {
-        super(email, wachtwoord, straat, huisnummer, postcode, woonplaats, telefoonNummer, rekeningen);
+    public MKB(String email, String wachtwoord, Adres adres, String telefoonNummer, List<Rekening> rekeningen, String bedrijfsnaam, Branche sector, Medewerker accountmanager) {
+        super(email, wachtwoord, adres, telefoonNummer, rekeningen);
         this.bedrijfsnaam = bedrijfsnaam;
         this.sector = sector;
         this.accountmanager = accountmanager;
     }
 
-    public MKB(String email, String wachtwoord, String straat, String huisnummer, String postcode, String woonplaats, Branche sector, String telefoonNummer, String bedrijfsnaam, Medewerker accountmanager) {
-        super(email, wachtwoord, straat, huisnummer, postcode, woonplaats, telefoonNummer);
-        this.bedrijfsnaam = bedrijfsnaam;
-        this.sector = Branche.LANDBOUW;
-        this.accountmanager = accountmanager;
-    }
-
-    public MKB(String email, String wachtwoord, String straat, String huisnummer, String postcode, String woonplaats,
-               String telefoonNummer, List<Rekening> rekeningen, String bedrijfsnaam, Branche sector) {
-        super(email, wachtwoord, straat, huisnummer, postcode, woonplaats, telefoonNummer, rekeningen);
+    public MKB(String email, String wachtwoord, Adres adres, String telefoonNummer, List<Rekening> rekeningen, String bedrijfsnaam, Branche sector) {
+        super(email, wachtwoord, adres, telefoonNummer, rekeningen);
         this.bedrijfsnaam = bedrijfsnaam;
         this.sector = sector;
         this.accountmanager=null;
-    }
-
-    public MKB(String email, String wachtwoord, String straat, String huisnummer, String postcode, String woonplaats, String telefoon, Branche sector, String bedrijfsnaam){
-        super(email, wachtwoord, straat, huisnummer, postcode, woonplaats, telefoon);
-        this.sector = sector;
-        this.bedrijfsnaam = bedrijfsnaam;
     }
 
     public String getBedrijfsnaam() {return bedrijfsnaam;}
@@ -67,7 +52,4 @@ public class MKB extends Klant{
     public Medewerker getAccountmanager() {return accountmanager;}
 
     public void setAccountmanager(Medewerker accountmanager) {this.accountmanager = accountmanager;}
-
-
-
 }
