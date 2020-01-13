@@ -7,6 +7,9 @@ import hoeckbankgroup.demo.model.Rekening;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class RekeningService {
 
@@ -32,5 +35,14 @@ public class RekeningService {
     public Rekening findRekeningByRekeningnummer(String rekeningNummer){
         return rekeningDAO.findRekeningByRekeningnummer(rekeningNummer);
     }
+
+//    public List<Rekening> findAllByRekeningnummer(Rekening rekening){
+//        Iterable<Rekening> rekeningIterable = rekeningDAO.findAll().equals(rekening.getRekeningnummer());
+//        List<Rekening> rekeningList = new ArrayList<>();
+//        for (Rekening r: rekeningIterable){
+//            rekeningList.add(r);
+//        }
+//        return rekeningList;
+//    }
 
 }
