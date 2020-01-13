@@ -79,4 +79,6 @@ public class Klant extends Persoon{
     public void addRekening(Rekening rekening){
         rekeningen.add(rekening);
     }
+
+
 }

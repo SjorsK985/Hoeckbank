@@ -41,17 +41,20 @@ public class LoginMedewerkerController {
     }
     public String setup(Medewerker medewerker, Model model){
         if (medewerker.getFunctie().equals("Hoofd Particulier")) {
-            List<Rekening> rekeningList = medewerkerService.rekeningenHoogsteSaldo();
+        //    List<Rekening> rekeningList = medewerkerService.rekeningenHoogsteSaldoParticulier();
 
-
+           List<Rekening> rekeningList = medewerkerService.rekeningenHoogsteSaldoParticulier();
             model.addAttribute("rekeningen",rekeningList);
             model.addAttribute("medewerker", medewerker);
 
-            return "hoofdparticulier";
+            return "medewerkeroverzicht";
 
         } else {
+            List<Rekening> rekeningList = medewerkerService.rekeningenHoogsteSaldoMKB();
+            model.addAttribute("rekeningen",rekeningList);
             model.addAttribute("medewerker", medewerker);
-            return "redirect:/rekeningenoverzicht";
+
+            return "medewerkeroverzicht";
         }
     }
 }
