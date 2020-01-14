@@ -13,6 +13,7 @@ h1, h2, h3, h4, h5, h6 {
     color:red;
 }
 
+
 .validate-ok{
     color: #28a745!important;
 }
@@ -23,6 +24,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .validate-field-ok{
     background-color: rgba(0, 255, 0, 0.4);
+}
+
+button[disabled=disabled], button:disabled {
+    cursor: not-allowed;
+    background-color: rgba(237, 108, 57, 0.4)!important;
+    border-color: rgba(237, 108, 57, 0.4)!important;
 }
 
 .carousel-caption > h5{

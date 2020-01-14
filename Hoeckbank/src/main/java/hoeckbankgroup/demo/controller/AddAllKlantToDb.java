@@ -126,7 +126,7 @@ public class AddAllKlantToDb {
     }
 
     @GetMapping("inleespostcodes")
-    private String inlezenPostcode() {
+    private String inlezenPostcodes() {
         try {
             Scanner invoer = new Scanner(new File("../Hoeckbank/src/main/resources/static/inleesdocumenten/postcodes.csv"));
             while (invoer.hasNextLine()) {
@@ -143,12 +143,19 @@ public class AddAllKlantToDb {
         return "index";
     }
 
+    @GetMapping("inleesvbpostcode")
+    private String inleesVBPostcode(){
+        Postcode postcode = new Postcode("1000AA",1,10,"Lutjebroekstraat","Lutjebroek");
+        return "index";
+    }
+
     @GetMapping("inleesall")
     private String inlezenall() {
         inlezenmedewerker();
         inlezenMKB();
         inlezenparticulier();
         rekeninginlezen();
+        inleesVBPostcode();
         return "login";
     }
 
