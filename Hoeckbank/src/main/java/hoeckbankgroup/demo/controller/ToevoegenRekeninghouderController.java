@@ -25,7 +25,7 @@ public class ToevoegenRekeninghouderController {
     private KoppelService koppelService;
 
     @Autowired
-    private KoppelDAO koppelDAO;
+    private KlantService klantService;
 
     @GetMapping("toevoegenrekeninghouder")
     private String toevoegenRekeninghouderHandler(@SessionAttribute("gebruiker") Gebruiker gebruiker,
@@ -43,7 +43,10 @@ public class ToevoegenRekeninghouderController {
 
         Rekening rekening = rekeningService.findRekeningByRekeningID(rekeningId);
         String error = "De ingevoerde rekeninghouder kan niet worden gekoppeld";
-        if (koppelService.validateEmail(email) && koppelService.validateEmail(email) && koppelService.checkOpGebnaamEnReknummer(email, rekening.getRekeningnummer()) && koppelService.checkBeveiligingscode(beveiligingscode)){
+        if (koppelService.validateEmail(email) &&
+                koppelService.checkOpGebnaamEnReknummer(email, rekening.getRekeningnummer()) &&
+                    koppelService.checkBeveiligingscode(beveiligingscode) && 
+                        koppelService.checkOpEigenEmail(gebruiker.getId(), email)){
             Koppel koppel = new Koppel(rekening.getRekeningnummer(), email, beveiligingscode);
             koppelService.save(koppel);
             return "redirect:/rekeningdetail?id=" + rekeningId;
