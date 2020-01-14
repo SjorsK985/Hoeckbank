@@ -7,7 +7,8 @@
 <div class="container" align = "center">
     <h2 class="py-5"><span th:text="${header_text}"/></h2>
     <div class="form-wrapper mx-auto">
-        <form action="#" th:action="@{do_toevoegen}" method="post" onsubmit=" return validationError()" name="loginForm" >
+        <form action="#" th:action="@{do_koppelen}" method="post" onsubmit=" return validationError()" name="loginForm" >
+            <input type="hidden" th:value="${param.id}" name="rekeningid">
             <table id="register-form"class="table">
                 <colgroup>
                     <col span="1">
@@ -17,14 +18,14 @@
                 <tbody>
                 <tr>
                     <td class="first-row"><i class=" fas fa-key fa-2x text-muted"></i></td>
-                    <td class="first-row"></i>Gebruikersnaam mede-rekeninghouder:</td>
-                    <td class="first-row"><input class="register-form-input" type="text" name="gebruiker_naam_mede_rekeninghouder" placeholder="example@hoeckbank.nl"></td>
+                    <td class="first-row"></i>Rekeningnummer koppelrekening:</td>
+                    <td class="first-row"><input class="register-form-input" type="text" name="rekeningnummer" placeholder="NL12HCKB1234567890"></td>
                 </tr>
 
                 <tr>
                     <td>&nbsp</td>
                     <td>Beveiligingscode:</td>
-                    <td><input class="register-form-input" type="password" name="beveiligingcode" placeholder="12345"></td>
+                    <td><input class="register-form-input" type="password" name="beveiligingscode" placeholder="12345"></td>
                 </tr>
 
                 <tr>
@@ -38,7 +39,7 @@
                 </tbody>
             </table>
         </form>
-        <span th:text="${login_error}" class="validate-error"/>
+        <span th:text="${koppel_error}" class="validate-error"/>
     </div></div>
 
 

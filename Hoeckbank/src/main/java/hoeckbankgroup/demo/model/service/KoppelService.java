@@ -36,25 +36,27 @@ public class KoppelService {
     public boolean checkBeveiligingscode (String beveiligingscode){
         return Pattern.matches("[0-9]{5}", beveiligingscode);
     }
-    /*public boolean alGekoppeldMederekeninghouder(String mederekeninghouder){
-        Koppel koppel = koppelDao.findKoppelByMederekeninghouder(mederekeninghouder);
-        if (koppel == null) {
-            return true;
-        } else {
+
+    public boolean checkOpKoppelen(String rekeningnummer, String beveiligingscode, String gebruikersnaam){
+        return koppelDao.existsByRekeningnummerAndBeveiligingscodeAndMederekeninghouder(rekeningnummer,
+                beveiligingscode, gebruikersnaam);
+    }
+
+    public boolean checkOpEigenEmail(int id, String mederekeninghouder){
+        Klant klant = klantDAO.findKlantByPersonId(id);
+        String email = klant.getEmail();
+        if (email.equals(mederekeninghouder)){
             return false;
+        } else {
+            return true;
         }
     }
 
-    public boolean checkOpRekeningnummer(String rekeningnummer){
-        Koppel koppel = koppelDao.findKoppelByRekeningnummer(rekeningnummer);
-        if (koppel == null){
-            return true;
-        } else if (!koppel.getRekeningnummer().equals(rekeningnummer)){
-            return false;
-        } else {
-            return true;
-        }
+    public Koppel findKoppel(String rekeningnummer, String gebruikersnaam){
+        return koppelDao.findKoppelByRekeningnummerAndMederekeninghouder(rekeningnummer, gebruikersnaam);
     }
-*/
-    //methode maken waarbij er gecontroleerd wordt of de email al gekoppeld is aan de rekening
+
+    public void delete(Koppel koppel){
+        koppelDao.delete(koppel);
+    }
 }
