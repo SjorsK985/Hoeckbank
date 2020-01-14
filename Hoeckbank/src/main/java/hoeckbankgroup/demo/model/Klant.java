@@ -15,7 +15,7 @@ public class Klant extends Persoon{
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Adres adres;
     private String telefoonNummer;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Rekening> rekeningen;
 
     protected Klant(){
@@ -64,4 +64,6 @@ public class Klant extends Persoon{
     public void addRekening(Rekening rekening){
         rekeningen.add(rekening);
     }
+
+
 }

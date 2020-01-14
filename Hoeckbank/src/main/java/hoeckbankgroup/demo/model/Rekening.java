@@ -10,7 +10,7 @@ import java.util.List;
  */
 
 @Entity
-public class Rekening {
+public class Rekening implements Comparable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -21,7 +21,7 @@ public class Rekening {
     private double saldo;
     private String tenaamstelling;
 
-    @OneToMany (cascade = CascadeType.ALL)
+    @ManyToMany (cascade = CascadeType.ALL)
     private List<Klant> rekeninghouder;
 
     @OneToMany (cascade = CascadeType.ALL)
@@ -80,4 +80,19 @@ public class Rekening {
     public void addRekeninghouder(Klant klant){
         rekeninghouder.add(klant);
     }
+
+    @Override
+    public int compareTo(Object o) {
+        if (o instanceof Rekening){
+            Rekening other = (Rekening) o;
+            if(this.saldo > other.saldo){
+                return -1;
+            }else if(this.saldo<other.saldo){
+                return 1;
+            }else return 0;
+        }
+        return 0;
+    }
+
+
 }

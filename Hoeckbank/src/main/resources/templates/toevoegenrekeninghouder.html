@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:replace="fragments/header :: header"/>
 <body class="bg-light">
-<nav th:replace="fragments/navbar :: navbar"/>
+<nav th:replace="fragments/navbarloguit :: navbar"/>
 <!--BEGIN HIER MET NIEUWE TEMPLATE-->
 
 <!-- Registreer mede-rekeninghouder-form -->
@@ -10,6 +10,7 @@
     <h2 class="py-5"><span th:text="${header_text}"/></h2>
     <div class="form-wrapper mx-auto">
         <form action="#" th:action="@{do_toevoegen_rekeninghouder}" method="post" name="loginForm" >
+            <input type="hidden" th:value="${param.id}"  name="rekening_id">
             <table id="register-form"class="table">
                 <colgroup>
                     <col span="1">
@@ -25,19 +26,21 @@
                 <tr>
                     <td>&nbsp</td>
                     <td>Beveiligingscode:</td>
-                    <td><input class="register-form-input" type="password" name="gebruiker_paswoord"></td>
+                    <td><input class="register-form-input" type="password" name="beveiligingscode"></td>
                 </tr>
                 <tr>
                     <td></td>
                     <td></td>
                     <td align="right">
+                        <a href="rekeningdetail" class="btn btn-primary my-2 my-sm-0 text-white" value="Annuleren">Annuleren</a>
                         <a href="#"><button class="btn btn-primary my-2 my-sm-0" type="submit" value="Bevestigen">Bevestig</button></a>
                     </td>
                 </tr>
                 </tbody>
             </table>
         </form>
-        <span th:text="${login_error}" class="validate-error"/>
+        <span th:text="${koppel_error}" class="validate-error"/>
+
     </div></div>
 
 <!--NIEUWE TEMPLATE TOT HIER-->

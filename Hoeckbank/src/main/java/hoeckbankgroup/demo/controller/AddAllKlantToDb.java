@@ -1,6 +1,10 @@
 package hoeckbankgroup.demo.controller;
 import hoeckbankgroup.demo.model.*;
 import hoeckbankgroup.demo.model.DAO.*;
+import hoeckbankgroup.demo.model.DAO.MedewerkerDAO;
+import hoeckbankgroup.demo.model.DAO.MKBDAO;
+import hoeckbankgroup.demo.model.DAO.ParticulierDAO;
+import hoeckbankgroup.demo.model.DAO.RekeningDAO;
 import hoeckbankgroup.demo.model.enums.Branche;
 import hoeckbankgroup.demo.model.enums.Geslacht;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -19,7 +22,8 @@ import java.util.Scanner;
 @Controller
 public class AddAllKlantToDb {
     @Autowired
-    private ParticulierDAO particulierDao;
+   private ParticulierDAO particulierDao;
+
     @Autowired
     private MKBDAO mkbDao;
     @Autowired
@@ -72,7 +76,6 @@ public class AddAllKlantToDb {
                 sector = Branche.LANDBOUW;
                 MKB mkb = new MKB(regelArray[0], regelArray[1], new Adres(regelArray[2], regelArray[3], regelArray[4],
                         regelArray[5]), regelArray[6], rekeningen, regelArray[8], sector);
-
                 System.out.println("MKB: " + regelArray[0] + " saldo : " + geldbedrag);
                 mkbDao.save(mkb);
             }
