@@ -82,7 +82,7 @@ a:active{
 }
 
 .form-wrapper{
-    width: 80%;
+    width: 90%;
     padding: 2rem 2rem;
     border-radius: .5rem;
     background-color: #e9ecef;
@@ -99,6 +99,8 @@ table{
 #register-form tr > *:nth-child(1) { width:10%; }
 #register-form tr > *:nth-child(2) { width:30%; }
 #register-form tr > *:nth-child(3) { width:60%; }
+
+#rekening-detail-table tr { width:33%;}
 
 th.from, th.date {
     width: 10%;

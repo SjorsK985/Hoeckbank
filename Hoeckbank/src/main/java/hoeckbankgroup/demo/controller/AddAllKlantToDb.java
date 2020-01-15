@@ -149,6 +149,7 @@ public class AddAllKlantToDb {
     @GetMapping("inleesvbpostcode")
     private String inleesVBPostcode(){
         Postcode postcode = new Postcode("1000AA",1,10,"Lutjebroekstraat","Lutjebroek");
+        postcodeDAO.save(postcode);
         return "index";
     }
 

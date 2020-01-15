@@ -4,80 +4,58 @@
 <body class="bg-light">
 <nav th:replace="fragments/navbarloguit :: navbar"/>
 <!--BEGIN HIER MET NIEUWE TEMPLATE-->
-
-
-<div class="container w-75 justify-content-between" align="center">
-
-    <div class="row">
-        <div class="col">
-            <a href="rekeningenoverzicht" class="justify-content-start">< Rekeningenoverzicht</a>
-        </div>
-        <div class="col">
-            <h3 class="justify-content-center">Rekeningpagina</h3>
-        </div>
-        <div class="col">
-            &nbsp
-        </div>
+<section id="rekening-detail">
+    <div class="container">
+            <div class="form-wrapper mx-auto mt-5">
+                <h3 class="text-center mb-2">Details</h3>
+                <table class="table" id="rekening-detail-table">
+                    <tr>
+                        <th class="">Rekeningnummer</th>
+                        <th class="">Saldo</th>
+                        <th class="">Rekeninghouders</th>
+                    <tr>
+                    <tr>
+                        <td class=""><span th:text="${rekening.rekeningnummer}"/></td>
+                        <td class="">€ <span th:text="${#numbers.formatDecimal(rekening.saldo, 1, 'POINT', 2, 'COMMA')}"/></td>
+                        <td class=""><select name="rekeninghouders">
+                            <option th:each="rekeninghouder : ${rekeninghouders}" th:text="${rekeninghouder.naam}">
+                            </option>
+                        </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="rekeningenoverzicht" class="text-muted cancel-link">Terug naar rekeningenoverzicht</a></td>
+                        <td><a th:href="@{/betalingmaken(id=${rekening.rekeningID})}">
+                            <button class="btn btn-primary my-2 my-sm-0" type="submit" value="select-rekening"><i class="fas fa-hand-holding-usd mr-2"></i>Overmaken</button>
+                            </a>
+                        </td>
+                        <td><a href="toevoegenrekeninghouder" class="text-muted cancel-link"><i class="fas fa-plus-circle mr-1"></i>Voeg houder toe</a></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="form-wrapper mx-auto mt-5 bg-white">
+                <h2 class="text-center">Transactie-overzicht</h2>
+                <table class="table">
+                    <tr class="font-weight-bold">
+                        <td class="first-row">Datum</td>
+                        <td class="first-row">Omschrijving</td>
+                        <td class="first-row">Tegenrekening</td>
+                        <td class="first-row">Bedrag</td>
+                    </tr>
+                    <tr th:each="transactie : ${transacties}" class="table-row-link">
+                        <!--<td><span th:text="${transactie.datum}"/></td>-->
+                        <td><span th:text="${#temporals.format(transactie.datum, 'dd-MM-yyyy HH:mm')}" /></td>
+                        <!--th:text="${#temporals.format(now, 'dd/MMM/yyyy HH:mm')}"-->
+                        <!--<td><span th:text="${#temporals.formatISO(transactie.datum)}"/></td>-->
+                        <!--<p th:text="${#temporals.formatISO(localDateTime)}"></p>-->
+                        <td><span th:text="${transactie.omschrijving}"/></td>
+                        <td><span th:text="${transactie.tegenRekening}"/></td>
+                        <td>€ <span th:text="${#numbers.formatDecimal(transactie.bedrag, 1, 'POINT', 2, 'COMMA')}"/></td>
+                    </tr>
+                </table>
+            </div>
     </div>
-</div>
-
-<div class="container">
-    <div class="row">
-        <div class="col-sm">
-            <span th:text="${rekening.rekeningnummer}"/>
-        </div>
-        <div class="col-sm">
-            <span th:text="${rekening.tenaamstelling}"/>
-        </div>
-        <div class="col-sm" id="date-time"/>
-    </div>
-</div>
-
-<div class="container">
-    <div class="row">
-        <div class="col-sm">
-            € <span th:text="${#numbers.formatDecimal(rekening.saldo, 1, 'POINT', 2, 'COMMA')}"/>
-        </div>
-        <div class="col-sm">
-            <a href="#">
-                <button class="btn btn-primary my-2 my-sm-0-mt5" type="submit" value="select-rekening">
-                    <a th:href="@{/betalingmaken(id=${rekening.rekeningID})}">Overmaken</a>
-
-                </button>
-            </a>
-        </div>
-        <div class="col-sm">
-            <a th:href="@{/toevoegenrekeninghouder(id=${rekening.rekeningID})}">
-                <button class="btn btn-primary my-2 my-sm-0-mt5" type="submit" value="rekeninghouder-toevoegen">
-                    Rekeninghouder toevoegen
-                </button>
-            </a>
-        </div>
-    </div>
-</div>
-
-<br><br>
-
-<table class="table table-condensed">
-    <tr class="font-weight-bold">
-        <td class="first-row">Datum</td>
-        <td class="first-row">Omschrijving</td>
-        <td class="first-row">Tegenrekening</td>
-        <td class="first-row">Bedrag</td>
-    </tr>
-    <tr th:each="transactie : ${transacties}" class="table-row-link">
-        <!--<td><span th:text="${transactie.datum}"/></td>-->
-        <td><span th:text="${#temporals.format(transactie.datum, 'dd-MM-yyyy HH:mm')}" /></td>
-        <!--th:text="${#temporals.format(now, 'dd/MMM/yyyy HH:mm')}"-->
-        <!--<td><span th:text="${#temporals.formatISO(transactie.datum)}"/></td>-->
-        <!--<p th:text="${#temporals.formatISO(localDateTime)}"></p>-->
-        <td><span th:text="${transactie.omschrijving}"/></td>
-        <td><span th:text="${transactie.tegenRekening}"/></td>
-        <td>€ <span th:text="${#numbers.formatDecimal(transactie.bedrag, 1, 'POINT', 2, 'COMMA')}"/></td>
-
-    </tr>
-
-</table>
+</section>
 
 <script>
     window.onload = function () {
@@ -89,9 +67,6 @@
         document.getElementById("date-time").innerHTML = formatted_date;
     }
 </script>
-
-</div>
-
 
 <!--NIEUWE TEMPLATE TOT HIER-->
 <footer th:replace="fragments/footer :: footer"/>
