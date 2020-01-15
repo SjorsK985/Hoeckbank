@@ -17,9 +17,10 @@ public class Klant extends Persoon{
     private String postcode;
     private String woonplaats;
     private String telefoonNummer;
+/*    @OneToMany(cascade = CascadeType.ALL,  fetch = FetchType.EAGER)
+    private List<Rekening> rekeningen;*/
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Rekening> rekeningen;
-
     protected Klant(){
         super();
     }

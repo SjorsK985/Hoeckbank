@@ -2,10 +2,7 @@
 package hoeckbankgroup.demo.controller;
 
 import hoeckbankgroup.demo.model.*;
-import hoeckbankgroup.demo.model.DAO.MedewerkerDAO;
-import hoeckbankgroup.demo.model.DAO.MKBDAO;
-import hoeckbankgroup.demo.model.DAO.ParticulierDAO;
-import hoeckbankgroup.demo.model.DAO.RekeningDAO;
+import hoeckbankgroup.demo.model.DAO.*;
 import hoeckbankgroup.demo.model.enums.Branche;
 import hoeckbankgroup.demo.model.enums.Geslacht;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +30,8 @@ public class AddAllKlantToDb {
     private MedewerkerDAO medewerkerDao;
     @Autowired
     private RekeningDAO rekeningDAO;
+    @Autowired
+    private KlantDAO klantDAO;
 
     @GetMapping("inleesmedewerker")
     private String inlezenmedewerker() {
@@ -166,5 +165,14 @@ public class AddAllKlantToDb {
 
     public static int geefRandomGetal(int aantal, int vanaf) { //van doet mee tot doet mee
         return (int) ((aantal + 1) * Math.random() + vanaf); //hoogste getal=antal+vanaf -- laagste=vanaf
+    }
+
+    @GetMapping("rekeningtoevoegen")
+    private String rektoevoegen() {
+        Klant particulier = particulierDao.findParticulierByPersonId(2003);
+        Rekening rekening = rekeningDAO.findRekeningByRekeningID(596);
+        particulier.addRekening(rekening);
+        klantDAO.save(particulier);
+        return "login";
     }
 }
