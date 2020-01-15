@@ -34,11 +34,10 @@ public class RekeningDetailController {
     public String rekeningDetailHandler(@RequestParam int id, @SessionAttribute("gebruiker") Gebruiker gebruiker, Model model){
         Rekening rekening = rekeningService.findRekeningByRekeningID(id);
         ArrayList<Transactie> transacties = transactieService.getLastTransactions(rekening);
-        List<Klant> rekeninghouders = klantService.getMederekeninghouders(rekening);
-        klantService.getNaam(rekening);
+        List<String> mederekeninghouders = klantService.getMederekeninghouders(rekening);
         model.addAttribute("rekening", rekening);
         model.addAttribute("transacties", transacties);
-        model.addAttribute("rekeninghouders", rekeninghouders);
+        model.addAttribute("rekeninghouders", mederekeninghouders);
         return "rekeningdetail";
     }
 
