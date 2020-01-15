@@ -10,7 +10,7 @@ import java.util.List;
  */
 
 @Entity
-public class Klant extends Persoon{
+public class Klant extends Persoon {
 
     private String straat;
     private String huisnummer;  //gekozen voor string want sommige nummers hebben nog a of b

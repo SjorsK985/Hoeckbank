@@ -37,7 +37,7 @@ public class AddAllKlantToDb {
     @GetMapping("inleesmedewerker")
     private String inlezenmedewerker() {
         try {
-                Scanner invoer = new Scanner(new File("../Hoeckbank/src/main/resources/static/inleesdocumenten/inleesmedewerker.csv"));
+                Scanner invoer = new Scanner(new File("Hoeckbank/src/main/resources/static/inleesdocumenten/inleesmedewerker.csv"));
             while (invoer.hasNextLine()) {
                 String regelUitBestand = invoer.nextLine();
 
@@ -58,7 +58,7 @@ public class AddAllKlantToDb {
     @GetMapping("inleesmkb")
     private String inlezenMKB() {
         try {
-            Scanner invoer = new Scanner(new File("../Hoeckbank/src/main/resources/static/inleesdocumenten/inleesmkb.csv"));
+            Scanner invoer = new Scanner(new File("Hoeckbank/src/main/resources/static/inleesdocumenten/inleesmkb.csv"));
             while (invoer.hasNextLine()) {
                 String regelUitBestand = invoer.nextLine();
 
@@ -87,7 +87,7 @@ public class AddAllKlantToDb {
     @GetMapping("inleesparticulier")
     private String inlezenparticulier() {
         try {
-            Scanner invoer = new Scanner(new File("../Hoeckbank/src/main/resources/static/inleesdocumenten/inleesparticulier.csv"));
+            Scanner invoer = new Scanner(new File("Hoeckbank/src/main/resources/static/inleesdocumenten/inleesparticulier.csv"));
             while (invoer.hasNextLine()) {
                 String regelUitBestand = invoer.nextLine();
 
@@ -129,7 +129,7 @@ public class AddAllKlantToDb {
 
     private List<Transactie> gettransacties(){
         try {
-            Scanner invoer = new Scanner(new File("../Hoeckbank/src/main/resources/static/inleesdocumenten/inleestransacties.csv"));
+            Scanner invoer = new Scanner(new File("Hoeckbank/src/main/resources/static/inleesdocumenten/inleestransacties.csv"));
             List<Transactie> transacties = new ArrayList<>();
             while (invoer.hasNextLine()) {
                 String regelUitBestand = invoer.nextLine();
