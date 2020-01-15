@@ -32,12 +32,17 @@
                     <tr>
                         <td class="first-row"><i class=" fas fa-key fa-2x text-muted"></i></td>
                         <td class="first-row"></i>Emailadres:</td>
-                        <td class="first-row"><input class="register-form-input" type="email" name="user_email"></td>
+                        <td class="first-row"><input class="register-form-input" type="email" name="user_email" id="email-field-reg"><i class="fas fa-lg ml-3 hidden"></i></td>
                     </tr>
                     <tr>
                         <td></td>
                         <td>Wachtwoord:</td>
-                        <td><input class="register-form-input" type="password" name="password"></td>
+                        <td><input class="register-form-input" type="password" name="password" id="password-field-reg"><i class="fas fa-lg ml-3 hidden"></i></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Bevestig wachtwoord:</td>
+                        <td><input class="register-form-input" type="password" name="passwordconfirm" id="passwordconfirm-field-reg"><i class="fas fa-lg ml-3 hidden"></i></td>
                     </tr>
                     </tbody>
                     <tr>
@@ -60,30 +65,30 @@
                     <tr class="private-info">
                         <td></td>
                         <td>Voornaam:</td>
-                        <td><input class="register-form-input" type="text" name="first_name"></td>
+                        <td><input class="register-form-input" type="text" name="first_name" id="firstname-field-reg"><i class="fas fa-lg ml-3 hidden"></i></td>
                     </tr>
                     <tr>
                         <td></td>
 
                         <td>Tussenvoegsels:</td>
-                        <td><input class="register-form-input" type="text" name="prepositions"></td>
+                        <td><input class="register-form-input" type="text" name="prepositions" id="prepositions-field-reg"><i class="fas fa-lg ml-3 hidden"></i></td>
                     </tr>
                     <tr>
                         <td></td>
                         <td>Achternaam:</td>
-                        <td><input class="register-form-input" type="text" name="last_name"></td>
+                        <td><input class="register-form-input" type="text" name="last_name" id="lastname-field-reg"><i class="fas fa-lg ml-3 hidden"></i></td>
                     </tr>
                     <tr>
                         <td></td>
 
                         <td class="first-row">Geboortedatum:</td>
-                        <td class="first-row"><input class="register-form-input" type="date" name="dob"></td>
+                        <td class="first-row"><input class="register-form-input" type="text" name="dob" id="birthdate-field-reg" placeholder="01/01/1950"><i class="fas fa-lg ml-3 hidden"></i></td>
                     </tr>
                     <tr>
                         <td></td>
 
                         <td>BSN-nummer:</td>
-                        <td><input class="register-form-input" type="text" name="bsn"></td>
+                        <td><input class="register-form-input" type="text" name="bsn" id="bsn-field-reg"><i class="fas fa-lg ml-3 hidden"></i></td>
                     </tr>
 
                     <tr>
@@ -96,7 +101,7 @@
                     <tr>
                         <td class="first-row"><i class="fas fa-user-tie fa-2x text-muted"></i></td>
                         <td class="first-row">Bedrijfsnaam:</td>
-                        <td class="first-row"><input class="register-form-input" type="text" name="company_name"></td>
+                        <td class="first-row"><input class="register-form-input" type="text" name="company_name" id="companyname-field-reg"><i class="fas fa-lg ml-3 hidden"></i></td>
                     </tr>
                     <tr>
                         <td></td>
@@ -114,30 +119,27 @@
                         <td>&nbsp</td>
                     </tr>
                     </tbody>
-
                     <tr>
                         <td class="first-row"><i id="address-icon" class="fas fa-home fa-2x text-muted"></i></td>
-
-                        <td class="first-row">Straat:</td>
-                        <td class="first-row"><input class="register-form-input" type="text" name="street"></td>
+                        <td class="first-row">Postcode:</td>
+                        <td class="first-row"><input class="register-form-input" type="text" name="postcode" id="postcode-field-reg"><i class="fas fa-lg ml-3 hidden"></td>
                     </tr>
                     <tr>
                         <td></td>
 
                         <td>Huisnummer:</td>
-                        <td><input class="register-form-input" type="text" name="house_number"></td>
+                        <td><input class="register-form-input" type="text" name="house_number" id="housenumber-field-reg"><i class="fas fa-lg ml-3 hidden"></td>
                     </tr>
                     <tr>
                         <td></td>
-
-                        <td>Postcode:</td>
-                        <td><input class="register-form-input" type="text" name="postcode"></td>
+                        <td>Straat:</td>
+                        <td><input class="register-form-input text-uppercase" type="text" name="street" id="street-field-reg"disabled><i class="fas fa-lg ml-3 hidden"></td>
                     </tr>
                     <tr>
                         <td></td>
 
                         <td id="register-field-city">Woonplaats:</td>
-                        <td><input class="register-form-input" type="text" name="city"></td>
+                        <td><input class="register-form-input text-uppercase" type="text" name="city" id="city-field-reg" disabled><i class="fas fa-lg ml-3 hidden"></td>
                     </tr>
                     <tr>
                         <td></td>
@@ -148,7 +150,7 @@
                     <tr>
                         <td class="first-row"><i class="fas fa-phone-alt fa-2x text-muted"></i></td>
                         <td class="first-row">Telefoonnummer:</td>
-                        <td class="first-row"><input class="register-form-input" type="text" name="telephone"></td>
+                        <td class="first-row"><input class="register-form-input" type="text" name="telephone" id="phone-field-reg"><i class="fas fa-lg ml-3 hidden"></i></td>
                     </tr>
 
                     <tr>
@@ -162,12 +164,12 @@
                         <td class="first-row"><i class="fas fa-clipboard-check fa-2x text-muted"></i></i></td>
 
                         <td class="first-row">Ik ga akkoord met de algemene voorwaarden</td>
-                        <td class="first-row"><input type="checkbox" name="agree"></td>
+                        <td class="first-row"><input type="checkbox" name="agree" id="agree-field-reg"><i class="fas fa-lg ml-3 hidden"></td>
                     </tr>
                     <tr>
                         <td></td>
                         <td></td>
-                        <td><a href="newbankaccount"><button class="btn btn-primary my-2 my-sm-0" type="submit">Registreer</button></a></td>
+                        <td><a href="newbankaccount"><button class="btn btn-primary my-2 my-sm-0" type="submit" id="do-register">Registreer</button></a></td>
                     </tr>
                     </tbody>
                 </table>

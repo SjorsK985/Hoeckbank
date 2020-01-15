@@ -31,7 +31,7 @@ public class ParticulierService {
     }
 
     public boolean controleerGeboortedatum (String geboortedatumString){
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         LocalDate geboortedatum = LocalDate.parse(geboortedatumString, dateTimeFormatter);
         LocalDate vandaag = LocalDate.now(ZoneId.of("Europe/Paris"));
         int leeftijd = (int) ChronoUnit.YEARS.between(geboortedatum, vandaag);

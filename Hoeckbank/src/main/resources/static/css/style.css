@@ -13,6 +13,25 @@ h1, h2, h3, h4, h5, h6 {
     color:red;
 }
 
+
+.validate-ok{
+    color: #28a745!important;
+}
+
+.validate-field-error{
+    background-color: rgba(255, 0, 0, 0.4);
+}
+
+.validate-field-ok{
+    background-color: rgba(0, 255, 0, 0.4);
+}
+
+button[disabled=disabled], button:disabled {
+    cursor: not-allowed;
+    background-color: rgba(237, 108, 57, 0.4)!important;
+    border-color: rgba(237, 108, 57, 0.4)!important;
+}
+
 .carousel-caption > h5{
     font-size: 3rem;
     text-shadow: 2px 2px 8px black;
@@ -55,6 +74,9 @@ a:active{
 }
 
 /*Own stylings*/
+.hidden{
+    display: none;
+}
 .rounded{
     border-radius: .5rem!important;
 }
@@ -86,7 +108,11 @@ th.subject{
 }
 
 .register-form-input{
-    width: 100%;
+    width: 80%;
+}
+
+select{
+    width: 80%;
 }
 
 .table tbody+tbody{
