@@ -94,7 +94,7 @@ public class AddAllKlantToDb {
     @GetMapping("inleesparticulier")
     private String inlezenparticulier() {
         try {
-            Scanner invoer = new Scanner(new File("Hoeckbank/src/main/resources/static/inleesdocumenten/inleesparticulier.csv"));
+            Scanner invoer = new Scanner(new File("../Hoeckbank/src/main/resources/static/inleesdocumenten/inleesparticulier.csv"));
             while (invoer.hasNextLine()) {
                 String regelUitBestand = invoer.nextLine();
 
