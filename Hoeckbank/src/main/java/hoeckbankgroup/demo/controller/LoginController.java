@@ -32,7 +32,7 @@ public class LoginController {
             return setup(klant, model);
         } else {
             model.addAttribute("login_error", "Gebruiker / wachtwoord combi niet geldig");
-            return "Login";
+            return "login";
         }
     }
 
