@@ -22,10 +22,25 @@ public class GenereerRekeningnummerService {
 
     public String genereerRekeningnummer(){
         String rekeningNummer = "";
+
+        boolean rekeningNrElfProef = false;
         boolean rekeningNrBestaatAl = true;
-        while(rekeningNrBestaatAl){
+        boolean continueLoop = true;
+        int tellertje = 0;
+        while(continueLoop){
+
             rekeningNummer = maakRekeningnummer();
-            rekeningNrBestaatAl = checkRekeningnummer(rekeningNummer);
+            if(elfProef(rekeningNummer)){
+                if(!checkRekeningnummer(rekeningNummer)){
+                    continueLoop = false;
+                }
+            }
+            tellertje++;
+            /*rekeningNrElfProef = elfProef(rekeningNummer);
+            rekeningNrBestaatAl = checkRekeningnummer(rekeningNummer);*/
+            System.out.println(rekeningNummer);
+            System.out.println("poging #" + tellertje + "\n");
+
         }
         return  rekeningNummer;
     }
@@ -38,6 +53,19 @@ public class GenereerRekeningnummerService {
             rekeningCijfers.append(randomString);
         }
         return "NL45HCKB" + rekeningCijfers;
+    }
+
+    private static boolean elfProef(String rekeningNr){
+        String rekeningCijfers = rekeningNr.substring(8,18);
+        int totaal = 0;
+        int teller = rekeningCijfers.length();
+        for (int i = 0; i < rekeningCijfers.length(); i++) {
+            String subStringCijfer = rekeningCijfers.substring(i, i+1);
+            int cijfer = Integer.parseInt(subStringCijfer);
+            totaal = totaal + (cijfer * teller);
+            teller--;
+        }
+        return (totaal % 11) == 0;
     }
 
     public boolean checkRekeningnummer(String rekeningNummer){
