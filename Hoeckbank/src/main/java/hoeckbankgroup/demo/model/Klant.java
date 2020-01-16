@@ -10,7 +10,7 @@ import java.util.List;
  */
 
 @Entity
-public class Klant extends Persoon{
+public class Klant extends Persoon {
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Adres adres;
