@@ -22,13 +22,22 @@ public class GenereerRekeningnummerService {
 
     public String genereerRekeningnummer(){
         String rekeningNummer = "";
-        String landCode = "NL";
-        String bankCode = "HCKB";
-        int controleGetal = (int) (Math.random() * 100);
-        int rekeningIdentificatieEen = (int) (Math.random() * 100000 - 1);
-        int rekeningIdentificatieTwee = (int) (Math.random() * 100000 - 1);
-        rekeningNummer = landCode + String.valueOf(controleGetal) + bankCode + String.valueOf(rekeningIdentificatieEen) + String.valueOf(rekeningIdentificatieTwee);
-        return rekeningNummer;
+        boolean rekeningNrBestaatAl = true;
+        while(rekeningNrBestaatAl){
+            rekeningNummer = maakRekeningnummer();
+            rekeningNrBestaatAl = checkRekeningnummer(rekeningNummer);
+        }
+        return  rekeningNummer;
+    }
+
+    public String maakRekeningnummer(){
+        StringBuilder rekeningCijfers = new StringBuilder();
+        for (int i = 0; i < 10; i++) {
+            int random = (int) (Math.random() * 9);
+            String randomString = Integer.toString(random);
+            rekeningCijfers.append(randomString);
+        }
+        return "NL45HCKB" + rekeningCijfers;
     }
 
     public boolean checkRekeningnummer(String rekeningNummer){

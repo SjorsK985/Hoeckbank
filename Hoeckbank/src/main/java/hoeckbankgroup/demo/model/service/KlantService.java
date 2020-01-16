@@ -56,27 +56,5 @@ public class KlantService {
     public boolean klantExistsByEmail(String email){
         return klantDAO.existsKlantByEmail(email);
     }
-
-//    public String getNaam(Rekening rekening) {
-//        List<Klant> getNaam = getMederekeninghouders(rekening);
-//
-//        for (Klant klant : getNaam) {
-//            // System.out.println(klant);
-//            List<Rekening> rekeningenvandeklant = klant.getRekeningen();
-//            for (Rekening rekening1 : rekeningenvandeklant) {
-//                if (rekening1.getRekeningnummer().equals(rekening.getRekeningnummer())) {
-//                    if (klant instanceof Particulier) {
-//                        System.out.println("gelukt");
-//                        return  ((Particulier) klant).getVoornaam() + ((Particulier) klant).getTussenvoegsel() + ((Particulier) klant).getAchternaam();
-//                    } else {
-//                        System.out.println("gelukt mkb");
-//                        return  ((MKB) klant).getBedrijfsnaam();
-//                    }
-//                }
-//            }
-//        }
-//        return "geen klant gevonden ";
-//    }
-
 }
 

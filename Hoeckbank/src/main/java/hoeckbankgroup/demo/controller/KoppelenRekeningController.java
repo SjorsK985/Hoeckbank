@@ -1,7 +1,6 @@
 package hoeckbankgroup.demo.controller;
 
 import hoeckbankgroup.demo.model.*;
-import hoeckbankgroup.demo.model.DAO.RekeningDAO;
 import hoeckbankgroup.demo.model.service.KlantService;
 import hoeckbankgroup.demo.model.service.KoppelService;
 import hoeckbankgroup.demo.model.service.RekeningService;
