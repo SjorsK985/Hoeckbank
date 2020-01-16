@@ -1,6 +1,5 @@
 package hoeckbankgroup.demo.controller;
 
-import hoeckbankgroup.demo.model.DAO.KoppelDAO;
 import hoeckbankgroup.demo.model.Gebruiker;
 import hoeckbankgroup.demo.model.Koppel;
 import hoeckbankgroup.demo.model.Rekening;

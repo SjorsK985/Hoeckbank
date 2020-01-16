@@ -1,7 +1,6 @@
 package hoeckbankgroup.demo.controller;
 
 import hoeckbankgroup.demo.model.Gebruiker;
-import hoeckbankgroup.demo.model.Klant;
 import hoeckbankgroup.demo.model.Rekening;
 import hoeckbankgroup.demo.model.Transactie;
 import hoeckbankgroup.demo.model.service.KlantService;
@@ -35,10 +34,6 @@ public class RekeningDetailController {
         Rekening rekening = rekeningService.findRekeningByRekeningID(id);
         ArrayList<Transactie> transacties = transactieService.getLastTransactions(rekening);
         List<String> mederekeninghouders = klantService.getMederekeninghouders(rekening);
-        System.out.println("Hij zou iets moeten printen");
-        for(String houder : mederekeninghouders){
-            System.out.println(houder);
-        }
         model.addAttribute("rekening", rekening);
         model.addAttribute("transacties", transacties);
         model.addAttribute("rekeninghouders", mederekeninghouders);

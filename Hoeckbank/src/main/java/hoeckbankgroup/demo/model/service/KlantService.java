@@ -30,7 +30,6 @@ public class KlantService {
 
     public List<String> getMederekeninghouders(Rekening rekening){
         List<Klant> alleMederekeninghouders = rekening.getRekeninghouder();
-        System.out.println(alleMederekeninghouders);
         List<String> mederekeninghouders = new ArrayList<>();
         for(Klant klant : alleMederekeninghouders){
             if(klant instanceof Particulier){
@@ -39,30 +38,7 @@ public class KlantService {
                 mederekeninghouders.add(((MKB) klant).getBedrijfsnaam());
             }
         }
-        System.out.println(mederekeninghouders);
         return mederekeninghouders;
     }
-
-//    public String getNaam(Rekening rekening) {
-//        List<Klant> getNaam = getMederekeninghouders(rekening);
-//
-//        for (Klant klant : getNaam) {
-//            // System.out.println(klant);
-//            List<Rekening> rekeningenvandeklant = klant.getRekeningen();
-//            for (Rekening rekening1 : rekeningenvandeklant) {
-//                if (rekening1.getRekeningnummer().equals(rekening.getRekeningnummer())) {
-//                    if (klant instanceof Particulier) {
-//                        System.out.println("gelukt");
-//                        return  ((Particulier) klant).getVoornaam() + ((Particulier) klant).getTussenvoegsel() + ((Particulier) klant).getAchternaam();
-//                    } else {
-//                        System.out.println("gelukt mkb");
-//                        return  ((MKB) klant).getBedrijfsnaam();
-//                    }
-//                }
-//            }
-//        }
-//        return "geen klant gevonden ";
-//    }
-
 }
 
