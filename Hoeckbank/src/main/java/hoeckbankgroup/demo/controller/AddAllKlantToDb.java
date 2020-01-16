@@ -101,7 +101,14 @@ public class AddAllKlantToDb {
                 String[] regelArray;
                 regelArray = regelUitBestand.split(";");
                 List<Rekening> rekeningen = new ArrayList<>();
-                String tenaamstelling = String.format("%s %s %s", regelArray[9], regelArray[10], regelArray[11]);
+                if(regelArray[13].equals("M")){
+                    geslacht = Geslacht.MAN;
+                } else if(regelArray[13].equals("V")){
+                    geslacht = Geslacht.VROUW;
+                } else{
+                    geslacht = Geslacht.NEUTRAAL;
+                }
+                String tenaamstelling = String.format("%s, %s %s %s", geslacht.aanhef, regelArray[9], regelArray[10], regelArray[11]);
                 int geld = geefRandomGetal(4000, -1000);
                 double geldbedrag = Math.round(geldbedrag = geld / 1.2536) / 100.0;
                 Rekening rekening1 = new Rekening(regelArray[7], geldbedrag, tenaamstelling);
@@ -110,13 +117,6 @@ public class AddAllKlantToDb {
                 Rekening rekening2 = new Rekening(regelArray[8], geldbedrag1, tenaamstelling);
                 rekeningen.add(rekening1);
                 rekeningen.add(rekening2);
-                if(regelArray[13].equals("M")){
-                    geslacht = Geslacht.MAN;
-                } else if(regelArray[13].equals("V")){
-                    geslacht = Geslacht.VROUW;
-                } else{
-                    geslacht = Geslacht.NEUTRAAL;
-                }
 
                 int bsn = Integer.parseInt(regelArray[12]);
                 Particulier particulier=new Particulier(regelArray[0],regelArray[1], new Adres(regelArray[2],regelArray[3],regelArray[4],

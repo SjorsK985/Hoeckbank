@@ -31,16 +31,30 @@ public class KlantService {
     public List<String> getMederekeninghouders(Rekening rekening){
         List<Klant> alleMederekeninghouders = rekening.getRekeninghouder();
         System.out.println(alleMederekeninghouders);
-        List<String> mederekeninghouders = new ArrayList<>();
+        ArrayList<String> mederekeninghouders = new ArrayList<>();
+        String tussenvoegsel;
         for(Klant klant : alleMederekeninghouders){
             if(klant instanceof Particulier){
-                mederekeninghouders.add(((Particulier) klant).getVoornaam() + ((Particulier) klant).getTussenvoegsel() + ((Particulier) klant).getAchternaam());
+                if(!((Particulier) klant).getTussenvoegsel().equals("")){
+                    tussenvoegsel = " " + ((Particulier) klant).getTussenvoegsel() + " ";
+                } else {
+                    tussenvoegsel = "";
+                }
+                mederekeninghouders.add(((Particulier) klant).getVoornaam() + tussenvoegsel + ((Particulier) klant).getAchternaam());
             } else{
                 mederekeninghouders.add(((MKB) klant).getBedrijfsnaam());
             }
         }
+        if(mederekeninghouders.size() == 0){
+            String geenMederekeningHouder = ("Geen mederekeninghouder(s)");
+            mederekeninghouders.add(geenMederekeningHouder);
+        }
         System.out.println(mederekeninghouders);
         return mederekeninghouders;
+    }
+
+    public boolean klantExistsByEmail(String email){
+        return klantDAO.existsKlantByEmail(email);
     }
 
 //    public String getNaam(Rekening rekening) {

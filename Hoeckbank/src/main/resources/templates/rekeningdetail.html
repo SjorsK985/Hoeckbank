@@ -7,7 +7,7 @@
 <section id="rekening-detail">
     <div class="container">
             <div class="form-wrapper mx-auto mt-5">
-                <h3 class="text-center mb-2">Details</h3>
+                <h3 class="text-center mb-5">Rekening van: <span th:text="${rekening.tenaamstelling}"/></h3>
                 <table class="table" id="rekening-detail-table">
                     <tr>
                         <th class="">Rekeningnummer</th>
@@ -18,7 +18,7 @@
                         <td class=""><span th:text="${rekening.rekeningnummer}"/></td>
                         <td class="">€ <span th:text="${#numbers.formatDecimal(rekening.saldo, 1, 'POINT', 2, 'COMMA')}"/></td>
                         <td class=""><select name="rekeninghouders">
-                            <option th:each="rekeninghouder : ${rekeninghouders}" th:text="${rekeninghouder}">
+                            <option th:each="rekeninghouder : ${rekeninghouders}" th:text="${rekeninghouder}">Geen mederekeninghouder(s)
                             </option>
                         </select>
                         </td>

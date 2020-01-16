@@ -39,7 +39,15 @@ public class NewBankAccountController {
             tenaamstelling = ((MKB) klant).getBedrijfsnaam();
             model.addAttribute("tenaamstelling", tenaamstelling);
         } else if(klant instanceof Particulier) {
-            tenaamstelling = ((Particulier) klant).getGeslacht() + " " + ((Particulier) klant).getVoornaam() + ((Particulier) klant).getTussenvoegsel() + " " + ((Particulier) klant).getAchternaam();
+            String tussenvoegsel = " ";
+            if(!((Particulier) klant).getTussenvoegsel().equals("")){
+                tussenvoegsel = " " + ((Particulier) klant).getTussenvoegsel() + " ";
+            }
+            String geslacht = ((Particulier) klant).getGeslacht();
+            tenaamstelling = geslacht + " " + ((Particulier) klant).getVoornaam() + tussenvoegsel + ((Particulier) klant).getAchternaam();
+            if(geslacht.equals("Neutraal")){
+                tenaamstelling = ((Particulier) klant).getVoornaam() + tussenvoegsel + ((Particulier) klant).getAchternaam();
+            }
             model.addAttribute("tenaamstelling", tenaamstelling);
         }
         return "newbankaccount";
