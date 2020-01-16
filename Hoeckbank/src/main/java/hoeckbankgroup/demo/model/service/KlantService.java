@@ -30,14 +30,16 @@ public class KlantService {
 
     public List<String> getMederekeninghouders(Rekening rekening){
         List<Klant> alleMederekeninghouders = rekening.getRekeninghouder();
+        System.out.println(alleMederekeninghouders);
         List<String> mederekeninghouders = new ArrayList<>();
-        for(Klant klant:alleMederekeninghouders){
+        for(Klant klant : alleMederekeninghouders){
             if(klant instanceof Particulier){
                 mederekeninghouders.add(((Particulier) klant).getVoornaam() + ((Particulier) klant).getTussenvoegsel() + ((Particulier) klant).getAchternaam());
             } else{
                 mederekeninghouders.add(((MKB) klant).getBedrijfsnaam());
             }
         }
+        System.out.println(mederekeninghouders);
         return mederekeninghouders;
     }
 
