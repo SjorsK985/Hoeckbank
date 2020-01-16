@@ -21,8 +21,9 @@ var bsn_field_reg = document.getElementById("bsn-field-reg");
 //Company
 var companyname_field_reg = document.getElementById("companyname-field-reg");
 
-//list
+//Helper vars
 var validatedItems = [12];
+var emailexists = false;
 
 //Regex patterns
 var emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -32,12 +33,12 @@ var mobiel_nummer = /^(((\\+31|0|0031)6){1}[1-9]{1}[0-9]{7})$/i;
 var bsn_nummer = /^[1-9]{8,9}$/;
 var onlyLetters = /^[a-zA-Z]+$/;
 var onlyNumbers = /^[0-9]+$/;
-var date = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
+var dateReg = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
 
 //EventListeners general
 email_field_reg.addEventListener('keyup', function(event){
+    emailexists = true;
     if(emailPattern.test(email_field_reg.value)){
-        showValidateIconOk(email_field_reg);
         validatedItems[0] = true;
     } else if(email_field_reg.value == ""){
         hideValidateIcon(email_field_reg);
@@ -47,14 +48,18 @@ email_field_reg.addEventListener('keyup', function(event){
         validatedItems[0] = false;
     }
 });
-email_field_reg.addEventListener('blur', function(event){
+email_field_reg.addEventListener('blur', function(){
     var parent = email_field_reg.parentNode;
     var node = document.createElement("p");
     node.classList.add("text-danger","mt-2");
-    var instructionMail = document.createTextNode("Dit is geen geldig emailadres");
+    var instructionMail = document.createTextNode("Dit is geen geldig emailadres of het veld is leeg");
     node.appendChild(instructionMail);
     if(validatedItems[0] == false && parent.childNodes.length < 3) {
         parent.appendChild(node);
+    }
+    if(validatedItems[0] == true) {
+        checkAddressExists();
+        showValidateIconOk(email_field_reg);
     }
     checkAllInputs();
 });
@@ -138,7 +143,6 @@ phone_field_reg.addEventListener('blur', function(event){
     checkAllInputs();
 });
 agree_field_reg.addEventListener('change', function(){
-    console.log('agree field targeted')
     if(this.checked) {
         showValidateIcon(agree_field_reg);
         showValidateIconOk(agree_field_reg);
@@ -215,7 +219,22 @@ lastname_field_reg.addEventListener('blur', function(event){
     checkAllInputs();
 });
 birthdate_field_reg.addEventListener('keyup', function(){
-    if(date.test(birthdate_field_reg.value)){
+    birthdate_String = birthdate_field_reg.value;
+    birthdate_String = birthdate_String.replace("/","-");
+    birthdate_String = birthdate_String.replace("/","-");
+    console.log(birthdate_String);
+    birthdate_Components = birthdate_String.split("-");
+    var days = parseInt(birthdate_Components[0]);
+    var months = parseInt(birthdate_Components[1]);
+    var years = parseInt(birthdate_Components[2]);
+    var date = new Date();
+    var daysOk = days > 0 && days <32;
+    console.log(daysOk);
+    var monthsOk = months > 0 && months <13;
+    console.log(monthsOk);
+    var yearsOk = years > 1900 && years <= date.getFullYear() - 18;
+    console.log(monthsOk);
+    if(dateReg.test(birthdate_String) && daysOk && monthsOk && yearsOk){
         showValidateIconOk(birthdate_field_reg);
         validatedItems[7] = true;
     } else if(birthdate_field_reg.value.length > 0) {
@@ -231,7 +250,7 @@ birthdate_field_reg.addEventListener('blur', function(){
         var parent = birthdate_field_reg.parentNode;
         var node = document.createElement("p");
         node.classList.add("text-danger", "mt-2");
-        var instructionMail = document.createTextNode("Dit is geen juiste datum (dd/mm/yyyy) of de datum is niet ingevuld");
+        var instructionMail = document.createTextNode("Dit is geen geldige geboortedatum (dd/mm/yyyy) of de datum is niet ingevuld. Ook moet je minimaal 18 zijn.");
         node.appendChild(instructionMail);
         if (validatedItems[7] == false && parent.childNodes.length < 3) {
             parent.appendChild(node);
@@ -333,17 +352,12 @@ function checkAllInputs(){
             aantalGoed++;
         }
     }
-    console.log(validatedItems);
-    console.log('aantal goed' + aantalGoed);
     if(firstname_field_reg.value!="" && aantalGoed == 10){
-        console.log('button wel te zien');
         register_button.disabled = false;
     } else if(companyname_field_reg.value!="" && aantalGoed == 7){
-        console.log('button wel te zien');
         register_button.disabled = false;
     }
     else{
-        console.log('button niet te zien');
         register_button.disabled = true;
     }
 }
@@ -352,6 +366,36 @@ function checkAllInputs(){
 postcode_field_reg.addEventListener('focusout', completeAddress);
 housenumber_field_reg.addEventListener('focusout', completeAddress);
 
+
+function checkAddressExists(){
+    let exists = "eerste waarde";
+    let email = document.getElementById('email-field-reg').value;
+    let formData = `email=${email}`;
+    var request = new XMLHttpRequest();
+    request.open('POST','http://localhost:8080/emailcheck', true);
+    request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    request.setRequestHeader('Accept', 'application/json');
+    request.send(formData); // zet om naar json als String
+    request.onload = function() {
+        let exists = request.responseText;
+        console.log(exists);
+        let mail = document.getElementById('email-field-reg');
+        var parent = mail.parentNode;
+        var node = document.createElement("p");
+        node.classList.add("text-danger", "mt-2");
+        instructionMail = document.createTextNode("Dit emailadres is al in gebruik")
+        node.appendChild(instructionMail);
+        if (request.responseText == "true" && parent.childNodes.length < 3){
+            hideValidateIcon(document.getElementById('email-field-reg'));
+            parent.appendChild(node);
+        } else{
+            if(parent.childNodes.length > 2) {
+                parent.removeChild(parent.childNodes[2]);
+            }
+        }
+    }
+}
+
 function completeAddress(){
     let regex = new RegExp(/^[1-9][0-9]{3}[\s]?[A-Za-z]{2}$/i);
 
@@ -359,7 +403,6 @@ function completeAddress(){
     let housenumber = housenumber_field_reg.value;
 
     // als postcode een valide postcode is nummer niet leeg, dan
-    console.log('pc is valide: ' + regex.test(postcode))
 
     if(regex.test(postcode) && housenumber){
         let parent = city_field_reg.parentNode;
@@ -368,7 +411,6 @@ function completeAddress(){
         let formData = `postcode=${postcode}&nr=${housenumber}`;
 
         //FF loggen dat input valide is
-        console.log('we have valid stuff!');
 
         //Start AJAX request
         var request = new XMLHttpRequest();

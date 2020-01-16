@@ -64,6 +64,7 @@ public class RegisterController {
             model.addAttribute("gebruiker", gebruiker);
             return "redirect:/newbankaccount";
         }else{
+            geboortedatumString = geboortedatumString.replaceAll("/","-");
             if (particulierService.controleerGeboortedatum(geboortedatumString) && particulierService.controleerBestaandeParticulier(bsn, emailadres)){
                 Particulier particulier = new Particulier(emailadres, wachtwoord, new Adres(addressPart.getStreet(), huisnummer, postcode, addressPart.getCity()), telefoon, new ArrayList<>(),
                         voornaam, tussenvoegsel, achternaam, bsn, geslacht, geboortedatumString);
@@ -82,9 +83,6 @@ public class RegisterController {
     @PostMapping("/postcode")
     public @ResponseBody
     AddressPart getWoonplaatsAndStraat(@RequestParam String postcode, @RequestParam String nr){
-
-        System.out.println("request data in: " + postcode + " " + nr);
-
         return getAddressPart(postcode, nr);
     }
 
@@ -94,10 +92,8 @@ public class RegisterController {
         try {
             addressPart = jdbcTemplate.queryForObject("SELECT straat, stad FROM postcode where postcode=? AND min_huisnr <= ? AND max_huisnr >=?",
                     new AdresMapper(), postcode, nr, nr);
-            System.out.println(addressPart);
 
         } catch (EmptyResultDataAccessException ex) {
-            System.out.println("query lukt niet, empty");
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, "Adres niet gevonden", ex);
         } catch (Exception ex) {
@@ -105,6 +101,27 @@ public class RegisterController {
                     HttpStatus.INTERNAL_SERVER_ERROR, "Things went wrong on our side", ex);
         }
         return addressPart;
+    }
+
+    @CrossOrigin // laat deze annotatie als experiment weg en kijk wat er gebeurt
+    @PostMapping("/emailcheck")
+    public @ResponseBody
+    String checkEmail(@RequestParam String email){
+        boolean response;
+        try {
+            response = klantService.klantExistsByEmail(email);
+            if(response == true){
+                return "true";
+            } else {
+                return "false";
+            }
+        } catch (EmptyResultDataAccessException ex) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "Adres niet gevonden", ex);
+        } catch (Exception ex) {
+            throw new ResponseStatusException(
+                    HttpStatus.INTERNAL_SERVER_ERROR, "Things went wrong on our side", ex);
+        }
     }
 }
 
