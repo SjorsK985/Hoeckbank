@@ -22,25 +22,14 @@ public class GenereerRekeningnummerService {
 
     public String genereerRekeningnummer(){
         String rekeningNummer = "";
-
-        boolean rekeningNrElfProef = false;
-        boolean rekeningNrBestaatAl = true;
         boolean continueLoop = true;
-        int tellertje = 0;
         while(continueLoop){
-
             rekeningNummer = maakRekeningnummer();
             if(elfProef(rekeningNummer)){
-                if(!checkRekeningnummer(rekeningNummer)){
+                if(!rekeningnummerBestaatAl(rekeningNummer)){
                     continueLoop = false;
                 }
             }
-            tellertje++;
-            /*rekeningNrElfProef = elfProef(rekeningNummer);
-            rekeningNrBestaatAl = checkRekeningnummer(rekeningNummer);*/
-            System.out.println(rekeningNummer);
-            System.out.println("poging #" + tellertje + "\n");
-
         }
         return  rekeningNummer;
     }
@@ -68,7 +57,7 @@ public class GenereerRekeningnummerService {
         return (totaal % 11) == 0;
     }
 
-    public boolean checkRekeningnummer(String rekeningNummer){
+    public boolean rekeningnummerBestaatAl(String rekeningNummer){
         return rekeningDAO.existsByRekeningnummerEquals(rekeningNummer);
     }
 }
