@@ -12,6 +12,7 @@ import java.util.List;
 
 @Service
 public class GenereerRekeningnummerService {
+    private static String controleGetal = "45";
 
     @Autowired
     private RekeningDAO rekeningDAO;
@@ -21,14 +22,13 @@ public class GenereerRekeningnummerService {
     }
 
     public String genereerRekeningnummer(){
-        String rekeningNummer = "";
-        String landCode = "NL";
-        String bankCode = "HCKB";
-        int controleGetal = (int) (Math.random() * 100);
-        int rekeningIdentificatieEen = (int) (Math.random() * 100000 - 1);
-        int rekeningIdentificatieTwee = (int) (Math.random() * 100000 - 1);
-        rekeningNummer = landCode + String.valueOf(controleGetal) + bankCode + String.valueOf(rekeningIdentificatieEen) + String.valueOf(rekeningIdentificatieTwee);
-        return rekeningNummer;
+        StringBuilder rekeningCijfers = new StringBuilder();
+        for (int i = 0; i < 10; i++) {
+            int random = (int)(Math.random() * 9) + 1;
+            String randomString = Integer.toString(random);
+            rekeningCijfers.append(randomString);
+        }
+        return "NL45HCKB" + rekeningCijfers;
     }
 
     public boolean checkRekeningnummer(String rekeningNummer){
