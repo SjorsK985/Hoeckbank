@@ -21,7 +21,7 @@ public class Rekening implements Comparable{
     private double saldo;
     private String tenaamstelling;
 
-    @OneToMany (cascade = CascadeType.ALL)
+    @ManyToMany (cascade = CascadeType.ALL)
     private List<Klant> rekeninghouder;
 
     @OneToMany (cascade = CascadeType.ALL)

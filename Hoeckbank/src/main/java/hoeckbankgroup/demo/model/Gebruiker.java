@@ -9,6 +9,10 @@ public class Gebruiker {
     private String rol;
     private String huidigRekeningnummer;
 
+    public Gebruiker(){
+        super();
+    }
+
     public Gebruiker(int id, List<Rekening> rekeningen, String rol) {
         this.id = id;
         this.rekeningen = rekeningen;
@@ -19,9 +23,6 @@ public class Gebruiker {
         this.id = id;
         this.rol = rol;
         this.rekeningen = new ArrayList<>();
-    }
-    public Gebruiker(){
-        super();
     }
 
     public Gebruiker(int id, List<Rekening> rekeningen, String rol, String huidigRekeningnummer) {

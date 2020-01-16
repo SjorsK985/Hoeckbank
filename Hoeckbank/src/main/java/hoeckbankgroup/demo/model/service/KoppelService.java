@@ -1,6 +1,5 @@
 package hoeckbankgroup.demo.model.service;
 
-import hoeckbankgroup.demo.model.*;
 import hoeckbankgroup.demo.model.DAO.KlantDAO;
 import hoeckbankgroup.demo.model.DAO.KoppelDAO;
 import hoeckbankgroup.demo.model.Klant;
@@ -38,15 +37,26 @@ public class KoppelService {
         return Pattern.matches("[0-9]{5}", beveiligingscode);
     }
 
-    public boolean checkOpEigenEmail(int Id, String mederekeninghouder){
-        Klant klant = klantDAO.findKlantByPersonId(Id);
-        System.out.println("ja");
-        String email = klant.getEmail();
-        if(email.equals(mederekeninghouder)){
-            System.out.println("nee");
-            return true;
-        } else return false;
+    public boolean checkOpKoppelen(String rekeningnummer, String beveiligingscode, String gebruikersnaam){
+        return koppelDao.existsByRekeningnummerAndBeveiligingscodeAndMederekeninghouder(rekeningnummer,
+                beveiligingscode, gebruikersnaam);
     }
 
-    //methode maken waarbij er gecontroleerd wordt of de email al gekoppeld is aan de rekening
+    public boolean checkOpEigenEmail(int id, String mederekeninghouder){
+        Klant klant = klantDAO.findKlantByPersonId(id);
+        String email = klant.getEmail();
+        if (email.equals(mederekeninghouder)){
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public Koppel findKoppel(String rekeningnummer, String gebruikersnaam){
+        return koppelDao.findKoppelByRekeningnummerAndMederekeninghouder(rekeningnummer, gebruikersnaam);
+    }
+
+    public void delete(Koppel koppel){
+        koppelDao.delete(koppel);
+    }
 }
