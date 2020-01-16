@@ -12,7 +12,6 @@ import java.util.List;
 
 @Service
 public class GenereerRekeningnummerService {
-    private static String controleGetal = "45";
 
     @Autowired
     private RekeningDAO rekeningDAO;
@@ -22,9 +21,19 @@ public class GenereerRekeningnummerService {
     }
 
     public String genereerRekeningnummer(){
+        String rekeningNummer = "";
+        boolean rekeningNrBestaatAl = true;
+        while(rekeningNrBestaatAl){
+            rekeningNummer = maakRekeningnummer();
+            rekeningNrBestaatAl = checkRekeningnummer(rekeningNummer);
+        }
+        return  rekeningNummer;
+    }
+
+    public String maakRekeningnummer(){
         StringBuilder rekeningCijfers = new StringBuilder();
         for (int i = 0; i < 10; i++) {
-            int random = (int)(Math.random() * 9) + 1;
+            int random = (int) (Math.random() * 9);
             String randomString = Integer.toString(random);
             rekeningCijfers.append(randomString);
         }
