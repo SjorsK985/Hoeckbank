@@ -22,10 +22,14 @@ public class GenereerRekeningnummerService {
 
     public String genereerRekeningnummer(){
         String rekeningNummer = "";
-        boolean rekeningNrBestaatAl = true;
-        while(rekeningNrBestaatAl){
+        boolean continueLoop = true;
+        while(continueLoop){
             rekeningNummer = maakRekeningnummer();
-            rekeningNrBestaatAl = checkRekeningnummer(rekeningNummer);
+            if(elfProef(rekeningNummer)){
+                if(!rekeningnummerBestaatAl(rekeningNummer)){
+                    continueLoop = false;
+                }
+            }
         }
         return  rekeningNummer;
     }
@@ -40,7 +44,20 @@ public class GenereerRekeningnummerService {
         return "NL45HCKB" + rekeningCijfers;
     }
 
-    public boolean checkRekeningnummer(String rekeningNummer){
+    private static boolean elfProef(String rekeningNr){
+        String rekeningCijfers = rekeningNr.substring(8,18);
+        int totaal = 0;
+        int teller = rekeningCijfers.length();
+        for (int i = 0; i < rekeningCijfers.length(); i++) {
+            String subStringCijfer = rekeningCijfers.substring(i, i+1);
+            int cijfer = Integer.parseInt(subStringCijfer);
+            totaal = totaal + (cijfer * teller);
+            teller--;
+        }
+        return (totaal % 11) == 0;
+    }
+
+    public boolean rekeningnummerBestaatAl(String rekeningNummer){
         return rekeningDAO.existsByRekeningnummerEquals(rekeningNummer);
     }
 }
