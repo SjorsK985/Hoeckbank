@@ -1,4 +1,6 @@
+
 package hoeckbankgroup.demo.controller;
+
 import hoeckbankgroup.demo.model.*;
 import hoeckbankgroup.demo.model.DAO.*;
 import hoeckbankgroup.demo.model.DAO.MedewerkerDAO;
@@ -10,8 +12,10 @@ import hoeckbankgroup.demo.model.enums.Geslacht;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -90,7 +94,7 @@ public class AddAllKlantToDb {
     @GetMapping("inleesparticulier")
     private String inlezenparticulier() {
         try {
-            Scanner invoer = new Scanner(new File("../Hoeckbank/src/main/resources/static/inleesdocumenten/inleesparticulier.csv"));
+            Scanner invoer = new Scanner(new File("Hoeckbank/src/main/resources/static/inleesdocumenten/inleesparticulier.csv"));
             while (invoer.hasNextLine()) {
                 String regelUitBestand = invoer.nextLine();
 
