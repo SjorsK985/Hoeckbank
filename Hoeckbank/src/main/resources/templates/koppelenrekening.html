@@ -25,7 +25,8 @@
                 <tr>
                     <td>&nbsp</td>
                     <td>Beveiligingscode:</td>
-                    <td><input class="register-form-input" type="password" name="beveiligingscode" placeholder="12345"></td>
+                    <td><input class="register-form-input" type="password" id="password" onmouseover="mouseoverPass()"
+                               onmouseout="mouseoutPass()" name="beveiligingscode" placeholder="12345"></td>
                 </tr>
 
                 <tr>
@@ -42,6 +43,16 @@
         <span th:text="${koppel_error}" class="validate-error"/>
     </div></div>
 
+<script>
+function mouseoverPass() {
+var obj = document.getElementById('password');
+obj.type = "text";
+}
+function mouseoutPass() {
+var obj = document.getElementById('password');
+obj.type = "password";
+}
+</script>
 
 
 

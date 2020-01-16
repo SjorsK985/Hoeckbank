@@ -21,18 +21,19 @@
                 <tr>
                     <td class="first-row"><i class=" fas fa-key fa-2x text-muted"></i></td>
                     <td class="first-row"></i>Gebruikersnaam mede-rekeninghouder:</td>
-                    <td class="first-row"><input class="register-form-input" type="text" name="gebruiker_naam_mede_rekeninghouder"></td>
+                    <td class="first-row"><input class="register-form-input" type="text" name="gebruiker_naam_mede_rekeninghouder" placeholder="example@hoeckbank.nl"></td>
                 </tr>
                 <tr>
                     <td>&nbsp</td>
                     <td>Beveiligingscode:</td>
-                    <td><input class="register-form-input" type="password" name="beveiligingscode"></td>
+                    <td><input class="register-form-input" type="password" id="password" onmouseover="mouseoverPass()"
+                               onmouseout="mouseoutPass()" name="beveiligingscode" placeholder="12345"></td>
                 </tr>
                 <tr>
                     <td></td>
                     <td></td>
                     <td align="right">
-                        <a href="rekeningdetail" class="btn btn-primary my-2 my-sm-0 text-white" value="Annuleren">Annuleren</a>
+                        <a href="{/rekeningdetail?(id=${rekening.rekeningID})}" class="btn btn-primary my-2 my-sm-0 text-white" value="Annuleren">Annuleren</a>
                         <a href="#"><button class="btn btn-primary my-2 my-sm-0" type="submit" value="Bevestigen">Bevestig</button></a>
                     </td>
                 </tr>
@@ -42,6 +43,17 @@
         <span th:text="${koppel_error}" class="validate-error"/>
 
     </div></div>
+<script>
+    function mouseoverPass() {
+        var obj = document.getElementById('password');
+        obj.type = "text";
+    }
+    function mouseoutPass() {
+        var obj = document.getElementById('password');
+        obj.type = "password";
+    }
+</script>
+
 
 <!--NIEUWE TEMPLATE TOT HIER-->
 <footer th:replace="fragments/footer :: footer"/>
