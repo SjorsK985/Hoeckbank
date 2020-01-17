@@ -65,7 +65,12 @@ public class RegisterController {
             return "redirect:/newbankaccount";
         }else{
             geboortedatumString = geboortedatumString.replaceAll("/","-");
+/*            addressPart = new AddressPart("ligt aan adrespart hieraan","ligt hieraan");
+            addressPart.setCity("ligt aan adrespart hieraan");
+            addressPart.setStreet("ligt hieraan");*/
+
             if (particulierService.controleerGeboortedatum(geboortedatumString) && particulierService.controleerBestaandeParticulier(bsn, emailadres)){
+                System.out.println("tot constructor call alles goed");
                 Particulier particulier = new Particulier(emailadres, wachtwoord, new Adres(addressPart.getStreet(), huisnummer, postcode, addressPart.getCity()), telefoon, new ArrayList<>(),
                         voornaam, tussenvoegsel, achternaam, bsn, geslacht, geboortedatumString);
                 particulierService.save(particulier);
@@ -87,12 +92,9 @@ public class RegisterController {
     }
 
     private AddressPart getAddressPart(@RequestParam String postcode, @RequestParam String nr) {
-
-
         try {
-            addressPart = jdbcTemplate.queryForObject("SELECT straat, stad FROM postcode where postcode=? AND min_huisnr <= ? AND max_huisnr >=?",
+            addressPart = jdbcTemplate.queryForObject("SELECT straat, stad FROM hoeckbank.postcode where postcode=? AND min_huisnr <= ? AND max_huisnr >=?",
                     new AdresMapper(), postcode, nr, nr);
-
         } catch (EmptyResultDataAccessException ex) {
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, "Adres niet gevonden", ex);
@@ -125,10 +127,3 @@ public class RegisterController {
     }
 }
 
-class AdresMapper implements RowMapper<AddressPart> {
-
-    @Override
-    public AddressPart mapRow(ResultSet resultSet, int i) throws SQLException {
-        return new AddressPart(resultSet.getString("straat"), resultSet.getString("stad"));
-    }
-}
