@@ -9,8 +9,8 @@ var street_field_reg = document.getElementById("street-field-reg");
 var city_field_reg = document.getElementById("city-field-reg");
 var phone_field_reg = document.getElementById("phone-field-reg");
 var agree_field_reg = document.querySelector("input[name=agree]");
-var register_button = document.getElementById('do-register');
-register_button.disabled = true;
+//var register_button = document.getElementById('do-register');
+// register_button.disabled = true;
 
 //private
 var firstname_field_reg = document.getElementById("firstname-field-reg");
@@ -105,7 +105,7 @@ passwordconfirm_field_reg.addEventListener('blur', function(event){
     }
     checkAllInputs();
 });
-postcode_field_reg.addEventListener('keyup', function(event){
+/*postcode_field_reg.addEventListener('keyup', function(event){
     postcode_field_reg.classList.remove('validate-field-error','validate-field-ok');
     housenumber_field_reg.classList.remove('validate-field-error','validate-field-ok');
     if(postcode_field_reg.value > 0){
@@ -118,7 +118,7 @@ housenumber_field_reg.addEventListener('keyup', function(event){
     if(housenumber_field_reg.value > 0){
         showValidateIcon(housenumber_field_reg);
     }
-});
+});*/
 phone_field_reg.addEventListener('keyup', function (event){
     if(vast_nummer.test(phone_field_reg.value) || mobiel_nummer.test(phone_field_reg.value)){
         showValidateIconOk(phone_field_reg);
@@ -363,8 +363,10 @@ function checkAllInputs(){
 }
 
 //Postcodeautocomplete
+/*
 postcode_field_reg.addEventListener('focusout', completeAddress);
 housenumber_field_reg.addEventListener('focusout', completeAddress);
+*/
 
 
 function checkAddressExists(){
