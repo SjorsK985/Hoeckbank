@@ -80,12 +80,14 @@ public class RegisterController {
                 model.addAttribute("gebruiker", gebruiker);
                 return "redirect:/newbankaccount";
             } else {
+                System.out.println("e-mail of BSN is niet uniek");
+                model.addAttribute("backendError", "e-mail of BSN is niet uniek");
                 return "redirect:/register";
             }
         }
     }
 
-    @CrossOrigin // laat deze annotatie als experiment weg en kijk wat er gebeurt
+    /*@CrossOrigin // laat deze annotatie als experiment weg en kijk wat er gebeurt
     @PostMapping("/postcode")
     public @ResponseBody
     AddressPart getWoonplaatsAndStraat(@RequestParam String postcode, @RequestParam String nr){
@@ -104,7 +106,7 @@ public class RegisterController {
                     HttpStatus.INTERNAL_SERVER_ERROR, "Things went wrong on our side", ex);
         }
         return addressPart;
-    }
+    }*/
 
     @CrossOrigin // laat deze annotatie als experiment weg en kijk wat er gebeurt
     @PostMapping("/emailcheck")
