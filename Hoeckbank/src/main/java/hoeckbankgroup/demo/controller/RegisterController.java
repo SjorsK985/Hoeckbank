@@ -1,4 +1,5 @@
 package hoeckbankgroup.demo.controller;
+
 import hoeckbankgroup.demo.model.*;
 import hoeckbankgroup.demo.model.enums.Branche;
 import hoeckbankgroup.demo.model.enums.Geslacht;
@@ -9,19 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import javax.sql.DataSource;
-import java.io.PrintWriter;
-import java.sql.*;
 import java.util.ArrayList;
-import java.util.Properties;
-import java.util.logging.Logger;
 
 @Controller
 @SessionAttributes("gebruiker")
@@ -42,7 +36,11 @@ public class RegisterController {
     private AddressPart addressPart;
 
     @GetMapping("register")
-    public String registerHandler(){
+    public String registerHandler(Model model,
+                                  @RequestParam (value = "melding", required = false) String melding){
+        if(melding != null) {
+            model.addAttribute("backendError", melding);
+        }
         return "register";
     }
 
@@ -80,9 +78,8 @@ public class RegisterController {
                 model.addAttribute("gebruiker", gebruiker);
                 return "redirect:/newbankaccount";
             } else {
-                System.out.println("e-mail of BSN is niet uniek");
-                model.addAttribute("backendError", "e-mail of BSN is niet uniek");
-                return "redirect:/register";
+                String error = "e-mail of BSN is niet uniek";
+                return "redirect:/register?melding=" + error;
             }
         }
     }
