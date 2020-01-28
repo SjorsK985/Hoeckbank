@@ -1,4 +1,5 @@
 package hoeckbankgroup.demo.controller;
+
 import hoeckbankgroup.demo.model.*;
 import hoeckbankgroup.demo.model.enums.Branche;
 import hoeckbankgroup.demo.model.enums.Geslacht;
@@ -9,19 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import javax.sql.DataSource;
-import java.io.PrintWriter;
-import java.sql.*;
 import java.util.ArrayList;
-import java.util.Properties;
-import java.util.logging.Logger;
 
 @Controller
 @SessionAttributes("gebruiker")
@@ -42,7 +36,11 @@ public class RegisterController {
     private AddressPart addressPart;
 
     @GetMapping("register")
-    public String registerHandler(){
+    public String registerHandler(Model model,
+                                  @RequestParam (value = "melding", required = false) String melding){
+        if(melding != null) {
+            model.addAttribute("backendError", melding);
+        }
         return "register";
     }
 
@@ -66,9 +64,6 @@ public class RegisterController {
             return "redirect:/newbankaccount";
         }else{
             geboortedatumString = geboortedatumString.replaceAll("/","-");
-/*            addressPart = new AddressPart("ligt aan adrespart hieraan","ligt hieraan");
-            addressPart.setCity("ligt aan adrespart hieraan");
-            addressPart.setStreet("ligt hieraan");*/
 
             if (particulierService.controleerGeboortedatum(geboortedatumString) && particulierService.controleerBestaandeParticulier(bsn, emailadres)){
                 System.out.println("tot constructor call alles goed");
@@ -80,33 +75,13 @@ public class RegisterController {
                 model.addAttribute("gebruiker", gebruiker);
                 return "redirect:/newbankaccount";
             } else {
-                return "redirect:/register";
+                String error = "e-mail of BSN is niet uniek";
+                return "redirect:/register?melding=" + error;
             }
         }
     }
 
-    @CrossOrigin // laat deze annotatie als experiment weg en kijk wat er gebeurt
-    @PostMapping("/postcode")
-    public @ResponseBody
-    AddressPart getWoonplaatsAndStraat(@RequestParam String postcode, @RequestParam String nr){
-        return getAddressPart(postcode, nr);
-    }
-
-    private AddressPart getAddressPart(@RequestParam String postcode, @RequestParam String nr) {
-        try {
-            addressPart = jdbcTemplate.queryForObject("SELECT straat, stad FROM hoeckbank.postcode where postcode=? AND min_huisnr <= ? AND max_huisnr >=?",
-                    new AdresMapper(), postcode, nr, nr);
-        } catch (EmptyResultDataAccessException ex) {
-            throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND, "Adres niet gevonden", ex);
-        } catch (Exception ex) {
-            throw new ResponseStatusException(
-                    HttpStatus.INTERNAL_SERVER_ERROR, "Things went wrong on our side", ex);
-        }
-        return addressPart;
-    }
-
-    @CrossOrigin // laat deze annotatie als experiment weg en kijk wat er gebeurt
+    @CrossOrigin
     @PostMapping("/emailcheck")
     public @ResponseBody
     String checkEmail(@RequestParam String email){

@@ -450,7 +450,7 @@ function completeAddress(){
                 validatedItems[11] = true;
                 console.log(`Done, got ${request.response.length} bytes`);
                 // haal de data uit de request
-                let addressPart = JSON.parse(request.response); // de data is in ASCII format, nu nog naar object omzetten
+                var addressPart = JSON.parse(request.response); // de data is in ASCII format, nu nog naar object omzetten
                 // velden vullen
                 document.getElementById('city-field-reg').value = addressPart.city; // zonder validatie
                 document.getElementById('street-field-reg').value = addressPart.street; // zonder validatie
