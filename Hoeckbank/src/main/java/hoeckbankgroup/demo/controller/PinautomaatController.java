@@ -48,7 +48,7 @@ public class PinautomaatController {
         Rekening rekening = rekeningService.findRekeningByRekeningnummer(rekeningnummer);
         pinautomaat.setRekening(rekening);
         pinautomaatService.save(pinautomaat);
-        System.out.println("koppelen maar" + rekeningnummer);
+        System.out.println("koppelen maar " + rekeningnummer);
         return "pinautomaat";
     }
 
@@ -71,7 +71,8 @@ public class PinautomaatController {
     private void sendPost(String jsonString) {
         try {
             CloseableHttpClient client = HttpClients.createDefault();
-            HttpPost httpPost = new HttpPost("https://webhook.site/f9733aa4-63b4-45c9-9bdf-f9da92b3f285");
+            //HttpPost httpPost = new HttpPost("https://webhook.site/f9733aa4-63b4-45c9-9bdf-f9da92b3f285");
+            HttpPost httpPost = new HttpPost("http://localhost:8081/connect");
             StringEntity entity = new StringEntity(jsonString);
             httpPost.setEntity(entity);
             httpPost.setHeader("Accept", "application/json");
