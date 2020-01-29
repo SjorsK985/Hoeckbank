@@ -1,6 +1,5 @@
 package hoeckbankgroup.demo.controller;
 
-import hoeckbankgroup.demo.model.DAO.KlantDAO;
 import hoeckbankgroup.demo.model.Gebruiker;
 import hoeckbankgroup.demo.model.Klant;
 import hoeckbankgroup.demo.model.service.KlantService;
@@ -13,12 +12,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.ui.ExtendedModelMap;
-import org.springframework.ui.Model;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
