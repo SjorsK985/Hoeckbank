@@ -12,21 +12,21 @@
 
 
             <table class="table" id="overzicht-rekening-table">
-    <tr class="font-weight-bold">
-        <td class="first-row">Rekeningnummer</td>
-        <td class="first-row">Tenaamstelling</td>
-        <td class="first-row">Saldo:</td>
+                <tr class="font-weight-bold">
+                    <td class="first-row">Rekeningnummer</td>
+                    <td class="first-row">Tenaamstelling</td>
+                    <td class="first-row">Saldo:</td>
 
-    </tr>
-    <tr th:each="rekening : ${rekeningen}" class="table-row-link">
-        <td><span th:text="${rekening.rekeningnummer}" /></td>
-       <td><span th:text="${rekening.tenaamstelling}" /></td>
-        <td>€ <span th:text="${#numbers.formatDecimal(rekening.saldo, 1, 'POINT', 2, 'COMMA')}"/></td>
+                </tr>
+                <tr th:each="rekening : ${rekeningen}" class="table-row-link">
+                    <td><span th:text="${rekening.rekeningnummer}"/></td>
+                    <td><span th:text="${rekening.tenaamstelling}"/></td>
+                    <td>€ <span th:text="${#numbers.formatDecimal(rekening.saldo, 1, 'POINT', 2, 'COMMA')}"/></td>
 
 
-    </tr>
+                </tr>
 
-</table>
+            </table>
 
         </div>
     </div>

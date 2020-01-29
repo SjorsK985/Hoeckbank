@@ -64,9 +64,6 @@ public class RegisterController {
             return "redirect:/newbankaccount";
         }else{
             geboortedatumString = geboortedatumString.replaceAll("/","-");
-/*            addressPart = new AddressPart("ligt aan adrespart hieraan","ligt hieraan");
-            addressPart.setCity("ligt aan adrespart hieraan");
-            addressPart.setStreet("ligt hieraan");*/
 
             if (particulierService.controleerGeboortedatum(geboortedatumString) && particulierService.controleerBestaandeParticulier(bsn, emailadres)){
                 System.out.println("tot constructor call alles goed");
@@ -84,28 +81,7 @@ public class RegisterController {
         }
     }
 
-    /*@CrossOrigin // laat deze annotatie als experiment weg en kijk wat er gebeurt
-    @PostMapping("/postcode")
-    public @ResponseBody
-    AddressPart getWoonplaatsAndStraat(@RequestParam String postcode, @RequestParam String nr){
-        return getAddressPart(postcode, nr);
-    }
-
-    private AddressPart getAddressPart(@RequestParam String postcode, @RequestParam String nr) {
-        try {
-            addressPart = jdbcTemplate.queryForObject("SELECT straat, stad FROM hoeckbank.postcode where postcode=? AND min_huisnr <= ? AND max_huisnr >=?",
-                    new AdresMapper(), postcode, nr, nr);
-        } catch (EmptyResultDataAccessException ex) {
-            throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND, "Adres niet gevonden", ex);
-        } catch (Exception ex) {
-            throw new ResponseStatusException(
-                    HttpStatus.INTERNAL_SERVER_ERROR, "Things went wrong on our side", ex);
-        }
-        return addressPart;
-    }*/
-
-    @CrossOrigin // laat deze annotatie als experiment weg en kijk wat er gebeurt
+    @CrossOrigin
     @PostMapping("/emailcheck")
     public @ResponseBody
     String checkEmail(@RequestParam String email){

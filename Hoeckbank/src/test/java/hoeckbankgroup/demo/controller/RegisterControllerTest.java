@@ -1,10 +1,10 @@
 package hoeckbankgroup.demo.controller;
 
-import hoeckbankgroup.demo.Service.GenereerRekeningnummerService;
-import hoeckbankgroup.demo.model.DAO.KlantDAO;
 import hoeckbankgroup.demo.model.Gebruiker;
 import hoeckbankgroup.demo.model.Klant;
 import hoeckbankgroup.demo.model.service.KlantService;
+import hoeckbankgroup.demo.model.service.MKBService;
+import hoeckbankgroup.demo.model.service.ParticulierService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,33 +24,30 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class BetalingMakenControllerTest {
+public class RegisterControllerTest {
+
+    @Autowired
+    private MKBService mkbService;
+
+    @Autowired
+    private ParticulierService particulierService;
 
     @Autowired
     private KlantService klantService;
 
     @Autowired
-    private GenereerRekeningnummerService genereerRekeningnummerService;
-
-    @Autowired
     private MockMvc mockMvc;
     MockHttpSession session = new MockHttpSession();
 
-    @Before
-    public void setup() {
-        Klant klant = klantService.findKlantByEmail("roeland@gmail.com");
-        Gebruiker gebruiker = new Gebruiker(klant.getPersonId(), klant.getRekeningen(), "Particulier");
-        session.setAttribute("gebruiker", gebruiker);
-    }
-
     @Test
-    public void betalingMakenHandler() throws Exception {
+    public void doRegisterHandler() throws Exception {
         this.mockMvc.perform(
-                get("/betalingmaken?id=3052")
-                .session(session))
+                get("/register")
+                        .session(session))
                 .andDo(print())
                 .andExpect(status()
-                .isOk())
-                .andExpect(content().string(containsString("betalingmaken")));
+                        .isOk())
+                .andExpect(content().string(containsString("<!DOCTYPE html>")));
     }
+
 }
