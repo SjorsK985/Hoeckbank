@@ -1,5 +1,4 @@
 package hoeckbankgroup.demo.controller;
-
 import hoeckbankgroup.demo.Service.GenereerRekeningnummerService;
 import hoeckbankgroup.demo.Service.NewBankAccountService;
 import hoeckbankgroup.demo.model.*;
@@ -13,6 +12,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+/*
+Author: Sjors Koevoets
+Controller die ervoor zorgt dat een nieuw banknummer wordt gegenereerd en aan een user wordt gekoppeld en opgeslagen
+ */
 @Controller
 public class NewBankAccountController {
 
@@ -32,6 +35,7 @@ public class NewBankAccountController {
 
     @GetMapping("newbankaccount")
     private String newBankAccountHandler(@SessionAttribute("gebruiker") Gebruiker gebruiker, Model model){
+        //Genereer een rekeningnummer
         nieuwRekeningNummer = genereerRekeningnummerService.genereerRekeningnummer();
         model.addAttribute("nieuwrekeningnummer", nieuwRekeningNummer);
         klant = klantService.findKlantByPersonId(gebruiker.getId());

@@ -7,8 +7,6 @@ import javax.persistence.Id;
 @Entity
 public class Postcode {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private int adresID;
     private String postcode;
     private int minHuisnr;
     private int maxHuisnr;
@@ -25,14 +23,6 @@ public class Postcode {
         this.maxHuisnr = maxHuisnr;
         this.straat = straat;
         this.stad = stad;
-    }
-
-    public int getAdresID() {
-        return adresID;
-    }
-
-    public void setAdresID(int adresID) {
-        this.adresID = adresID;
     }
 
     public String getPostcode() {

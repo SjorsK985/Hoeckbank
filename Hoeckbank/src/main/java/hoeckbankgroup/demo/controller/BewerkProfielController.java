@@ -9,6 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+/*
+Author: Sjors Koevoets
+Controller die ervoor zorgt dat prive en mkb users hun profiel kunnen aanpassen
+ */
+
 @Controller
 @SessionAttributes("gebruiker")
 public class BewerkProfielController {
@@ -19,9 +24,9 @@ public class BewerkProfielController {
     @Autowired
     MKBService mkbService;
 
+    //Haalt aan de hand van rol user particulier of mkb uit database en geeft mee aan model
     @GetMapping("bewerkprofiel")
-    private String editProfileHandler(Model model){
-        Gebruiker gebruiker = (Gebruiker) model.getAttribute("gebruiker");
+    private String editProfileHandler(@SessionAttribute(name="gebruiker") Gebruiker gebruiker, Model model){
         if(gebruiker.getRol().equals("Particulier")) {
             Particulier particulier = particulierService.findParticulierById(gebruiker.getId());
             model.addAttribute("particulier", particulier);
@@ -33,12 +38,13 @@ public class BewerkProfielController {
         }
     }
 
+    //Slaat een particulier op
     @PostMapping("do_change_profile_particulier")
     private String doChangeProfileParticulierHandler(@ModelAttribute(name="particulier") Particulier particulier) {
         particulierService.save(particulier);
         return "redirect:/rekeningenoverzicht";
     }
-
+    //Slaat een mkb op
     @PostMapping("do_change_profile_mkb")
     private String doChangeProfileMKBHandler(@ModelAttribute(name="mbk") MKB mkb) {
         mkbService.save(mkb);

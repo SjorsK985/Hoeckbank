@@ -17,6 +17,10 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 
+/*
+Author: Sjors Koevoets
+Controller die dat een user een nieuwe account kan aanmaken
+ */
 @Controller
 @SessionAttributes("gebruiker")
 public class RegisterController {
@@ -29,11 +33,6 @@ public class RegisterController {
 
     @Autowired
     private KlantService klantService;
-
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
-
-    private AddressPart addressPart;
 
     @GetMapping("register")
     public String registerHandler(Model model,
@@ -80,26 +79,4 @@ public class RegisterController {
             }
         }
     }
-
-    @CrossOrigin
-    @PostMapping("/emailcheck")
-    public @ResponseBody
-    String checkEmail(@RequestParam String email){
-        boolean response;
-        try {
-            response = klantService.klantExistsByEmail(email);
-            if(response == true){
-                return "true";
-            } else {
-                return "false";
-            }
-        } catch (EmptyResultDataAccessException ex) {
-            throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND, "Adres niet gevonden", ex);
-        } catch (Exception ex) {
-            throw new ResponseStatusException(
-                    HttpStatus.INTERNAL_SERVER_ERROR, "Things went wrong on our side", ex);
-        }
-    }
 }
-

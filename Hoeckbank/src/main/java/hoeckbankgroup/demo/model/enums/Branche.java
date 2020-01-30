@@ -1,5 +1,9 @@
 package hoeckbankgroup.demo.model.enums;
 
+/*
+Author: Sjors Koevoets
+Enum met branche-opties
+ */
 public enum Branche {
     LANDBOUW("Landbouw, Bosbouw & Visserij"),
     INDUSTRIE("Lichte & Zware Industrie"),
@@ -15,6 +19,7 @@ public enum Branche {
     HORECA("Horeca"),
     CREATIEVESECTOR("Creatieve sector wo Kunsten, Muziek & Vormgeving");
 
+    //veld voor String
     public final String naam;
 
     private Branche(String naam){

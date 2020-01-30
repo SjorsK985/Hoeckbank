@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PostcodeDAO extends JpaRepository<Postcode, Integer> {
+    Postcode getPostcodeByPostcode(String postcode);
 }

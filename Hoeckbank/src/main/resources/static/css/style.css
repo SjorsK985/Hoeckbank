@@ -9,13 +9,16 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Bree Serif', sans-serif;
 }
 
-.validate-error{
-    color:red;
+.validate-getinput{
+    border: 3px solid gray!important;
 }
 
+.validate-error{
+    border: 3px solid #e02d45!important;
+}
 
 .validate-ok{
-    color: #28a745!important;
+    border: 3px solid #28a745!important;
 }
 
 .validate-field-error{
