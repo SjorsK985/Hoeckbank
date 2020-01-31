@@ -132,6 +132,10 @@ public class AddAllKlantToDb {
         return "login";
     }
 
+    /*
+    Author: Sjors Koevoets
+    Handler die zorgt dat postcodes in postcodes.csv als Postcode-pojo's in database worden
+     */
     @GetMapping("inleespostcodes")
     private String inlezenPostcodes() {
         try {
@@ -149,7 +153,6 @@ public class AddAllKlantToDb {
         }
         return "index";
     }
-
     @GetMapping("inleesvbpostcode")
     private String inleesVBPostcode(){
         Postcode postcode = new Postcode("1000AA",1,10,"Lutjebroekstraat","Lutjebroek");

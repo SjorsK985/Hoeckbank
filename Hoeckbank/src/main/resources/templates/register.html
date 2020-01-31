@@ -9,7 +9,6 @@
 <section id="register" class="border-top border-muted">
     <div class="container">
         <h2 id="register-welcome" class="text-center py-5">Welkom bij Hoeckbank, vul hier uw gegevens in</h2>
-        <span class="validate-error" th:text="${backendError}"/>
         <div class="form-wrapper mx-auto">
             <form action="#" th:action = "@{do_register}" method="post" th:object="${Geslacht}">
                 <div class="text-center">
