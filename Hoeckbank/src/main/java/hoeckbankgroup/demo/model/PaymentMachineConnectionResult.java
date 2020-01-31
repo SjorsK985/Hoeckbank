@@ -2,8 +2,8 @@ package hoeckbankgroup.demo.model;
 
 public class PaymentMachineConnectionResult {
     private boolean succeeded;
-    private long id;
-    public PaymentMachineConnectionResult(boolean succeeded, long id) {
+    private int id;
+    public PaymentMachineConnectionResult(boolean succeeded, int id) {
         this.succeeded = succeeded;
         this.id = id;
     }
@@ -13,10 +13,10 @@ public class PaymentMachineConnectionResult {
     public void setSucceeded(boolean succeeded) {
         this.succeeded = succeeded;
     }
-    public long getId() {
+    public int getId() {
         return id;
     }
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 }
