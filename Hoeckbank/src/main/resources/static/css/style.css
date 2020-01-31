@@ -21,6 +21,10 @@ h1, h2, h3, h4, h5, h6 {
     border: 3px solid #28a745!important;
 }
 
+.error{
+    color: #e02d45!important;
+}
+
 .validate-field-error{
     background-color: rgba(255, 0, 0, 0.4);
 }

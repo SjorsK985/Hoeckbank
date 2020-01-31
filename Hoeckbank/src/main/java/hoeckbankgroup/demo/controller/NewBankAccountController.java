@@ -59,7 +59,7 @@ public class NewBankAccountController {
 
     @PostMapping("confirm-newbank")
     private String confirmNewBankAccountHandler(){
-        rekening = new Rekening(nieuwRekeningNummer, 0, tenaamstelling);
+        rekening = new Rekening(nieuwRekeningNummer, 100, tenaamstelling);
         klant.addRekening(rekening);
         klantService.save(klant);
         return "redirect:/rekeningenoverzicht";

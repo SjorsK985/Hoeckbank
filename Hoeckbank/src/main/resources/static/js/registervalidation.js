@@ -28,6 +28,7 @@ var passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,20}$/;
 var vast_nummer = /^(((0)[1-9]{2}[0-9][-]?[1-9][0-9]{5})|((\\+31|0|0031)[1-9][0-9][-]?[1-9][0-9]{6}))$/;
 var mobiel_nummer = /^(((\\+31|0|0031)6){1}[1-9]{1}[0-9]{7})$/i;
 var bsn_nummer = /^[1-9]{8,9}$/;
+var notNoting= /^(?! *$)[a-zA-Z.+ '-]+$/;
 var onlyLetters = /^[a-zA-Z]+$/;
 var onlyNumbers = /^[0-9]+$/;
 var dateReg = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
@@ -122,6 +123,8 @@ function blurValidation(element, regex, msg){
         if(parent.childNodes.length < 2) {
             parent.appendChild(node);
         }
+    } else if(element.value.length == 0){
+        element.classList.remove('validate-ok');
     }
 }
 
@@ -160,7 +163,7 @@ function checkAllInputs(){
     let validatedItems = document.getElementsByClassName("validate-ok");
     console.log(validatedItems);
     console.log(validatedItems.length);
-    if(validatedItems.length  >= 10){
+    if(validatedItems.length == 11 || validatedItems.length == 8){
         do_register_button.disabled = false;
     } else{
         do_register_button.disabled = true;
