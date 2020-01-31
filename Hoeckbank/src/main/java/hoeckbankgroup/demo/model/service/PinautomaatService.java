@@ -24,7 +24,8 @@ public class PinautomaatService {
         int controle = Integer.parseInt(pinautomaat.getCode());
         if(pinautomaat!=null && controle==check){
             String decode = genereerreturnCode();
-            int returncode = Integer.parseInt(decode);
+            //int returncode = Integer.parseInt(decode);
+            int returncode = genereerreturnCodeInt();
             PaymentMachineConnectionResult paymentMachineConnectionResult = new PaymentMachineConnectionResult(true,returncode);
             System.out.println(" true "+ controle + "  " + check);
             return paymentMachineConnectionResult;
@@ -55,6 +56,16 @@ public class PinautomaatService {
         }
         System.out.println(code);
         return code;
+    }
+
+    public int genereerreturnCodeInt(){
+
+            int getal = (int) (1000000000 * Math.random() + 1);
+
+
+
+        System.out.println(getal);
+        return getal;
     }
 
     public String genereerreturnCode(){
