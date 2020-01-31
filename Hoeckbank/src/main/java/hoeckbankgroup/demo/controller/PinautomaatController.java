@@ -40,15 +40,24 @@ public class PinautomaatController {
 
     @PostMapping("pinautomaatopslaan")
     private String pinautomaatOpslaanHandler(@RequestParam(name = "rekeningnummer") String rekeningnummer, Model model) {
+
         String codePinautomaat = pinautomaatService.genereerCode();
         model.addAttribute("rekening", rekeningnummer);
-        model.addAttribute("code", codePinautomaat);
+
         Pinautomaat pinautomaat = new Pinautomaat();
         pinautomaat.setCode(codePinautomaat);
         Rekening rekening = rekeningService.findRekeningByRekeningnummer(rekeningnummer);
         pinautomaat.setRekening(rekening);
-        pinautomaatService.save(pinautomaat);
-        System.out.println("koppelen maar " + rekeningnummer);
+        if (pinautomaatService.isFindPinautomaatByRekening(rekening)) {
+            pinautomaatService.save(pinautomaat);
+            model.addAttribute("code", codePinautomaat);
+            model.addAttribute("status", "gelukt");
+            System.out.println("koppelen maar " + rekeningnummer);
+        } else {
+            model.addAttribute("status", "koppelcode bestaat al");
+            model.addAttribute("code", pinautomaatService.findPinautomaatByRekening(rekening).getCode());
+        }
+
         return "pinautomaat";
     }
 
@@ -57,6 +66,7 @@ public class PinautomaatController {
         if (rekeningService.findRekeningByRekeningnummer(paymentMachineConnectionData.getAccount()) != null) {
             Rekening rekening = rekeningService.findRekeningByRekeningnummer(paymentMachineConnectionData.getAccount());
             int controle = paymentMachineConnectionData.getCheck();
+
             if (pinautomaatService.validateAccount(rekening, controle).isSucceeded()) {
                 System.out.println("gelukt");
                 Gson gson = new Gson();

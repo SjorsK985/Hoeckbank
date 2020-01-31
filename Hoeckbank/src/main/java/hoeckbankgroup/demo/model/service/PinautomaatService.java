@@ -23,13 +23,26 @@ public class PinautomaatService {
         Pinautomaat pinautomaat = pinautomaatDao.findPinautomaatByRekening(rekening);
         int controle = Integer.parseInt(pinautomaat.getCode());
         if(pinautomaat!=null && controle==check){
-            int returncode = Integer.parseInt(genereerreturnCode());
+            String decode = genereerreturnCode();
+            int returncode = Integer.parseInt(decode);
             PaymentMachineConnectionResult paymentMachineConnectionResult = new PaymentMachineConnectionResult(true,returncode);
             System.out.println(" true "+ controle + "  " + check);
             return paymentMachineConnectionResult;
         }
         System.out.println(" false "+ controle + "  " + check);
         return new PaymentMachineConnectionResult(false,0);
+
+    }
+
+    public boolean isFindPinautomaatByRekening(Rekening rekening){
+        if(pinautomaatDao.findPinautomaatByRekening(rekening)==null){
+            return true;
+        }
+        return false;
+    }
+
+    public Pinautomaat findPinautomaatByRekening(Rekening rekening){
+        return pinautomaatDao.findPinautomaatByRekening(rekening);
 
     }
 
