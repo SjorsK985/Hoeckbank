@@ -59,14 +59,11 @@ public class PinautomaatService {
     }
 
     public int genereerreturnCodeInt(){
-
             int getal = (int) (1000000000 * Math.random() + 1);
-
-
-
         System.out.println(getal);
         return getal;
     }
+
 
     public String genereerreturnCode(){
         String code = "";

@@ -5,20 +5,24 @@
 <nav th:replace="fragments/navbarloguit :: navbar"/>
 <!--BEGIN HIER MET NIEUWE TEMPLATE-->
 <div class="container">
-    <form action="#" th:action="@{pinautomaatopslaan}" method="post" onsubmit=" return validationError()"
-          name="loginForm">
-        <table id="register-form" class="table">
-            <colgroup>
+    <form action="#" th:action="@{pinautomaatopslaan}" method="post">
+        <br/>
+        <h2 class="h1 py-5 text-center">Koppel pinautomaat</h2>
+        <p>Vul het rekeningnummer in dat u wilt koppelen. Druk vervolgens op Genereer Code. Deze code kan de klant gebruiken om te koppelen!</p>
+        <br/>
+        <table class="table">
+           <colgroup>
                 <col span="1">
                 <col span="1">
                 <col span="1">
             </colgroup>
             <tbody>
             <tr>
-                <td class="first-row"></i>Rekeningnummer :</td>
-                <td class="first-row">
+                <td>Rekeningnummer :</td>
+                <td >
                     <input class="register-form-input" type="text" name="rekeningnummer"
-                                             placeholder="NL12HCKB1234567890"></td>
+                           placeholder="NL12HCKB1234567890">
+                </td>
                 <td align="right">
                     <a href="#">
                         <button class="btn btn-primary my-2 my-sm-0" type="submit" value="Bevestigen">Genereer Code
@@ -27,15 +31,10 @@
                 </td>
 
             </tr>
-            <!--            <tr>
-                            <td>
 
-                            </td>
-
-                        </tr>-->
             <tr>
-                <td class="first-row"></i>Pinautomaatcode :</td>
-                <td class="first-row"><input class="register-form-input" type="text" name="code" th:value="${code}"
+                <td>Pinautomaatcode :</td>
+                <td><input class="register-form-input" type="text" name="code" th:value="${code}"
                                              readonly>
 
                 </td>
